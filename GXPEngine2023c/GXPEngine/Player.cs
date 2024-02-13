@@ -12,7 +12,7 @@ namespace GXPEngine
         public int healthPoints = 5;
         int maxHealth;
         float stamina = 100;// need to come up with stamina values, how much you lose and gain in each case
-        bool isDead = false;
+        bool isDead = false;        
 
         Transformable spawnPoint;
 
