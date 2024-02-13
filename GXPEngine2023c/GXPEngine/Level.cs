@@ -7,9 +7,27 @@ namespace GXPEngine
 {
     class Level : GameObject
     {
+        public Player player;
+        public Transformable spawnPoint;
         public Level(int index) : base()
         {
+            Start();
+        }
+        private void Start()
+        {
+            //Spawn enemies at specific places depending on the level, after that spawn the player
 
+            //spawnPoint = new Transformable();
+            //spawnPoint.SetXY(game.width / 2, game.height / 2);
+            //AddChild(spawnPoint as GameObject);
+            player = new Player();
+            AddChild(player);
+            player.level = this;
+            Enemy enemy = new Enemy();
+            enemy.level = this;
+            enemy.SetXY(game.width / 2, game.height / 2);
+            AddChild(enemy);
+            enemy.Start(); //change this, start method either has to be private or shouldn't exist
         }
     }
 }

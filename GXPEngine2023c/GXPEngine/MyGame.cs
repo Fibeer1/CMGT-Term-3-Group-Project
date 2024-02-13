@@ -3,32 +3,22 @@ using GXPEngine;
 using System.Drawing;                           
 
 public class MyGame : Game {
-	//test
-	Player player;
-	public Transformable spawnPoint;
-	SoundChannel audioSource;
-
+	
 	public MyGame() : base(800, 600, false, false)
 	{
 		targetFps = 60;
-		spawnPoint = new Transformable();
-		spawnPoint.SetXY(width / 2, height / 2);
-		player = new Player();
-		AddChild(player);
-		Enemy enemy = new Enemy();
-		enemy.SetXY(width / 2, height / 2);
-		AddChild(enemy);
+		StartLevel(0);
 	}
 
 	public void StartLevel(int levelIndex)
     {
 		DestroyChildren();
 		Level level = new Level(levelIndex);
+		AddChild(level);
     }
 
 	private void DestroyChildren()
     {
-		audioSource.Stop();
 		for (int i = 0; i < game.GetChildCount(); i++)
 		{
 			GameObject child = game.GetChildren()[i];

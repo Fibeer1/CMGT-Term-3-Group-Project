@@ -12,10 +12,16 @@ namespace GXPEngine
         Player player;
         float delta;
         float distanceTillAction;
+        public Level level;
         bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height - height / 2;
-        public Enemy() : base("colors.png")
+        public Enemy() : base("Enemy.png")
         {
-            player = game.FindObjectOfType<Player>();
+            
+        }
+        public void Start()
+        {
+            level = parent as Level;
+            player = level.player;
             SetOrigin(width / 2, height / 2);
             SetPattern();
         }
@@ -66,6 +72,11 @@ namespace GXPEngine
             {
                 pattern = "Charging";
             }
+        }
+        public void Die()
+        {
+            LateRemove();
+            LateDestroy();
         }
     }
 }
