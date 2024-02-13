@@ -10,10 +10,10 @@ namespace GXPEngine
         //Movement pattern parameters
         string pattern;
         Player player;
-        GameObject movePoint;
         float delta;
+        float distanceTillAction;
         bool outsideBorders => x < -width || x > game.width + width || y < -height || y > game.height + height;
-        public Enemy() : base("triangle.png")
+        public Enemy() : base("colors.png")
         {
             player = game.FindObjectOfType<Player>();
             SetOrigin(width / 2, height / 2);
@@ -21,6 +21,7 @@ namespace GXPEngine
         }
         private void Update()
         {
+            Move(1, 0);
             delta = x - player.x;
             if (pattern == "LeftNRight")
             {
@@ -54,6 +55,7 @@ namespace GXPEngine
             if (patternRNG == 1)
             {
                 pattern = "Chasing";
+                distanceTillAction = 100;
             }
             if (patternRNG == 2)
             {

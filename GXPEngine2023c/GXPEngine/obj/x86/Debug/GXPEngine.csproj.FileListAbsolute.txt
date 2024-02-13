@@ -4,3 +4,10 @@ C:\Users\fibee\Desktop\Saxion stuff\Year 1\Term 3\Group Project\GXPEngine2023c\G
 C:\Users\fibee\Desktop\Saxion stuff\Year 1\Term 3\Group Project\GXPEngine2023c\GXPEngine\obj\x86\Debug\GXPEngine.csproj.CoreCompileInputs.cache
 C:\Users\fibee\Desktop\Saxion stuff\Year 1\Term 3\Group Project\GXPEngine2023c\GXPEngine\obj\x86\Debug\GXPEngine.exe
 C:\Users\fibee\Desktop\Saxion stuff\Year 1\Term 3\Group Project\GXPEngine2023c\GXPEngine\obj\x86\Debug\GXPEngine.pdb
+C:\Users\fibee\Documents\GitKraken\CMGT-Term-3-Group-Project\GXPEngine2023c\GXPEngine\bin\Debug\GXPEngine.exe.config
+C:\Users\fibee\Documents\GitKraken\CMGT-Term-3-Group-Project\GXPEngine2023c\GXPEngine\bin\Debug\GXPEngine.exe
+C:\Users\fibee\Documents\GitKraken\CMGT-Term-3-Group-Project\GXPEngine2023c\GXPEngine\bin\Debug\GXPEngine.pdb
+C:\Users\fibee\Documents\GitKraken\CMGT-Term-3-Group-Project\GXPEngine2023c\GXPEngine\obj\x86\Debug\GXPEngine.csproj.AssemblyReference.cache
+C:\Users\fibee\Documents\GitKraken\CMGT-Term-3-Group-Project\GXPEngine2023c\GXPEngine\obj\x86\Debug\GXPEngine.csproj.CoreCompileInputs.cache
+C:\Users\fibee\Documents\GitKraken\CMGT-Term-3-Group-Project\GXPEngine2023c\GXPEngine\obj\x86\Debug\GXPEngine.exe
+C:\Users\fibee\Documents\GitKraken\CMGT-Term-3-Group-Project\GXPEngine2023c\GXPEngine\obj\x86\Debug\GXPEngine.pdb

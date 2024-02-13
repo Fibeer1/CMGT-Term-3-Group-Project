@@ -25,6 +25,7 @@ public class MyGame : Game {
 		DestroyChildren();
 		Level level = new Level(levelIndex);
     }
+
 	private void DestroyChildren()
     {
 		audioSource.Stop();
