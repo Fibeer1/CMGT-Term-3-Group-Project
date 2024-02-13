@@ -29,10 +29,10 @@ namespace GXPEngine
 
         //Horn attack variables
         List<Enemy> enemies;
-        Enemy target;
+        public Enemy target;
         float hornCD = 0; //Default value is 0.5f
         Sprite horn;
-        Sprite hornArrow;
+        public Sprite hornArrow;
 
         public Level level;
 
@@ -48,8 +48,7 @@ namespace GXPEngine
             AddChild(horn);
             hornArrow = new Sprite("HornArrow.png");
             hornArrow.SetOrigin(hornArrow.width / 2, hornArrow.height / 2);
-            hornArrow.SetXY(0, 0);
-            AddChild(hornArrow);
+            //level.AddChild(hornArrow);
             //foreach (Enemy enemy in level.GetChildren()) //Gets all enemies in the level
             //{
             //    enemies.Add(enemy);
@@ -57,6 +56,11 @@ namespace GXPEngine
         }
         private void Update()
         {
+            if (level == null)
+            {
+                level = game.FindObjectOfType<Level>();
+                hornArrow.parent = level; //Remove this as soon as we come up with a better way to find an already instantiated object in a newly instantiated object :))))))))))))))
+            }
             //HandleGravity();
             HandleMovement();
             HandleJumping();
@@ -109,7 +113,7 @@ namespace GXPEngine
                 }
                 else if (x > game.width - width) //right border
                 {
-                    Translate(-scaleX / 6, 0);
+                    Translate(scaleX / 6, 0);
                 }
                 else if (y < height / 2) //top border
                 {
@@ -140,16 +144,34 @@ namespace GXPEngine
         }
         private void HandleHornAttack()
         {
-            //horn.alpha = hornCD > 0 ? 0 : 1;
-            float xPos =  Input.mouseX - hornArrow.x;
-            float yPos = Input.mouseY - hornArrow.y;
-            float modifierRotation = 0;
-            float angle = Mathf.Atan2(yPos, xPos) * 360 / ((float)Math.PI * 2) + modifierRotation;
-            if (!facingRight)
+            horn.alpha = hornCD > 0 ? 0 : 1;
+            if (target == null || hornCD > 0)
             {
-                angle -= 180;
+                hornArrow.alpha = 0;
             }
-            hornArrow.rotation = angle;
+            else
+            {
+                hornArrow.alpha = 1;
+            }
+            if (target != null && hornCD <= 0)
+            {
+                hornArrow.SetXY(x, y);
+                float xPos = target.x - x;
+                float yPos = target.y - y;
+                float rotationModifier = 90;
+                float angle = Mathf.Atan2(yPos, xPos) * 360 / ((float)Math.PI * 2) + rotationModifier;
+                hornArrow.rotation = angle;
+            }
+            if (Input.GetMouseButtonDown(1) && hornCD <= 0)
+            {
+                HornProjectile hornProjectile = new HornProjectile();
+                level.AddChild(hornProjectile);
+                hornCD = 0.5f;
+            }
+            if (hornCD > 0)
+            {
+                hornCD -= 0.0175f;
+            }
         }
         void SetPosition()
         {

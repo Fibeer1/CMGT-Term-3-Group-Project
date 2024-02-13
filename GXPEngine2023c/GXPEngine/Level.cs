@@ -19,15 +19,14 @@ namespace GXPEngine
 
             //spawnPoint = new Transformable();
             //spawnPoint.SetXY(game.width / 2, game.height / 2);
-            //AddChild(spawnPoint as GameObject);
+            //AddChild(spawnPoint as GameObject);            
             player = new Player();
             AddChild(player);
-            player.level = this;
             Enemy enemy = new Enemy();
-            enemy.level = this;
             enemy.SetXY(game.width / 2, game.height / 2);
             AddChild(enemy);
             enemy.Start(); //change this, start method either has to be private or shouldn't exist
+            player.target = enemy;
         }
     }
 }

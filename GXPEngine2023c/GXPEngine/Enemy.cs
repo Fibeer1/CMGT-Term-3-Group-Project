@@ -27,7 +27,8 @@ namespace GXPEngine
         }
         private void Update()
         {
-            Move(1, 0);
+            Move(2, 0);
+            Turn(2f);
             delta = DistanceTo(player);
             if (pattern == "LeftNRight")
             {
