@@ -12,7 +12,7 @@ namespace GXPEngine
         Player player;
         float delta;
         float distanceTillAction;
-        bool outsideBorders => x < -width || x > game.width + width || y < -height || y > game.height + height;
+        bool outsideBorders => x < width / 2 || x > game.width || y < height / 2 || y > game.height;
         public Enemy() : base("colors.png")
         {
             player = game.FindObjectOfType<Player>();
@@ -22,7 +22,7 @@ namespace GXPEngine
         private void Update()
         {
             Move(1, 0);
-            delta = x - player.x;
+            delta = DistanceTo(player);
             if (pattern == "LeftNRight")
             {
 
@@ -33,9 +33,9 @@ namespace GXPEngine
             }
             else if (pattern == "Fleeing")
             {
-                if (delta > 0)
+                if (delta < distanceTillAction)
                 {
-
+                    Console.WriteLine("a");
                 }
             }
             else if (pattern == "Charging")
@@ -47,7 +47,7 @@ namespace GXPEngine
         }
         private void SetPattern()
         {
-            int patternRNG = Utils.Random(0, 4);
+            int patternRNG = 2;//Utils.Random(0, 4);
             if (patternRNG == 0)
             {
                 pattern = "LeftNRight";
@@ -60,6 +60,7 @@ namespace GXPEngine
             if (patternRNG == 2)
             {
                 pattern = "Fleeing";
+                distanceTillAction = 100;
             }
             if (patternRNG == 3)
             {
