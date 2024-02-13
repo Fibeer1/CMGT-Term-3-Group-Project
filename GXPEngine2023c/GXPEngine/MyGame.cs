@@ -3,7 +3,7 @@ using GXPEngine;
 using System.Drawing;                           
 
 public class MyGame : Game {
-
+	//test
 	Player player;
 	public Transformable spawnPoint;
 	SoundChannel audioSource;
