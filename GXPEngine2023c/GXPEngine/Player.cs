@@ -23,7 +23,7 @@ namespace GXPEngine
         float maxSpeed = 5;
         bool canJump = true;
 
-        bool outsideBorders => x < width / 2 || x > game.width || y < height / 2 || y > game.height;
+        bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height;
 
         public Player() : base("Square.png")
         {
@@ -70,19 +70,19 @@ namespace GXPEngine
                 speedY = 0;
                 if (x < width / 2) //left border
                 {
-                    Translate(5, 0);
+                    Translate(scaleX / 6, 0);
                 }
-                else if (x > game.width) //right border
+                else if (x > game.width - width) //right border
                 {
-                    Translate(-5, 0);
+                    Translate(-scaleX / 6, 0);
                 }
                 else if (y < height / 2) //top border
                 {
-                    Translate(0, 5);
+                    Translate(0, scaleY / 6);
                 }
                 else if (y > game.height) //bottom border
                 {
-                    Translate(0, -5);
+                    Translate(0, -scaleY / 6);
                 }
             }           
             Move(speedX, speedY);

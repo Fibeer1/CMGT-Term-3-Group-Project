@@ -35,7 +35,7 @@ namespace GXPEngine
             {
                 if (delta < distanceTillAction)
                 {
-                    Console.WriteLine("a");
+                    
                 }
             }
             else if (pattern == "Charging")
