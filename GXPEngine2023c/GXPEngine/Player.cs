@@ -11,7 +11,7 @@ namespace GXPEngine
         public int score;
         public int healthPoints = 5;
         int maxHealth;
-        int healthTaken = 2;
+        float stamina = 100;// need to come up with stamina values, how much you lose and gain in each case
         bool isDead = false;        
 
         Transformable spawnPoint;
