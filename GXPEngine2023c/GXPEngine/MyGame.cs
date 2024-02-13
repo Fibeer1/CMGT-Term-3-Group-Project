@@ -1,6 +1,6 @@
-using System;                                   // System contains a lot of default C# libraries 
-using GXPEngine;                                // GXPEngine contains the engine
-using System.Drawing;                           // System.Drawing contains drawing tools such as Color definitions
+using System;                                   
+using GXPEngine;                                
+using System.Drawing;                           
 
 public class MyGame : Game {
 
@@ -8,13 +8,16 @@ public class MyGame : Game {
 	public Transformable spawnPoint;
 	SoundChannel audioSource;
 
-	public MyGame() : base(800, 600, false, false)     // Create a window that's 800x600 and NOT fullscreen
+	public MyGame() : base(800, 600, false, false)
 	{
 		targetFps = 60;
 		spawnPoint = new Transformable();
 		spawnPoint.SetXY(width / 2, height / 2);
 		player = new Player();
 		AddChild(player);
+		Enemy enemy = new Enemy();
+		enemy.SetXY(width / 2, height / 2);
+		AddChild(enemy);
 	}
 
 	public void StartLevel(int levelIndex)
