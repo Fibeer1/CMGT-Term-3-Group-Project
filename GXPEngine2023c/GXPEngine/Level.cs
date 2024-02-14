@@ -13,6 +13,7 @@ namespace GXPEngine
         public Level(int index) : base()
         {
             Start();
+            
         }
         private void Start()
         {
@@ -24,6 +25,8 @@ namespace GXPEngine
             player = new Player();
             AddChild(player);
 
+            AddChild(new Terrain(game.width / 2, game.height / 4 * 3, 800, 50));
+            AddChild(new Terrain(game.width / 2, game.height / 4, 200, 50));
             Enemy enemy1 = new Enemy(100, game.height - 100);
             AddChild(enemy1);
             enemy1.Start();

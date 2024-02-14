@@ -10,7 +10,11 @@ namespace GXPEngine
     {
         public Terrain(float px, float py, int pwidth, int pheight) : base("colors.png", false, true)
         {
+            width = pwidth;
+            height = pheight;
 
+            x = px - width/2;
+            y = py - height/2;
         }
     }
 }

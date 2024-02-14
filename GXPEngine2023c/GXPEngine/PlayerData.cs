@@ -9,7 +9,7 @@ namespace GXPEngine
     public class PlayerData
     {
         const float movementSpeed = 5;
-        const float heightJump = 15;
+        const float heightJump = 30;
         const float gravityStrength = 1;
 
         public float speed

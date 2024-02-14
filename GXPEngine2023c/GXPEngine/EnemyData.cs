@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GXPEngine
 {
-    class EnemyData
+    public class EnemyData
     {
     }
 }

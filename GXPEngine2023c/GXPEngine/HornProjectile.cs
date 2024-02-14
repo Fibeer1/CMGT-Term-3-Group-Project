@@ -21,6 +21,8 @@ namespace GXPEngine
             SetXY(player.hornArrow.x, player.hornArrow.y);
             rotation = player.hornArrow.rotation;
             x += player.facingRight ? 10 : -10;
+
+            
         }
         private void Update()
         {

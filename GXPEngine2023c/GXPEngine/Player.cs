@@ -52,10 +52,10 @@ namespace GXPEngine
             SetOrigin(width / 2, height / 2);
             SetPosition();
             maxHealth = healthPoints;
-            horn = new Sprite("Horn.png", false);
+            horn = new Sprite("Horn.png", false, false);
             horn.SetXY(32, -36);
             AddChild(horn);
-            hornArrow = new Sprite("HornArrow.png", false);
+            hornArrow = new Sprite("HornArrow.png", false, false);
             hornArrow.SetOrigin(hornArrow.width / 2, hornArrow.height / 2);
 
             //level.AddChild(hornArrow);
@@ -89,10 +89,14 @@ namespace GXPEngine
             if (Input.GetKey('A'))
             {
                 dx -= data.speed;
+                scaleX = -1;
+                facingRight = false;
             }
             else if (Input.GetKey('D'))
             {
                 dx += data.speed;
+                scaleX = 1;
+                facingRight = true;
             }
 
             //jumping
