@@ -9,10 +9,11 @@ namespace GXPEngine
     public class PlayerData
     {
         const float movementSpeed = 5;
-        const float heightJump = 30;
+        const float heightJump = 25;
         const float gravityStrength = 1;
 
-        //const float 
+        const float biteCDTime = 0.5f;
+        const float hornCDTime = 3;
 
         public float speed
         {
@@ -35,6 +36,22 @@ namespace GXPEngine
             get
             {
                 return gravityStrength;
+            }
+        }
+
+        public float biteCD
+        {
+            get
+            {
+                return biteCDTime;
+            }
+        }
+
+        public float hornCD
+        {
+            get
+            {
+                return hornCDTime;
             }
         }
 

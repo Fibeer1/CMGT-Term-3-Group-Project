@@ -25,14 +25,14 @@ namespace GXPEngine
 
         //Bite attack variables
         public float biteCDTimer = 0;
-        public float biteCD = 0.5f; //Default value is 0.5f
+        public float biteCD; //Default value is 0.5f
 
         //Horn attack variables
        
         public List<Enemy> enemies = new List<Enemy>();
         public Enemy target;
         public float hornCDTimer = 0;
-        public float hornCD = 3; //Default value is 3f
+        public float hornCD; //Default value is 3f
         float hornRadius = 300;
         Sprite horn;
         public Sprite hornArrow;
@@ -45,6 +45,9 @@ namespace GXPEngine
         public Player() : base("Unicorn.png")
         {
             data = ((MyGame)game).playerData;
+
+            biteCD = data.biteCD;
+            hornCD = data.hornCD;
 
             SetOrigin(width / 2, height / 2);
             SetPosition();
@@ -97,7 +100,7 @@ namespace GXPEngine
             }
 
             //jumping
-            if (Input.GetKey('W') && canJump)
+            if (Input.GetKeyDown('W') && canJump)
             {
                 speedY -= data.jumpHeight;
             }
