@@ -15,6 +15,7 @@ namespace GXPEngine
             SetOrigin(width / 2, height / 2);
             player = game.FindObjectOfType(typeof(Player)) as Player;
             SetXY(50, -5);
+            collider.isTrigger = true;
         }
         private void Update()
         {

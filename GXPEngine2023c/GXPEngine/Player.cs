@@ -73,9 +73,6 @@ namespace GXPEngine
             }
 
             Movement();
-            //HandleGravity();
-            //HandleMovement();
-            //HandleJumping();
             HandleBiteAttack();
             HandleHornAttack();
         }
