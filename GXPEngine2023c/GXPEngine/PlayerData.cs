@@ -11,6 +11,7 @@ namespace GXPEngine
         const float movementSpeed = 5;
         const float heightJump = 25;
         const float gravityStrength = 1;
+        const float spriteScale = 0.75f;
 
         const float biteCDTime = 0.5f;
         const float hornCDTime = 3;
@@ -36,6 +37,13 @@ namespace GXPEngine
             get
             {
                 return gravityStrength;
+            }
+        }
+        public float scale
+        {
+            get
+            {
+                return spriteScale;
             }
         }
 

@@ -57,7 +57,7 @@ namespace GXPEngine
             AddChild(horn);
             hornArrow = new Sprite("HornArrow.png", false, false);
             hornArrow.SetOrigin(hornArrow.width / 2, hornArrow.height / 2);
-
+            SetScaleXY(data.scale, data.scale);
             //level.AddChild(hornArrow);
             //foreach (Enemy enemy in level.GetChildren()) //Gets all enemies in the level
             //{
@@ -86,13 +86,13 @@ namespace GXPEngine
             if (Input.GetKey('A'))
             {
                 dx -= data.speed;
-                scaleX = -1;
+                scaleX = -data.scale;
                 facingRight = false;
             }
             else if (Input.GetKey('D'))
             {
                 dx += data.speed;
-                scaleX = 1;
+                scaleX = data.scale;
                 facingRight = true;
             }
 

@@ -10,7 +10,7 @@ namespace GXPEngine
     class HUD : EasyDraw
     {
         Player player;
-        Level level;
+        public Level level;
         Font uiFont = new Font(FontFamily.GenericSansSerif, 15);
         public HUD() : base(800, 600, false) //size is the same as the game window
         {
@@ -18,7 +18,7 @@ namespace GXPEngine
         }
         public void Start()
         {
-            level = parent as Level;
+            //level = game.FindObjectOfType<Level>();
             player = level.player;
         }
         private void Update()
