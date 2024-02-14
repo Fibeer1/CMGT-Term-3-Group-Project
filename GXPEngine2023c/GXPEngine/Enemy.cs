@@ -14,21 +14,20 @@ namespace GXPEngine
         float distanceTillAction;
         public Level level;
         bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height - height / 2;
-        public Enemy() : base("Enemy.png")
+        public Enemy(float xPos, float yPos) : base("Enemy.png")
         {
-            
+            SetXY(xPos, yPos);
         }
         public void Start()
         {
             level = parent as Level;
             player = level.player;
+            player.enemies.Add(this);
             SetOrigin(width / 2, height / 2);
             SetPattern();
         }
         private void Update()
         {
-            Move(2, 0);
-            Turn(2f);
             delta = DistanceTo(player);
             if (pattern == "LeftNRight")
             {
@@ -76,6 +75,7 @@ namespace GXPEngine
         }
         public void Die()
         {
+            player.enemies.Remove(this);
             LateRemove();
             LateDestroy();
         }

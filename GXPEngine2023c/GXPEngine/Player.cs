@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Linq;
 
 namespace GXPEngine
 {
@@ -25,14 +24,19 @@ namespace GXPEngine
         public bool facingRight = true;
 
         //Bite attack variables
-
+        float biteCDTimer = 0;
+        float biteCD = 0.5f; //Default value is 0.5f
 
         //Horn attack variables
-        List<Enemy> enemies;
+       
+        public List<Enemy> enemies = new List<Enemy>();
         public Enemy target;
-        float hornCD = 0; //Default value is 0.5f
+        float hornCDTimer = 0;
+        float hornCD = 3; //Default value is 3f
+        float hornRadius = 300;
         Sprite horn;
         public Sprite hornArrow;
+        
 
         public Level level;
 
@@ -43,11 +47,12 @@ namespace GXPEngine
             SetOrigin(width / 2, height / 2);
             SetPosition();
             maxHealth = healthPoints;
-            horn = new Sprite("Horn.png");
+            horn = new Sprite("Horn.png", false);
             horn.SetXY(32, -36);
             AddChild(horn);
-            hornArrow = new Sprite("HornArrow.png");
+            hornArrow = new Sprite("HornArrow.png", false);
             hornArrow.SetOrigin(hornArrow.width / 2, hornArrow.height / 2);
+
             //level.AddChild(hornArrow);
             //foreach (Enemy enemy in level.GetChildren()) //Gets all enemies in the level
             //{
@@ -61,7 +66,7 @@ namespace GXPEngine
                 level = game.FindObjectOfType<Level>();
                 hornArrow.parent = level; //Remove this as soon as we come up with a better way to find an already instantiated object in a newly instantiated object :))))))))))))))
             }
-            //HandleGravity();
+            HandleGravity();
             HandleMovement();
             HandleJumping();
             HandleBiteAttack();
@@ -136,41 +141,48 @@ namespace GXPEngine
         }
         private void HandleBiteAttack()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && biteCDTimer <= 0)
             {
                 BiteParticle biteParticle = new BiteParticle();
                 AddChild(biteParticle);
+                biteCDTimer = biteCD;
+            }
+            if (biteCDTimer > 0)
+            {
+                biteCDTimer -= 0.0175f; //Basically Time.deltatime in unity
             }
         }
         private void HandleHornAttack()
         {
-            horn.alpha = hornCD > 0 ? 0 : 1;
-            if (target == null || hornCD > 0)
+            horn.alpha = hornCDTimer > 0 ? 0 : 1;
+            hornArrow.alpha = target == null || hornCDTimer > 0 ? 0 : 1;
+            foreach (Enemy enemy in enemies)
             {
-                hornArrow.alpha = 0;
+                float delta = DistanceTo(enemy);
+                if (delta < hornRadius)
+                {
+                    target = enemy;
+                    break;
+                }
             }
-            else
+            if (target != null && hornCDTimer <= 0)
             {
-                hornArrow.alpha = 1;
-            }
-            if (target != null && hornCD <= 0)
-            {
-                hornArrow.SetXY(x, y);
+                hornArrow.SetXY(x + (facingRight ? 30 : -30), y - 30);
                 float xPos = target.x - x;
                 float yPos = target.y - y;
                 float rotationModifier = 90;
                 float angle = Mathf.Atan2(yPos, xPos) * 360 / ((float)Math.PI * 2) + rotationModifier;
                 hornArrow.rotation = angle;
             }
-            if (Input.GetMouseButtonDown(1) && hornCD <= 0)
+            if (Input.GetMouseButtonDown(1) && hornCDTimer <= 0)
             {
                 HornProjectile hornProjectile = new HornProjectile();
                 level.AddChild(hornProjectile);
-                hornCD = 0.5f;
+                hornCDTimer = hornCD;
             }
-            if (hornCD > 0)
+            if (hornCDTimer > 0)
             {
-                hornCD -= 0.0175f;
+                hornCDTimer -= 0.0175f;
             }
         }
         void SetPosition()

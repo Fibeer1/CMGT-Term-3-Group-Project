@@ -15,18 +15,19 @@ namespace GXPEngine
         }
         private void Start()
         {
-            //Spawn enemies at specific places depending on the level, after that spawn the player
+            //spawn the player, after that spawn enemies at specific places depending on the level
 
             //spawnPoint = new Transformable();
             //spawnPoint.SetXY(game.width / 2, game.height / 2);
-            //AddChild(spawnPoint as GameObject);            
+            //AddChild(spawnPoint as GameObject);
             player = new Player();
             AddChild(player);
-            Enemy enemy = new Enemy();
-            enemy.SetXY(game.width / 2, game.height / 2);
-            AddChild(enemy);
-            enemy.Start(); //change this, start method either has to be private or shouldn't exist
-            player.target = enemy;
+            Enemy enemy1 = new Enemy(100, game.height - 100);
+            AddChild(enemy1);
+            enemy1.Start();
+            Enemy enemy2 = new Enemy(game.width - 100, game.height - 100);
+            AddChild(enemy2);
+            enemy2.Start();
         }
     }
 }

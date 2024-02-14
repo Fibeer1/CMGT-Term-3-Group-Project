@@ -19,8 +19,7 @@ namespace GXPEngine
             player = game.FindObjectOfType<Player>();
             SetXY(player.hornArrow.x, player.hornArrow.y);
             rotation = player.hornArrow.rotation;
-            x += player.facingRight ? 40 : -40;
-            y -= 12.5f;
+            x += player.facingRight ? 10 : -10;
         }
         private void Update()
         {
@@ -41,7 +40,7 @@ namespace GXPEngine
                 player.score += 1;
                 Enemy enemy = other as Enemy;
                 enemy.Die();
-                Console.WriteLine(enemy);
+                player.target = null;
                 shouldDestroy = true;
             }
             if (shouldDestroy)
