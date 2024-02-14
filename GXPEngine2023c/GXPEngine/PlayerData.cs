@@ -12,6 +12,8 @@ namespace GXPEngine
         const float heightJump = 30;
         const float gravityStrength = 1;
 
+        //const float 
+
         public float speed
         {
             get
