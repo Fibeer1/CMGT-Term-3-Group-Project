@@ -162,7 +162,7 @@ namespace GXPEngine
                 hornArrow.SetXY(x + (facingRight ? 30 : -30), y - 30);
                 float xPos = target.x - x;
                 float yPos = target.y - y;
-                float rotationModifier = facingRight ? 95 : 85;
+                float rotationModifier = 100; //facingRight ? 105 : 90;
                 float angle = Mathf.Atan2(yPos, xPos) * 360 / ((float)Math.PI * 2) + rotationModifier;
                 hornArrow.rotation = angle;
             }
