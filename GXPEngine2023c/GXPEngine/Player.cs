@@ -11,7 +11,7 @@ namespace GXPEngine
         public int score;
         public int healthPoints = 5;
         int maxHealth;
-        float stamina = 100; // need to come up with stamina values, how much you lose and gain in each case
+        public float stamina = 100; // need to come up with stamina values, how much you lose and gain in each case
         bool isDead = false;
 
         //Movement variables       
@@ -24,15 +24,15 @@ namespace GXPEngine
         public bool facingRight = true;
 
         //Bite attack variables
-        float biteCDTimer = 0;
-        float biteCD = 0.5f; //Default value is 0.5f
+        public float biteCDTimer = 0;
+        public float biteCD = 0.5f; //Default value is 0.5f
 
         //Horn attack variables
        
         public List<Enemy> enemies = new List<Enemy>();
         public Enemy target;
-        float hornCDTimer = 0;
-        float hornCD = 3; //Default value is 3f
+        public float hornCDTimer = 0;
+        public float hornCD = 3; //Default value is 3f
         float hornRadius = 300;
         Sprite horn;
         public Sprite hornArrow;
@@ -170,11 +170,11 @@ namespace GXPEngine
                 hornArrow.SetXY(x + (facingRight ? 30 : -30), y - 30);
                 float xPos = target.x - x;
                 float yPos = target.y - y;
-                float rotationModifier = 90;
+                float rotationModifier = facingRight ? 95 : 85;
                 float angle = Mathf.Atan2(yPos, xPos) * 360 / ((float)Math.PI * 2) + rotationModifier;
                 hornArrow.rotation = angle;
             }
-            if (Input.GetMouseButtonDown(1) && hornCDTimer <= 0)
+            if (Input.GetMouseButtonDown(1) && hornCDTimer <= 0 && target != null)
             {
                 HornProjectile hornProjectile = new HornProjectile();
                 level.AddChild(hornProjectile);
