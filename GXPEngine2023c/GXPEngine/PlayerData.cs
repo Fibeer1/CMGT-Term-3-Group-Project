@@ -6,7 +6,39 @@ using System.Threading.Tasks;
 
 namespace GXPEngine
 {
-    class PlayerData
+    public class PlayerData
     {
+        const float movementSpeed = 5;
+        const float heightJump = 15;
+        const float gravityStrength = 1;
+
+        public float speed
+        {
+            get
+            {
+                return movementSpeed;
+            }
+        }
+
+        public float jumpHeight
+        {
+            get
+            {
+                return heightJump;
+            }
+        }
+
+        public float gravity
+        {
+            get
+            {
+                return gravityStrength;
+            }
+        }
+
+        public PlayerData()
+        {
+
+        }
     }
 }

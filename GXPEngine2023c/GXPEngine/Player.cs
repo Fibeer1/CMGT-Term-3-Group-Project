@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GXPEngine.Core;
 
 namespace GXPEngine
 {
     class Player : Sprite
     {
+        PlayerData data;
+
         //General variables
         public int score;
         public int healthPoints = 5;
@@ -19,7 +22,7 @@ namespace GXPEngine
         float speedY = 0;
         float speedAcceleration = 0.5f;
         float maxSpeed = 5;
-        bool canJump = true;
+        bool canJump = false;
 
         public bool facingRight = true;
 
@@ -44,6 +47,8 @@ namespace GXPEngine
 
         public Player() : base("Unicorn.png")
         {
+            data = ((MyGame)game).playerData;
+
             SetOrigin(width / 2, height / 2);
             SetPosition();
             maxHealth = healthPoints;
@@ -66,12 +71,62 @@ namespace GXPEngine
                 level = game.FindObjectOfType<Level>();
                 hornArrow.parent = level; //Remove this as soon as we come up with a better way to find an already instantiated object in a newly instantiated object :))))))))))))))
             }
-            HandleGravity();
-            HandleMovement();
-            HandleJumping();
+
+            Movement();
+            //HandleGravity();
+            //HandleMovement();
+            //HandleJumping();
             HandleBiteAttack();
             HandleHornAttack();
         }
+
+        private void Movement()
+        {
+            float dx = 0;
+            float dy = 0;
+
+            //side to side movement
+            if (Input.GetKey('A'))
+            {
+                dx -= data.speed;
+            }
+            else if (Input.GetKey('D'))
+            {
+                dx += data.speed;
+            }
+
+            //jumping
+            if (Input.GetKey('W') && canJump)
+            {
+                speedY -= data.jumpHeight;
+            }
+
+            //gravity
+            speedY += data.gravity;
+
+            dy += speedY;
+
+            MoveUntilCollision(dx, 0);
+            Collision colInfo = MoveUntilCollision(0, dy);
+            if (colInfo != null)
+            {
+                if (colInfo.normal.y > 0)
+                {
+                    speedY = 0;
+                }
+                else if (colInfo.normal.y < 0)
+                {
+                    speedY = 0;
+                    canJump = true;
+                }
+            }
+            else
+            {
+                canJump = false;
+            }
+
+        }
+
         private void HandleGravity()
         {
             speedY += 1;

@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>GXPEngine</RootNamespace>
     <AssemblyName>GXPEngine</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -91,6 +91,7 @@
     <Compile Include="GXPEngine\SoLoud\SoloudSoundSystem.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerData.cs" />
+    <Compile Include="Terrain.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

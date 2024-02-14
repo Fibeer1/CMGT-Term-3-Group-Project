@@ -4,8 +4,12 @@ using System.Drawing;
 
 public class MyGame : Game {
 	
+	public PlayerData playerData;
+
 	public MyGame() : base(800, 600, false, false)
 	{
+		playerData = new PlayerData();
+
 		targetFps = 60;
 		StartLevel(0);
 	}
