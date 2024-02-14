@@ -18,10 +18,7 @@ namespace GXPEngine
         bool isDead = false;
 
         //Movement variables       
-        float speedX = 0;
         float speedY = 0;
-        float speedAcceleration = 0.5f;
-        float maxSpeed = 5;
         bool canJump = false;
 
         public bool facingRight = true;
@@ -179,8 +176,6 @@ namespace GXPEngine
         }
         void SetPosition()
         {
-            speedX = 0;
-            speedY = 0;
             //SetXY(level.spawnPoint.x, level.spawnPoint.y);
             SetXY(game.width / 2, game.height / 2);
         }
