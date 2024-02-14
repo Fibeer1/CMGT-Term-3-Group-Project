@@ -11,10 +11,11 @@ namespace GXPEngine
         float lifeTime = 0.75f;
         Player player;
         public BiteParticle() : base("BiteParticle.png", 8, 1)
-        {
+        {            
             SetOrigin(width / 2, height / 2);
             player = game.FindObjectOfType(typeof(Player)) as Player;
             SetXY(50, -5);
+            collider.isTrigger = true;
         }
         private void Update()
         {
