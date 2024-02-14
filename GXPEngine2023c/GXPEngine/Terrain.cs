@@ -8,6 +8,12 @@ namespace GXPEngine
 {
     class Terrain : Sprite
     {
+        public Terrain() : base("colors.png", false, true)
+        {
+            width = 20;
+            height = 20;
+        }
+
         public Terrain(float px, float py, int pwidth, int pheight) : base("colors.png", false, true)
         {
             width = pwidth;
