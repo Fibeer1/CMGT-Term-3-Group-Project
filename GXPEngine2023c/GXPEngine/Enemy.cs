@@ -9,10 +9,12 @@ namespace GXPEngine
     {
         //Movement pattern parameters
         string pattern;
+        string type; //Can be Marshmallow or Crisp
         Player player;
         float delta;
         float distanceTillAction;
         public Level level;
+        
         bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height - height / 2;
         public Enemy(float xPos, float yPos) : base("Enemy.png")
         {
@@ -20,6 +22,10 @@ namespace GXPEngine
         }
         public void Start()
         {
+            if (type == "Crisp")
+            {
+                collider.isTrigger = true;
+            }            
             level = parent as Level;
             player = level.player;
             player.enemies.Add(this);

@@ -3,11 +3,14 @@ using GXPEngine;
 using System.Drawing;                           
 
 public class MyGame : Game {
-	
+
+	public int currentLevel;
 	public MyGame() : base(800, 600, false, false)
 	{
 		targetFps = 60;
-		StartLevel(0);
+		Menu menu = new Menu("Main Menu");
+		AddChild(menu);
+		currentLevel = 0;
 	}
 
 	public void StartLevel(int levelIndex)
