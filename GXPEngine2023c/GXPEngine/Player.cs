@@ -97,7 +97,7 @@ namespace GXPEngine
             }
 
             //jumping
-            if (Input.GetKey('W') && canJump)
+            if (Input.GetKeyDown('W') && canJump)
             {
                 speedY -= data.jumpHeight;
             }
@@ -157,9 +157,9 @@ namespace GXPEngine
             if (target != null && hornCDTimer <= 0)
             {
                 hornArrow.SetXY(x + (facingRight ? 30 : -30), y - 30);
-                float xPos = target.x - x;
-                float yPos = target.y - y;
-                float rotationModifier = 100; //facingRight ? 105 : 90;
+                float xPos = target.x - hornArrow.x;
+                float yPos = target.y - hornArrow.y;
+                float rotationModifier = 90;
                 float angle = Mathf.Atan2(yPos, xPos) * 360 / ((float)Math.PI * 2) + rotationModifier;
                 hornArrow.rotation = angle;
             }
