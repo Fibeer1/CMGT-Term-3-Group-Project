@@ -55,8 +55,9 @@ namespace GXPEngine
                 }
                 float textX = 10;
                 float textY = 85;
-                graphics.DrawString("Bite CD: ", uiFont, Brushes.White, textX, textY);
-                graphics.FillPie(new SolidBrush(Color.White), textX + 80, textY + 5, 15, 15, 0, angle);
+                string text = "Bite CD: ";
+                graphics.DrawString(text, uiFont, Brushes.White, textX, textY);
+                graphics.FillPie(new SolidBrush(Color.White), textX + text.Length * uiFont.Size - 55, textY + 5, 15, 15, 0, angle);
             }
             else
             {
@@ -80,8 +81,9 @@ namespace GXPEngine
                 }
                 float textX = 10;
                 float textY = 110;
-                graphics.DrawString("Horn CD: ", uiFont, Brushes.White, textX, textY);
-                graphics.FillPie(new SolidBrush(Color.White), textX + 90, textY + 5, 15, 15, 0, angle);
+                string text = "Horn CD: ";
+                graphics.DrawString(text, uiFont, Brushes.White, textX, textY);
+                graphics.FillPie(new SolidBrush(Color.White), textX + text.Length * uiFont.Size - 45, textY + 5, 15, 15, 0, angle);
             }
             else
             {
