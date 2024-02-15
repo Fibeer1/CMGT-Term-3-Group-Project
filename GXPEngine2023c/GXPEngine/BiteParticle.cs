@@ -8,10 +8,15 @@ namespace GXPEngine
 {
     class BiteParticle : AnimationSprite
     {
+        EnemyData data;
+
         float lifeTime = 0.75f;
         Player player;
+
         public BiteParticle() : base("BiteParticle.png", 8, 1)
         {            
+            data = ((MyGame)game).enemyData;
+
             SetOrigin(width / 2, height / 2);
             player = game.FindObjectOfType<Player>();
             SetXY(50, -5);
@@ -42,7 +47,7 @@ namespace GXPEngine
                 {
                     player.target = null;
                 }
-                player.stamina += 100;
+                player.stamina += data.normalStaminaRegen;
                 player.score += 1;
             }
         }
