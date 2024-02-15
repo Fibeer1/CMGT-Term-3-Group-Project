@@ -15,7 +15,7 @@ namespace GXPEngine
         bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height - height / 2;
         public HornProjectile() : base("HornProjectile.png")
         {
-            data = ((MyGame)game).playerData;            
+            data = ((MyGame)game).playerData;
             collider.isTrigger = true;
             player = game.FindObjectOfType<Player>();
             SetOrigin(width / 2, height / 2);
