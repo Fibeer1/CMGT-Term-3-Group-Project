@@ -81,6 +81,7 @@ namespace GXPEngine
                         player = new Player();
                         player.SetXY(obj.X, obj.Y);
                         AddChild(player);
+                        player.SetSpawnPoint();
                         break;
                     case "Enemy":
                         Enemy enemy = new Enemy();

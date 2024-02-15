@@ -27,8 +27,9 @@ class MyGame : Game {
     {
 		DestroyChildren();
 		Level level = new Level(levelIndex);
+		currentLevel = level;
 		AddChild(level);
-    }
+	}
 
 	private void DestroyChildren()
     {

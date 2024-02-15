@@ -58,8 +58,7 @@ namespace GXPEngine
             hornArrow = new Sprite("HornArrow.png", false, false);
             hornArrow.SetOrigin(hornArrow.width / 2, hornArrow.height / 2);
             SetScaleXY(data.scale, data.scale);
-            spawnX = x;
-            spawnY = y;
+            
         }
         private void Update()
         {
@@ -118,6 +117,15 @@ namespace GXPEngine
                     speedY = 0;
                     canJump = true;
                 }
+                if (colInfo.other is CollisionTile)
+                {
+                    CollisionTile tile = colInfo.other as CollisionTile;
+                    if (tile.type == "Death")
+                    {
+                        Restart();
+                    }
+                }
+                
             }
             else
             {
@@ -191,20 +199,19 @@ namespace GXPEngine
                 hornCDTimer -= 0.0175f;
             }
         }
-        void OnCollision(GameObject other)
+        public void SetSpawnPoint()
         {
-            if (other is CollisionTile)
-            {
-                CollisionTile tile = other as CollisionTile;
-                if (tile.type == "Death")
-                {
-                    SetSpawnPosition();
-                }
-            }
+            spawnX = x;
+            spawnY = y;
         }
         void SetSpawnPosition()
         {
             SetXY(spawnX, spawnY);
+        }
+        void Restart()
+        {
+            MyGame mainGame = game.FindObjectOfType<MyGame>();
+            mainGame.StartLevel(mainGame.currentLevelIndex);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace GXPEngine
 {
     public class HUDData
     {
-        const float staminaBarLength = 2000;
+        const float staminaBarLength = 200;
 
         public float staminaLength
         {
