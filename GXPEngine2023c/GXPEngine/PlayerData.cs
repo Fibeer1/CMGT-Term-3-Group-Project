@@ -8,6 +8,8 @@ namespace GXPEngine
 {
     public class PlayerData
     {
+        const float maxStamina = 100;
+
         const float movementSpeed = 5;
         const float heightJump = 17.5f;
         const float gravityStrength = 1;
@@ -15,6 +17,15 @@ namespace GXPEngine
 
         const float biteCDTime = 0.5f;
         const float hornCDTime = 3;
+        const float hornFiringRange = 300;
+
+        public float stamina
+        {
+            get
+            {
+                return maxStamina;
+            }
+        }
 
         public float speed
         {
@@ -60,6 +71,14 @@ namespace GXPEngine
             get
             {
                 return hornCDTime;
+            }
+        }
+
+        public float hornRadius
+        {
+            get
+            {
+                return hornFiringRange;
             }
         }
 

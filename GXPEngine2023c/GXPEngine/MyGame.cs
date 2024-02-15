@@ -7,10 +7,12 @@ public class MyGame : Game {
 	public int currentLevel;
 	
 	public PlayerData playerData;
+	public EnemyData enemyData;
 
 	public MyGame() : base(800, 600, false, false)
 	{
 		playerData = new PlayerData();
+		enemyData = new EnemyData();
 
 		targetFps = 60;
 		Menu menu = new Menu("Main Menu");

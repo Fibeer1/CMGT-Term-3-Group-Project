@@ -9,5 +9,10 @@ namespace GXPEngine
     public class EnemyData
     {
 
+
+        public EnemyData()
+        {
+
+        }
     }
 }
