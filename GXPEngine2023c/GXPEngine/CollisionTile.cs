@@ -8,6 +8,7 @@ namespace GXPEngine
 {
     class CollisionTile : AnimationSprite
     {
+        public string type; //Can be Death
         public CollisionTile(string filename, int cols, int rows) : base (filename, cols, rows)
         {
 

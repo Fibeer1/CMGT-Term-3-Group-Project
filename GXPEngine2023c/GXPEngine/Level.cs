@@ -9,7 +9,7 @@ namespace GXPEngine
     class Level : GameObject
     {
         public Player player;
-        public Transformable spawnPoint;
+        public GameObject spawnPoint;
         Camera camera;
         HUD hud;
         public Level(int index) : base()
@@ -18,8 +18,7 @@ namespace GXPEngine
             Console.WriteLine(levelData.Layers.Length);
             SpawnTiles(levelData);
             SpawnObjects(levelData);
-            Start();
-            
+            Start();            
         }
         private void Start()
         {
@@ -36,12 +35,6 @@ namespace GXPEngine
 
             //AddChild(new Terrain(game.width / 2, game.height / 4 * 3, 800, 50));
             //AddChild(new Terrain(game.width / 2, game.height / 4, 200, 50));
-            Enemy enemy1 = new Enemy(100, game.height - 100);
-            AddChild(enemy1);
-            enemy1.Start();
-            Enemy enemy2 = new Enemy(game.width - 100, game.height - 100); 
-            AddChild(enemy2);
-            enemy2.Start();
             //Need to find a way to add the level as a parent before the start method is called
 
             //HUD gets added last
@@ -98,6 +91,17 @@ namespace GXPEngine
                         player = new Player();
                         player.SetXY(obj.X, obj.Y);
                         AddChild(player);
+                        break;
+                    case "Spawn":
+                        //spawnPoint = new GameObject(false);
+                        spawnPoint.SetXY(obj.X, obj.Y);
+                        AddChild(spawnPoint);
+                        break;
+                    case "Enemy":
+                        Enemy enemy = new Enemy();
+                        enemy.SetXY(obj.X, obj.Y);
+                        AddChild(enemy);
+                        enemy.Start();
                         break;
                     default:
                         break;

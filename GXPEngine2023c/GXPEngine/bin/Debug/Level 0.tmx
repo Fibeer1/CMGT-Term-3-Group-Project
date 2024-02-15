@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="3" nextobjectid="5">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="21">
  <tileset firstgid="1" source="Tileset.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="30">
   <data encoding="csv">
@@ -35,7 +35,14 @@
 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
 </data>
  </layer>
- <objectgroup id="2" name="Player">
-  <object id="4" name="Player" x="257" y="702" width="94" height="34"/>
+ <objectgroup id="2" name="Object">
+  <object id="4" name="Player" x="257" y="638.62" width="94" height="34"/>
+  <object id="13" name="Spawn" x="253.521" y="701.408" width="92.9577" height="30.9859"/>
+  <object id="14" name="Enemy" x="1056.34" y="509.859" width="28.169" height="30.9859"/>
+  <object id="15" name="Enemy" x="800" y="477.465" width="29.5775" height="33.8028"/>
+  <object id="17" name="Enemy" x="607.746" y="414.085" width="29.5775" height="33.8028"/>
+  <object id="18" name="Enemy" x="127.465" y="318.31" width="29.5775" height="33.8028"/>
+  <object id="19" name="Enemy" x="575.352" y="159.155" width="29.5775" height="33.8028"/>
+  <object id="20" name="Enemy" x="830.282" y="95.7747" width="29.5775" height="33.8028"/>
  </objectgroup>
 </map>
