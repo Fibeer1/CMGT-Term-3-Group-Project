@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GXPEngine
 {
-    public class Enemy : Sprite
+    class Enemy : Sprite
     {
         //Movement pattern parameters
         string pattern;
@@ -22,8 +22,11 @@ namespace GXPEngine
         }
         public void Start()
         {
-            if (type == "Crisp")
+            int patternRNG = Utils.Random(0, 3);
+            if (patternRNG == 0)
             {
+                type = "Crisp";
+                SetColor(1, 0.5f, 0.5f);
                 collider.isTrigger = true;
             }            
             level = parent as Level;

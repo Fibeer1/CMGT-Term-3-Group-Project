@@ -6,7 +6,7 @@ using GXPEngine.Core;
 
 namespace GXPEngine
 {
-    public class Player : Sprite
+    class Player : Sprite
     {
         PlayerData data;
 
@@ -60,20 +60,14 @@ namespace GXPEngine
             SetScaleXY(data.scale, data.scale);
             spawnX = x;
             spawnY = y;
-
-            //if (level == null)
-            //{
-            //    level = game.FindObjectOfType<Level>();
-            //    hornArrow.parent = level; //Remove this as soon as we come up with a better way to find an already instantiated object in a newly instantiated object :))))))))))))))
-            //}
-            //level.AddChild(hornArrow);
-            //foreach (Enemy enemy in level.GetChildren()) //Gets all enemies in the level
-            //{
-            //    enemies.Add(enemy);
-            //}
         }
         private void Update()
-        {            
+        {
+            if (level == null)
+            {
+                level = parent as Level;
+                hornArrow.parent = level; //Remove this as soon as we come up with a better way to find an already instantiated object in a newly instantiated object :))))))))))))))
+            }            
             camera.SetXY(x, y);
             Movement();
             StaminaManagement();
@@ -123,11 +117,6 @@ namespace GXPEngine
                 {
                     speedY = 0;
                     canJump = true;
-                }
-                if (colInfo is CollisionTile)
-                {
-                    
-
                 }
             }
             else

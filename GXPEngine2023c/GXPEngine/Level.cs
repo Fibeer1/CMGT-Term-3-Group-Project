@@ -6,7 +6,7 @@ using TiledMapParser;
 
 namespace GXPEngine
 {
-    public class Level : GameObject
+    class Level : GameObject
     {
         public Player player;
         Camera camera;
@@ -17,7 +17,6 @@ namespace GXPEngine
             Console.WriteLine(levelData.Layers.Length);
             SpawnTiles(levelData);
             SpawnObjects(levelData);
-            Start();
             camera = new Camera(0, 0, game.width, game.height);
             AddChild(camera);
             player.camera = camera;
@@ -27,7 +26,7 @@ namespace GXPEngine
             hud.level = this;
             camera.AddChild(hud);
             hud.SetXY(camera.x - game.width / 2, camera.y - game.height / 2);
-            hud.Start();
+            hud.Start();            
         }
         private void Start()
         {            
@@ -77,7 +76,6 @@ namespace GXPEngine
                     case "Player":
                         player = new Player();
                         player.SetXY(obj.X, obj.Y);
-                        player.level = this;
                         AddChild(player);
                         break;
                     case "Enemy":

@@ -36,8 +36,7 @@
 </data>
  </layer>
  <objectgroup id="2" name="Object">
-  <object id="4" name="Player" x="257" y="638.62" width="94" height="34"/>
-  <object id="13" name="Spawn" x="253.521" y="701.408" width="92.9577" height="30.9859"/>
+  <object id="4" name="Player" x="255.592" y="702" width="94" height="34"/>
   <object id="14" name="Enemy" x="1056.34" y="509.859" width="28.169" height="30.9859"/>
   <object id="15" name="Enemy" x="800" y="477.465" width="29.5775" height="33.8028"/>
   <object id="17" name="Enemy" x="607.746" y="414.085" width="29.5775" height="33.8028"/>

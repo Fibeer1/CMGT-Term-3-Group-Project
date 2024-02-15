@@ -35,7 +35,7 @@ namespace GXPEngine
                 controls.Text("Controls: \n" +
                 "A - move left \n" +
                 "D - move right \n" +
-                "Space - jump \n" +
+                "W - jump \n" +
                 "LMB - bite ability \n" +
                 "RMB - horn ability \n");
                 AddChild(title);

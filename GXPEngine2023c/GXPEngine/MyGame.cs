@@ -2,9 +2,10 @@ using System;
 using GXPEngine;                                
 using System.Drawing;                           
 
-public class MyGame : Game {
+class MyGame : Game {
 
-	public int currentLevel;
+	public Level currentLevel;
+	public int currentLevelIndex;
 	
 	public PlayerData playerData;
 	public EnemyData enemyData;
@@ -17,7 +18,7 @@ public class MyGame : Game {
 		targetFps = 60;
 		Menu menu = new Menu("Main Menu");
 		AddChild(menu);
-		currentLevel = 0;
+		currentLevelIndex = 0;
 	}
 
 	public void StartLevel(int levelIndex)

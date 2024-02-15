@@ -29,13 +29,13 @@ namespace GXPEngine
                     {
                         Menu menu = parent as Menu;
                         menu.DestroyAll();
-                        mainGame.StartLevel(mainGame.currentLevel);
+                        mainGame.StartLevel(mainGame.currentLevelIndex);
                     }
                     else if (text == "Restart")
                     {
                         Menu menu = parent as Menu;
                         menu.DestroyAll();
-                        mainGame.FindObjectOfType<MyGame>().StartLevel(mainGame.currentLevel);
+                        mainGame.FindObjectOfType<MyGame>().StartLevel(mainGame.currentLevelIndex);
                     }
                     else if (text == "Quit Game")
                     {
