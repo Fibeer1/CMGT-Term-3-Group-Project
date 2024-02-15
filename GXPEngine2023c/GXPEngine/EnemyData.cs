@@ -17,6 +17,7 @@ namespace GXPEngine
         const float burningMarshmallowJumpHeight = 0;
         const float burningMarshmallowDamage = 40;
         const float burningMarshmallowStaminaRegen = 25;
+        const float burningMarshMallowMaxMovement = 200;
 
         const float shooterMarshmallowDamage = 80;
 
@@ -84,6 +85,14 @@ namespace GXPEngine
             get
             {
                 return burningMarshmallowStaminaRegen;
+            }
+        }
+
+        public float burningMaxMovement
+        {
+            get
+            {
+                return burningMarshMallowMaxMovement;
             }
         }
 

@@ -16,6 +16,8 @@ namespace GXPEngine
         public Level level;
         float speedY = 0;
 
+        float crispMoveTimer = 0;
+        int crispMoveDirection = 1;
 
         bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height - height / 2;
         public Enemy() : base("Enemy.png")
@@ -88,6 +90,17 @@ namespace GXPEngine
             {
                 float dx = 0;
 
+                if (crispMoveTimer <= 0)
+                {
+                    crispMoveTimer = data.burningMaxMovement;
+                    crispMoveDirection *= -1;
+                }
+                else if (crispMoveTimer > 0)
+                {
+                    dx += data.burningSpeed * crispMoveDirection;
+                    crispMoveTimer -= data.burningSpeed;
+                }
+
                 Collision colInfo = MoveUntilCollision(dx, 0);
                 if (colInfo != null)
                 {
@@ -100,6 +113,12 @@ namespace GXPEngine
                         speedY = 0;
                     }
                     speedY -= data.jumpHeight;
+
+                    if (colInfo.normal.x != 0)
+                    {
+                        crispMoveTimer = data.burningMaxMovement - crispMoveTimer;
+                        crispMoveDirection *= -1;
+                    }
                 }
             }
         }
