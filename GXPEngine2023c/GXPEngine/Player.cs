@@ -12,8 +12,6 @@ namespace GXPEngine
 
         //General variables
         public int score;
-        public int healthPoints = 5;
-        int maxHealth;
         public float stamina = 100; // need to come up with stamina values, how much you lose and gain in each case
         bool isDead = false;
 
@@ -51,7 +49,6 @@ namespace GXPEngine
 
             SetOrigin(width / 2, height / 2);
             SetPosition();
-            maxHealth = healthPoints;
             horn = new Sprite("Horn.png", false, false);
             horn.SetXY(32, -36);
             AddChild(horn);
