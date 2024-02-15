@@ -24,12 +24,10 @@ namespace GXPEngine
         private void Update()
         {
             graphics.Clear(Color.Empty);
-            //Health
-            graphics.DrawString("Health: " + player.healthPoints, uiFont, Brushes.White, 10, 10);
-            //Score
-            graphics.DrawString("Score: " + player.score, uiFont, Brushes.White, 10, 35);
             //Stamina
-            graphics.DrawString("Stamina: " + player.stamina, uiFont, Brushes.White, 10, 60);
+            graphics.DrawString("Stamina: " + player.stamina, uiFont, Brushes.White, 10, 10);
+            //Score
+            graphics.DrawString("Score: " + player.score, uiFont, Brushes.White, 10, 35);           
             //Bite CD
             HandleBiteCD();
             //Horn CD
