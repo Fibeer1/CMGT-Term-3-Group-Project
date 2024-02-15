@@ -12,10 +12,14 @@ namespace GXPEngine
         Player player;
         public Level level;
         Font uiFont = new Font(FontFamily.GenericSansSerif, 15);
+
+        PlayerData playerData;
+
         public HUD() : base(800, 600, false) //size is the same as the game window
         {
-            
+            playerData = ((MyGame)game).playerData;
         }
+
         public void Start()
         {
             //level = game.FindObjectOfType<Level>();
@@ -25,7 +29,9 @@ namespace GXPEngine
         {
             graphics.Clear(Color.Empty);
             //Stamina
-            graphics.DrawString("Stamina: " + player.stamina, uiFont, Brushes.White, 10, 10);
+            graphics.DrawString("Stamina: ", uiFont, Brushes.White, 10, 10);
+            graphics.FillRectangle(new SolidBrush(Color.White), 10 + TextWidth("Stamina: "), 10, 200 * (player.stamina / playerData.stamina), 20);
+            graphics.DrawRectangle(new Pen(Color.White), 10 + TextWidth("Stamina: "), 10, 200, 20);
             //Score
             graphics.DrawString("Score: " + player.score, uiFont, Brushes.White, 10, 35);           
             //Bite CD
