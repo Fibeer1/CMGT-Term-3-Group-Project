@@ -11,10 +11,12 @@ namespace GXPEngine
         const float normalMarshmallowSpeed = 0;
         const float normalMarshmallowJumpHeight = 15;
         const float normalMarshmallowDamage = 20;
+        const float normalMarshmallowStaminaRegen = 50;
 
         const float burningMarshmallowSpeed = 5;
         const float burningMarshmallowJumpHeight = 0;
         const float burningMarshmallowDamage = 40;
+        const float burningMarshmallowStaminaRegen = 25;
 
         const float shooterMarshmallowDamage = 80;
 
@@ -42,6 +44,14 @@ namespace GXPEngine
             }
         }
 
+        public float normalStaminaRegen
+        {
+            get
+            {
+                return normalMarshmallowStaminaRegen;
+            }
+        }
+
         public float burningSpeed
         {
             get
@@ -63,6 +73,14 @@ namespace GXPEngine
             get
             {
                 return burningMarshmallowDamage;
+            }
+        }
+
+        public float burningStaminaRegen
+        {
+            get
+            {
+                return burningMarshmallowStaminaRegen;
             }
         }
 

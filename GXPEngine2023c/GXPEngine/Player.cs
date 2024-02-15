@@ -149,7 +149,7 @@ namespace GXPEngine
             }
             else if(stamina < 0)
             {
-                stamina = 0;
+                Restart();
             }
         }
 

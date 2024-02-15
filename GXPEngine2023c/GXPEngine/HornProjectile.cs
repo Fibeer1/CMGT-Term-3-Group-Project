@@ -8,12 +8,15 @@ namespace GXPEngine
 {
     class HornProjectile : Sprite
     {
-        float speed = 10;
+        PlayerData data;
+
         public float lifeTime = 3;
         Player player;
         bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height - height / 2;
         public HornProjectile() : base("HornProjectile.png")
         {
+            data = ((MyGame)game).playerData;
+
             collider.isTrigger = true;
             player = game.FindObjectOfType<Player>();
             SetOrigin(width / 2, height / 2);
@@ -32,7 +35,7 @@ namespace GXPEngine
                 LateRemove();
                 LateDestroy();
             }
-            Move(0, -speed);
+            Move(0, -data.hornSpeed);
         }
         void OnCollision(GameObject other)
         {
@@ -43,7 +46,6 @@ namespace GXPEngine
                 Enemy enemy = other as Enemy;
                 enemy.Die();
                 player.target = null;
-                player.stamina += 150;
                 shouldDestroy = true;
             }
             if (other is CollisionTile)

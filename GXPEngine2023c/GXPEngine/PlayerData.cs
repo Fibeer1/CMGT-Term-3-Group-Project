@@ -11,7 +11,7 @@ namespace GXPEngine
         const float maxStamina = 1000;
 
         //higher value means slower stamina reduction
-        const float staminaReduceRate = 10;
+        const float staminaReduceRate = 100;
 
         const float movementSpeed = 5;
         const float heightJump = 17.5f;
@@ -21,6 +21,7 @@ namespace GXPEngine
         const float biteCDTime = 0.5f;
         const float hornCDTime = 3;
         const float hornFiringRange = 300;
+        const float hornProjectileSpeed = 10;
 
         public float stamina
         {
@@ -90,6 +91,14 @@ namespace GXPEngine
             get
             {
                 return hornFiringRange;
+            }
+        }
+
+        public float hornSpeed
+        {
+            get
+            {
+                return hornProjectileSpeed;
             }
         }
 
