@@ -64,7 +64,6 @@ namespace GXPEngine
             hornArrow = new Sprite("HornArrow.png", false, false);
             hornArrow.SetOrigin(hornArrow.width / 2, hornArrow.height / 2);
             SetScaleXY(data.scale, data.scale);
-            
         }
         private void Update()
         {

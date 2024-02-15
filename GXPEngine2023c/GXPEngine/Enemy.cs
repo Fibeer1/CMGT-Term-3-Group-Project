@@ -104,6 +104,18 @@ namespace GXPEngine
                 Collision colInfo = MoveUntilCollision(dx, 0);
                 if (colInfo != null)
                 {
+                    if (colInfo.other is Player)
+                    {
+                        if (player.canTakeDamage)
+                        {
+                            player.colorIndicationRGB[0] = 1;
+                            player.colorIndicationRGB[1] = 0;
+                            player.colorIndicationRGB[2] = 0;
+                            player.stamina -= data.burningDamage;
+                            player.showColorIndicator = true;
+                        }
+                    }
+
                     if (colInfo.normal.y > 0)
                     {
                         speedY = 0;
@@ -128,14 +140,7 @@ namespace GXPEngine
             {                
                 if (type == "Crisp")
                 {
-                    if (player.canTakeDamage)
-                    {
-                        player.colorIndicationRGB[0] = 1;
-                        player.colorIndicationRGB[1] = 0;
-                        player.colorIndicationRGB[2] = 0;
-                        player.stamina -= data.burningDamage;
-                        player.showColorIndicator = true;
-                    }
+                    
                 }
             }
             if (other is BiteParticle)
