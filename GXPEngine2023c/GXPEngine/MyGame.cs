@@ -11,7 +11,7 @@ class MyGame : Game {
 	public EnemyData enemyData;
 	public HUDData hudData;
 
-	public MyGame() : base(800, 600, false, false)
+	public MyGame() : base(1366, 768, false, false)
 	{
 		playerData = new PlayerData();
 		enemyData = new EnemyData();

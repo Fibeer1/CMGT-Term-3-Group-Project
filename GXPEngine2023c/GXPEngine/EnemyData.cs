@@ -18,6 +18,9 @@ namespace GXPEngine
 
         const float shooterMarshmallowDamage = 80;
 
+        const float gravityStrength = 0.5f;
+        const float jumpPower = 10;
+
         public float normalSpeed
         {
             get
@@ -74,6 +77,20 @@ namespace GXPEngine
             }
         }
 
+        public float gravity
+        {
+            get
+            {
+                return gravityStrength;
+            }
+        }
+        public float jumpHeight
+        {
+            get
+            {
+                return jumpPower;
+            }
+        }
         public EnemyData()
         {
 

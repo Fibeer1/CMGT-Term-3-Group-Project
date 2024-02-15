@@ -66,7 +66,7 @@ namespace GXPEngine
             {
                 level = parent as Level;
                 hornArrow.parent = level; //Remove this as soon as we come up with a better way to find an already instantiated object in a newly instantiated object :))))))))))))))
-            }            
+            }
             camera.SetXY(x, y);
             Movement();
             StaminaManagement();

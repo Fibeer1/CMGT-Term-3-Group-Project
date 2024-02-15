@@ -16,7 +16,7 @@ namespace GXPEngine
         HUDData data;
         PlayerData playerData;
 
-        public HUD() : base(800, 600, false) //size is the same as the game window
+        public HUD() : base(1366, 768, false) //size is the same as the game window
         {
             data = ((MyGame)game).hudData;
             playerData = ((MyGame)game).playerData;

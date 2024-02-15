@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GXPEngine.Core;
 
 namespace GXPEngine
 {
@@ -9,12 +10,15 @@ namespace GXPEngine
     {
         //Movement pattern parameters
         string pattern;
-        string type; //Can be Marshmallow or Crisp
+        string type; //Can be Normal or Crisp
         Player player;
+        EnemyData data;
         float delta;
         float distanceTillAction;
         public Level level;
-        
+        float speedY = 0;
+
+
         bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height - height / 2;
         public Enemy() : base("Enemy.png")
         {
@@ -22,64 +26,68 @@ namespace GXPEngine
         }
         public void Start()
         {
+            data = ((MyGame)game).enemyData;
             int patternRNG = Utils.Random(0, 3);
             if (patternRNG == 0)
             {
                 type = "Crisp";
-                SetColor(1, 0.5f, 0.5f);
+                SetColor(0.75f, 0.25f, 0.25f);
                 collider.isTrigger = true;
-            }            
+            }     
+            else
+            {
+                type = "Normal";
+            }
             level = parent as Level;
             player = level.player;
             player.enemies.Add(this);
             SetOrigin(width / 2, height / 2);
-            SetPattern();
         }
         private void Update()
         {
-            delta = DistanceTo(player);
-            if (pattern == "LeftNRight")
+            HandleMovement();
+        }
+        private void HandleMovement()
+        {
+            if (type == "Normal")
             {
+                float dy = 0;
+                //gravity
+                speedY += data.gravity;
 
-            }
-            else if (pattern == "Chasing")
-            {
+                dy += speedY;
 
-            }
-            else if (pattern == "Fleeing")
-            {
-                if (delta < distanceTillAction)
-                {
-                    
+                Collision colInfo = MoveUntilCollision(0, dy);
+                if (colInfo != null)
+                {                  
+                    if (colInfo.normal.y > 0)
+                    {
+                        speedY = 0;
+                    }
+                    else if (colInfo.normal.y < 0)
+                    {
+                        speedY = 0;
+                    }
+                    speedY -= data.jumpHeight;
                 }
             }
-            else if (pattern == "Charging")
+            if (type == "Crisp")
             {
+                float dx = 0;
 
-            }
-            //Console.WriteLine(DistanceTo(game.FindObjectOfType<Player>()));
-            //Console.WriteLine(delta);
-        }
-        private void SetPattern()
-        {
-            int patternRNG = 2;//Utils.Random(0, 4);
-            if (patternRNG == 0)
-            {
-                pattern = "LeftNRight";
-            }
-            if (patternRNG == 1)
-            {
-                pattern = "Chasing";
-                distanceTillAction = 100;
-            }
-            if (patternRNG == 2)
-            {
-                pattern = "Fleeing";
-                distanceTillAction = 100;
-            }
-            if (patternRNG == 3)
-            {
-                pattern = "Charging";
+                Collision colInfo = MoveUntilCollision(dx, 0);
+                if (colInfo != null)
+                {
+                    if (colInfo.normal.y > 0)
+                    {
+                        speedY = 0;
+                    }
+                    else if (colInfo.normal.y < 0)
+                    {
+                        speedY = 0;
+                    }
+                    speedY -= data.jumpHeight;
+                }
             }
         }
         public void Die()
