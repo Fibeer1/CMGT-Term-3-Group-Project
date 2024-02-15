@@ -94,6 +94,7 @@ namespace GXPEngine
                 {
                     crispMoveTimer = data.burningMaxMovement;
                     crispMoveDirection *= -1;
+                    scaleX = -scaleX;
                 }
                 else if (crispMoveTimer > 0)
                 {
@@ -115,21 +116,11 @@ namespace GXPEngine
                             player.showColorIndicator = true;
                         }
                     }
-
-                    if (colInfo.normal.y > 0)
-                    {
-                        speedY = 0;
-                    }
-                    else if (colInfo.normal.y < 0)
-                    {
-                        speedY = 0;
-                    }
-                    speedY -= data.jumpHeight;
-
                     if (colInfo.normal.x != 0)
                     {
                         crispMoveTimer = data.burningMaxMovement - crispMoveTimer;
                         crispMoveDirection *= -1;
+                        scaleX = -scaleX;
                     }
                 }
             }
