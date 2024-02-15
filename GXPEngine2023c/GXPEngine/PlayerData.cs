@@ -9,7 +9,7 @@ namespace GXPEngine
     public class PlayerData
     {
         const float movementSpeed = 5;
-        const float heightJump = 25;
+        const float heightJump = 17.5f;
         const float gravityStrength = 1;
         const float spriteScale = 0.75f;
 

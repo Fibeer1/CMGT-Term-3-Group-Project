@@ -27,9 +27,8 @@ namespace GXPEngine
         private void Update()
         {
             lifeTime -= 0.025f;
-            if (lifeTime <= 0 || outsideBorders)
+            if (lifeTime <= 0)
             {
-                Console.WriteLine("a");
                 LateRemove();
                 LateDestroy();
             }
@@ -44,6 +43,10 @@ namespace GXPEngine
                 Enemy enemy = other as Enemy;
                 enemy.Die();
                 player.target = null;
+                shouldDestroy = true;
+            }
+            if (other is CollisionTile)
+            {
                 shouldDestroy = true;
             }
             if (shouldDestroy)

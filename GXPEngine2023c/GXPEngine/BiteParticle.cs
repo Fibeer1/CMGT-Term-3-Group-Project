@@ -13,7 +13,7 @@ namespace GXPEngine
         public BiteParticle() : base("BiteParticle.png", 8, 1)
         {            
             SetOrigin(width / 2, height / 2);
-            player = game.FindObjectOfType(typeof(Player)) as Player;
+            player = game.FindObjectOfType<Player>();
             SetXY(50, -5);
             collider.isTrigger = true;
         }
@@ -35,8 +35,13 @@ namespace GXPEngine
         {
             if (other is Enemy)
             {
-                Enemy enemy = other as Enemy;
+                Enemy enemy = other as Enemy;                
+                player.enemies.Remove(enemy);
                 enemy.Die();
+                if (player.target == enemy)
+                {
+                    player.target = null;
+                }
                 player.score += 1;
             }
         }

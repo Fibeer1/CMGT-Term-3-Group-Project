@@ -70,7 +70,7 @@ namespace GXPEngine
                     int tileNumber = tileNumbers[col, row];
                     if (tileNumber > 0)
                     {
-                        CollisionTile tile = new CollisionTile("TileSet.png", 2, 1);
+                        CollisionTile tile = new CollisionTile("TileSet1.png", 3, 1);
                         tile.SetFrame(tileNumber - 1);
                         tile.x = col * tile.width;
                         tile.y = row * tile.height;
