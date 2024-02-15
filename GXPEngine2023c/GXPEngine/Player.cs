@@ -33,8 +33,8 @@ namespace GXPEngine
         public float hornCD; //Default value is 3f
         Sprite horn;
         public Sprite hornArrow;
-        
 
+        public Camera camera;
         public Level level;
 
         bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height - height / 2;
@@ -48,14 +48,19 @@ namespace GXPEngine
             biteCD = data.biteCD;
             hornCD = data.hornCD;
 
-            SetOrigin(width / 2, height / 2);
-            SetPosition();
+            SetOrigin(width / 2, height / 2);            
             horn = new Sprite("Horn.png", false, false);
             horn.SetXY(32, -36);
             AddChild(horn);
             hornArrow = new Sprite("HornArrow.png", false, false);
             hornArrow.SetOrigin(hornArrow.width / 2, hornArrow.height / 2);
             SetScaleXY(data.scale, data.scale);
+            if (level == null)
+            {
+                level = game.FindObjectOfType<Level>();
+                hornArrow.parent = level; //Remove this as soon as we come up with a better way to find an already instantiated object in a newly instantiated object :))))))))))))))
+            }
+            SetPosition();
             //level.AddChild(hornArrow);
             //foreach (Enemy enemy in level.GetChildren()) //Gets all enemies in the level
             //{
@@ -63,13 +68,8 @@ namespace GXPEngine
             //}
         }
         private void Update()
-        {
-            if (level == null)
-            {
-                level = game.FindObjectOfType<Level>();
-                hornArrow.parent = level; //Remove this as soon as we come up with a better way to find an already instantiated object in a newly instantiated object :))))))))))))))
-            }
-
+        {            
+            camera.SetXY(x, y);
             Movement();
             StaminaManagement();
             HandleBiteAttack();
@@ -194,8 +194,7 @@ namespace GXPEngine
         }
         void SetPosition()
         {
-            //SetXY(level.spawnPoint.x, level.spawnPoint.y);
-            SetXY(game.width / 2, game.height / 2);
+            SetXY(level.spawnPoint.x, level.spawnPoint.y);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace GXPEngine
     class Level : GameObject
     {
         public Player player;
-        public GameObject spawnPoint;
+        public Sprite spawnPoint;
         Camera camera;
         HUD hud;
         public Level(int index) : base()
@@ -18,24 +18,10 @@ namespace GXPEngine
             Console.WriteLine(levelData.Layers.Length);
             SpawnTiles(levelData);
             SpawnObjects(levelData);
-            Start();            
-        }
-        private void Start()
-        {
-            
-            //spawn the player, after that spawn enemies at specific places depending on the level
-
-            //spawnPoint = new Transformable();
-            //spawnPoint.SetXY(game.width / 2, game.height / 2);
-            //AddChild(spawnPoint as GameObject);
-            
-
+            Start();
             camera = new Camera(0, 0, game.width, game.height);
             AddChild(camera);
-
-            //AddChild(new Terrain(game.width / 2, game.height / 4 * 3, 800, 50));
-            //AddChild(new Terrain(game.width / 2, game.height / 4, 200, 50));
-            //Need to find a way to add the level as a parent before the start method is called
+            player.camera = camera;
 
             //HUD gets added last
             hud = new HUD();
@@ -44,9 +30,11 @@ namespace GXPEngine
             hud.SetXY(camera.x - game.width / 2, camera.y - game.height / 2);
             hud.Start();
         }
-        void Update()
-        {
-            camera.SetXY(player.x, player.y);
+        private void Start()
+        {            
+            //spawn the player, after that spawn enemies at specific places depending on the level
+           
+            //Need to find a way to add the level as a parent before the start method is called                        
         }
         private void SpawnTiles(Map leveldata)
         {
@@ -90,10 +78,11 @@ namespace GXPEngine
                     case "Player":
                         player = new Player();
                         player.SetXY(obj.X, obj.Y);
+                        player.level = this;
                         AddChild(player);
                         break;
                     case "Spawn":
-                        //spawnPoint = new GameObject(false);
+                        spawnPoint = new Sprite("Empty", false, false);
                         spawnPoint.SetXY(obj.X, obj.Y);
                         AddChild(spawnPoint);
                         break;
