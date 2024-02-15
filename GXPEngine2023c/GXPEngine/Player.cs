@@ -12,7 +12,7 @@ namespace GXPEngine
 
         //General variables
         public int score;
-        public float stamina = 100; // need to come up with stamina values, how much you lose and gain in each case
+        public float stamina; // need to come up with stamina values, how much you lose and gain in each case
         bool isDead = false;
 
         //Movement variables       
@@ -31,7 +31,6 @@ namespace GXPEngine
         public Enemy target;
         public float hornCDTimer = 0;
         public float hornCD; //Default value is 3f
-        float hornRadius = 300;
         Sprite horn;
         public Sprite hornArrow;
 
@@ -46,6 +45,8 @@ namespace GXPEngine
         public Player() : base("Unicorn.png")
         {
             data = ((MyGame)game).playerData;
+
+            stamina = data.stamina;
 
             biteCD = data.biteCD;
             hornCD = data.hornCD;
@@ -75,6 +76,7 @@ namespace GXPEngine
         {            
             camera.SetXY(x, y);
             Movement();
+            StaminaManagement();
             HandleBiteAttack();
             HandleHornAttack();
         }
@@ -130,6 +132,25 @@ namespace GXPEngine
 
         }
 
+        private void StaminaManagement()
+        {
+            float maxStamina = data.stamina;
+
+            if (stamina > maxStamina)
+            {
+                stamina = maxStamina;
+            }
+
+            if (stamina > 0)
+            {
+                stamina -= Time.deltaTime / 1000;
+            }
+            else if(stamina < 0)
+            {
+                stamina = 0;
+            }
+        }
+
         private void HandleBiteAttack()
         {
             if (Input.GetMouseButtonDown(0) && biteCDTimer <= 0)
@@ -150,7 +171,7 @@ namespace GXPEngine
             foreach (Enemy enemy in enemies)
             {
                 float delta = DistanceTo(enemy);
-                if (delta < hornRadius)
+                if (delta < data.hornRadius)
                 {
                     target = enemy;
                     break;
