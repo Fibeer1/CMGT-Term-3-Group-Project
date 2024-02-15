@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GXPEngine
 {
-    class Enemy : Sprite
+    public class Enemy : Sprite
     {
         //Movement pattern parameters
         string pattern;

@@ -6,7 +6,7 @@ using GXPEngine.Core;
 
 namespace GXPEngine
 {
-    class Player : Sprite
+    public class Player : Sprite
     {
         PlayerData data;
 
@@ -35,6 +35,9 @@ namespace GXPEngine
         Sprite horn;
         public Sprite hornArrow;
 
+        float spawnX;
+        float spawnY;
+
         public Camera camera;
         public Level level;
 
@@ -54,12 +57,14 @@ namespace GXPEngine
             hornArrow = new Sprite("HornArrow.png", false, false);
             hornArrow.SetOrigin(hornArrow.width / 2, hornArrow.height / 2);
             SetScaleXY(data.scale, data.scale);
-            if (level == null)
-            {
-                level = game.FindObjectOfType<Level>();
-                hornArrow.parent = level; //Remove this as soon as we come up with a better way to find an already instantiated object in a newly instantiated object :))))))))))))))
-            }
-            SetPosition();
+            spawnX = x;
+            spawnY = y;
+
+            //if (level == null)
+            //{
+            //    level = game.FindObjectOfType<Level>();
+            //    hornArrow.parent = level; //Remove this as soon as we come up with a better way to find an already instantiated object in a newly instantiated object :))))))))))))))
+            //}
             //level.AddChild(hornArrow);
             //foreach (Enemy enemy in level.GetChildren()) //Gets all enemies in the level
             //{
@@ -171,9 +176,9 @@ namespace GXPEngine
                 hornCDTimer -= 0.0175f;
             }
         }
-        void SetPosition()
+        void SetSpawnPosition()
         {
-            SetXY(level.spawnPoint.x, level.spawnPoint.y);
+            SetXY(spawnX, spawnY);
         }
     }
 }

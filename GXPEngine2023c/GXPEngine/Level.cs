@@ -6,10 +6,9 @@ using TiledMapParser;
 
 namespace GXPEngine
 {
-    class Level : GameObject
+    public class Level : GameObject
     {
         public Player player;
-        public Sprite spawnPoint;
         Camera camera;
         HUD hud;
         public Level(int index) : base()
@@ -80,11 +79,6 @@ namespace GXPEngine
                         player.SetXY(obj.X, obj.Y);
                         player.level = this;
                         AddChild(player);
-                        break;
-                    case "Spawn":
-                        spawnPoint = new Sprite("Empty", false, false);
-                        spawnPoint.SetXY(obj.X, obj.Y);
-                        AddChild(spawnPoint);
                         break;
                     case "Enemy":
                         Enemy enemy = new Enemy();
