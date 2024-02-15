@@ -148,7 +148,7 @@ namespace GXPEngine
 
             if (stamina > 0)
             {
-                stamina -= Time.deltaTime / 1000;
+                stamina -= Time.deltaTime / data.staminaRate;
             }
             else if(stamina < 0)
             {
