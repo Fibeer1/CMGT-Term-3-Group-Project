@@ -40,6 +40,12 @@ namespace GXPEngine
         public Camera camera;
         public Level level;
 
+        //Color Indicator values
+        public float[] colorIndicationRGB = new float[3];
+        float colorIndicatorTimer = 0.1f;
+        public bool showColorIndicator;
+        public bool canTakeDamage = true;
+
         bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height - height / 2;
 
         public Player() : base("Unicorn.png")
@@ -72,6 +78,7 @@ namespace GXPEngine
             StaminaManagement();
             HandleBiteAttack();
             HandleHornAttack();
+            HandleColorIndication();
         }
 
         private void Movement()
@@ -197,6 +204,32 @@ namespace GXPEngine
             if (hornCDTimer > 0)
             {
                 hornCDTimer -= 0.0175f;
+            }
+        }
+
+        private void HandleColorIndication()
+        {
+            //The player changes color for a part of a second when taking damage or being healed
+            if (showColorIndicator)
+            {
+                canTakeDamage = false;
+                SetColor(colorIndicationRGB[0], colorIndicationRGB[1], colorIndicationRGB[2]);
+                if (horn.alpha > 0)
+                {
+                    horn.SetColor(colorIndicationRGB[0], colorIndicationRGB[1], colorIndicationRGB[2]);
+                }                
+                colorIndicatorTimer -= 0.01f;
+                if (colorIndicatorTimer <= 0)
+                {
+                    SetColor(1, 1, 1);
+                    if (horn.alpha > 0)
+                    {
+                        horn.SetColor(1, 1, 1);
+                    }
+                    colorIndicatorTimer = 0.1f;
+                    showColorIndicator = false;
+                    canTakeDamage = true;
+                }
             }
         }
         public void SetSpawnPoint()

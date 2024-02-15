@@ -69,7 +69,14 @@ namespace GXPEngine
                     speedY -= data.jumpHeight;
                     if (colInfo.other is Player)
                     {
-                        player.stamina -= data.normalDamage;
+                        if (player.canTakeDamage)
+                        {
+                            player.colorIndicationRGB[0] = 1;
+                            player.colorIndicationRGB[1] = 0;
+                            player.colorIndicationRGB[2] = 0;
+                            player.stamina -= data.normalDamage;
+                            player.showColorIndicator = true;
+                        }                        
                         speedY = 0;
                     }
                 }
@@ -99,7 +106,14 @@ namespace GXPEngine
             {                
                 if (type == "Crisp")
                 {
-                    player.stamina -= data.burningDamage;
+                    if (player.canTakeDamage)
+                    {
+                        player.colorIndicationRGB[0] = 1;
+                        player.colorIndicationRGB[1] = 0;
+                        player.colorIndicationRGB[2] = 0;
+                        player.stamina -= data.burningDamage;
+                        player.showColorIndicator = true;
+                    }
                 }
             }
             if (other is BiteParticle)
