@@ -124,6 +124,11 @@ namespace GXPEngine
                     speedY = 0;
                     canJump = true;
                 }
+                if (colInfo is CollisionTile)
+                {
+                    
+
+                }
             }
             else
             {
