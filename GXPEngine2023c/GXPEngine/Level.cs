@@ -50,6 +50,10 @@ namespace GXPEngine
                     if (tileNumber > 0)
                     {
                         CollisionTile tile = new CollisionTile("TileSet1.png", 3, 1);
+                        if (tileNumber == 3)
+                        {
+                            tile.type = "Death";
+                        }
                         tile.SetFrame(tileNumber - 1);
                         tile.x = col * tile.width;
                         tile.y = row * tile.height;

@@ -173,7 +173,7 @@ namespace GXPEngine
             }
             if (target != null && hornCDTimer <= 0)
             {
-                hornArrow.SetXY(x + (facingRight ? 30 : -30), y - 30);
+                hornArrow.SetXY(x + (facingRight ? 25 * scaleX : -25), y - 30 * scaleY / 2);
                 float xPos = target.x - hornArrow.x;
                 float yPos = target.y - hornArrow.y;
                 float rotationModifier = 90;
@@ -189,6 +189,17 @@ namespace GXPEngine
             if (hornCDTimer > 0)
             {
                 hornCDTimer -= 0.0175f;
+            }
+        }
+        void OnCollision(GameObject other)
+        {
+            if (other is CollisionTile)
+            {
+                CollisionTile tile = other as CollisionTile;
+                if (tile.type == "Death")
+                {
+                    SetSpawnPosition();
+                }
             }
         }
         void SetSpawnPosition()

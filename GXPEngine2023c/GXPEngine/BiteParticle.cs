@@ -42,6 +42,7 @@ namespace GXPEngine
                 {
                     player.target = null;
                 }
+                player.stamina += 100;
                 player.score += 1;
             }
         }

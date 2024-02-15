@@ -43,6 +43,7 @@ namespace GXPEngine
                 Enemy enemy = other as Enemy;
                 enemy.Die();
                 player.target = null;
+                player.stamina += 150;
                 shouldDestroy = true;
             }
             if (other is CollisionTile)
