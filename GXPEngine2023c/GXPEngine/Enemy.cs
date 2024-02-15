@@ -13,8 +13,6 @@ namespace GXPEngine
         string type; //Can be Normal or Crisp
         Player player;
         EnemyData data;
-        float delta;
-        float distanceTillAction;
         public Level level;
         float speedY = 0;
 
@@ -69,6 +67,11 @@ namespace GXPEngine
                         speedY = 0;
                     }
                     speedY -= data.jumpHeight;
+                    if (colInfo.other is Player)
+                    {
+                        player.stamina -= data.normalDamage;
+                        speedY = 0;
+                    }
                 }
             }
             if (type == "Crisp")
@@ -88,6 +91,39 @@ namespace GXPEngine
                     }
                     speedY -= data.jumpHeight;
                 }
+            }
+        }
+        void OnCollision(GameObject other)
+        {
+            if (other is Player)
+            {                
+                if (type == "Crisp")
+                {
+                    player.stamina -= data.burningDamage;
+                }
+            }
+            if (other is BiteParticle)
+            {   
+                if (player.target == this)
+                {
+                    player.target = null;
+                }
+                if (type == "Normal")
+                {
+                    player.stamina += data.normalStaminaRegen;
+                }
+                else if (type == "Crisp")
+                {
+                    player.stamina += data.burningStaminaRegen;
+                }
+                player.score += 1;
+                Die();
+            }
+            else if (other is HornProjectile)
+            {
+                player.score += 2;
+                player.target = null;
+                Die();
             }
         }
         public void Die()

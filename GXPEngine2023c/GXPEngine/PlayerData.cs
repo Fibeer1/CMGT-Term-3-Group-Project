@@ -22,6 +22,7 @@ namespace GXPEngine
         const float hornCDTime = 3;
         const float hornFiringRange = 300;
         const float hornProjectileSpeed = 10;
+        const float hornStaminaNum = 25;
 
         public float stamina
         {
@@ -99,6 +100,14 @@ namespace GXPEngine
             get
             {
                 return hornProjectileSpeed;
+            }
+        }
+
+        public float hornStaminaDrain
+        {
+            get
+            {
+                return hornStaminaNum;
             }
         }
 

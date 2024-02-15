@@ -8,15 +8,12 @@ namespace GXPEngine
 {
     class BiteParticle : AnimationSprite
     {
-        EnemyData data;
 
         float lifeTime = 0.75f;
         Player player;
 
         public BiteParticle() : base("BiteParticle.png", 8, 1)
-        {            
-            data = ((MyGame)game).enemyData;
-
+        {
             SetOrigin(width / 2, height / 2);
             player = game.FindObjectOfType<Player>();
             SetXY(50, -5);
@@ -24,9 +21,9 @@ namespace GXPEngine
         }
         private void Update()
         {
-            HandleExploding();
+            HandleLifeCycle();
         }
-        private void HandleExploding()
+        private void HandleLifeCycle()
         {
             Animate(0.5f);
             lifeTime -= 0.05f;
@@ -34,21 +31,6 @@ namespace GXPEngine
             {
                 LateRemove();
                 LateDestroy();
-            }
-        }
-        void OnCollision(GameObject other)
-        {
-            if (other is Enemy)
-            {
-                Enemy enemy = other as Enemy;                
-                player.enemies.Remove(enemy);
-                enemy.Die();
-                if (player.target == enemy)
-                {
-                    player.target = null;
-                }
-                player.stamina += data.normalStaminaRegen;
-                player.score += 1;
             }
         }
     }

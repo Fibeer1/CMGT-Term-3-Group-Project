@@ -15,17 +15,14 @@ namespace GXPEngine
         bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height - height / 2;
         public HornProjectile() : base("HornProjectile.png")
         {
-            data = ((MyGame)game).playerData;
-
+            data = ((MyGame)game).playerData;            
             collider.isTrigger = true;
             player = game.FindObjectOfType<Player>();
             SetOrigin(width / 2, height / 2);
-            player = game.FindObjectOfType<Player>();
             SetXY(player.hornArrow.x, player.hornArrow.y);
+            player.stamina -= data.hornStaminaDrain;
             rotation = player.hornArrow.rotation;
-            x += player.facingRight ? 10 : -10;
-
-            
+            x += player.facingRight ? 10 : -10;           
         }
         private void Update()
         {
@@ -42,10 +39,6 @@ namespace GXPEngine
             bool shouldDestroy = false;
             if (other is Enemy)
             {
-                player.score += 1;
-                Enemy enemy = other as Enemy;
-                enemy.Die();
-                player.target = null;
                 shouldDestroy = true;
             }
             if (other is CollisionTile)
