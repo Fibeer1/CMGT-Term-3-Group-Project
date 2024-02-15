@@ -11,7 +11,7 @@ namespace GXPEngine
         const float maxStamina = 1000;
 
         //higher value means slower stamina reduction
-        const float staminaReduceRate = 100;
+        const float staminaReduceRate = 10;
 
         const float movementSpeed = 5;
         const float heightJump = 17.5f;
