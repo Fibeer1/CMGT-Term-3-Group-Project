@@ -81,7 +81,10 @@ namespace GXPEngine
                     }
                 }
             }
-            if (type == "Crisp")
+            if (type == "Crisp") //This is where the crisp movement should be
+                                 //I'd suggest using a timer that makes the enemy go to the opposite side when it reaches 0
+                                 //MoveUntilCollision could also be used to make it switch directions earlier
+                                    //This can also reset the move timer
             {
                 float dx = 0;
 
