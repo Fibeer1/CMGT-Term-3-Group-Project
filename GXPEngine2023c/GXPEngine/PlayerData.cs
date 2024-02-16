@@ -11,11 +11,11 @@ namespace GXPEngine
         const float maxStamina = 1000;
 
         //higher value means slower stamina reduction
-        const float staminaReduceRate = 50;
+        const float staminaReduceRate = 25;
 
         const float movementSpeed = 5;
-        const float heightJump = 17.5f;
-        const float gravityStrength = 1;
+        const float heightJump = 10f;
+        const float gravityStrength = .4f;
         const float spriteScale = 0.5f;
 
         const float biteCDTime = 0.5f;

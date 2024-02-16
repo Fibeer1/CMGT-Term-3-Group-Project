@@ -153,7 +153,7 @@ namespace GXPEngine
             {
                 stamina -= Time.deltaTime / data.staminaRate;
             }
-            else if(stamina < 0)
+            else if (stamina < 0)
             {
                 Restart();
             }
