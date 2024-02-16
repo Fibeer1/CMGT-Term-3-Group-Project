@@ -127,13 +127,6 @@ namespace GXPEngine
         }
         void OnCollision(GameObject other)
         {
-            if (other is Player)
-            {                
-                if (type == "Crisp")
-                {
-                    
-                }
-            }
             if (other is BiteParticle)
             {   
                 if (player.target == this)
