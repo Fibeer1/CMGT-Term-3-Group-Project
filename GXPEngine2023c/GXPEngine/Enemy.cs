@@ -60,6 +60,7 @@ namespace GXPEngine
             player = level.player;
             player.enemies.Add(this);
             SetOrigin(width / 2, height / 2);
+            SetScaleXY(1.75f, 1.75f);
         }
         private void Update()
         {

@@ -13,15 +13,15 @@ namespace GXPEngine
         //higher value means slower stamina reduction
         const float staminaReduceRate = 25;
 
-        const float movementSpeed = 5;
-        const float heightJump = 10f;
-        const float gravityStrength = .4f;
+        const float movementSpeed = 7.5f;
+        const float heightJump = 17.5f;
+        const float gravityStrength = .6f;
         const float spriteScale = 0.5f;
 
         const float biteCDTime = 0.5f;
         const float hornCDTime = 3;
         const float hornFiringRange = 300;
-        const float hornProjectileSpeed = 10;
+        const float hornProjectileSpeed = 15;
         const float hornStaminaNum = 25;
 
         public float stamina

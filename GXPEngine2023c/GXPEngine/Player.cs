@@ -48,7 +48,7 @@ namespace GXPEngine
         public bool showColorIndicator;
         public bool canTakeDamage = true;
 
-        private float biteSizeModifier = 1;
+        private float biteSizeModifier = 2f;
 
         bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height - height / 2;
 
@@ -64,7 +64,7 @@ namespace GXPEngine
 
             SetOrigin(width / 2, height / 2);            
             horn = new Sprite("Horn.png", false, false);
-            horn.SetXY(32, -36);
+            horn.SetXY(75, -75);
             AddChild(horn);
             hornArrow = new Sprite("HornArrow.png", false, false);
             hornArrow.SetOrigin(hornArrow.width / 2, hornArrow.height / 2);
@@ -249,7 +249,7 @@ namespace GXPEngine
             }
             if (target != null && hornCDTimer <= 0)
             {
-                hornArrow.SetXY(x + (facingRight ? 25 * scaleX : -25), y - 30 * scaleY / 2);
+                hornArrow.SetXY(x + (facingRight ? 80 * scaleX : -80), y - 30 * scaleY / 2);
                 float xPos = target.x - hornArrow.x;
                 float yPos = target.y - hornArrow.y;
                 float rotationModifier = 90;
@@ -278,7 +278,7 @@ namespace GXPEngine
                 if (horn.alpha > 0)
                 {
                     horn.SetColor(colorIndicationRGB[0], colorIndicationRGB[1], colorIndicationRGB[2]);
-                }                
+                }
                 colorIndicatorTimer -= 0.01f;
                 if (colorIndicatorTimer <= 0)
                 {
