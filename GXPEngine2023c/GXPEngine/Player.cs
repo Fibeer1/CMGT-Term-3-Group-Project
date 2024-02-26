@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using GXPEngine.Core;
+using TiledMapParser;
 
 namespace GXPEngine
 {
     class Player : Sprite
     {
         PlayerData data;
+        EnemyData enemy;
 
         //General variables
         public int score;
@@ -51,6 +53,7 @@ namespace GXPEngine
         public Player() : base("Unicorn.png")
         {
             data = ((MyGame)game).playerData;
+            enemy = ((MyGame)game).enemyData;
 
             stamina = data.stamina;
 
@@ -110,22 +113,37 @@ namespace GXPEngine
 
             dy += speedY;
 
-            MoveUntilCollision(dx, 0);
-            Collision colInfo = MoveUntilCollision(0, dy);
-            if (colInfo != null)
+            Collision colInfoX = MoveUntilCollision(dx, 0);
+            if (colInfoX != null)
             {
-                if (colInfo.normal.y > 0)
+                if (colInfoX.other is Enemy)
+                {
+                    if (canTakeDamage)
+                    {
+                        colorIndicationRGB[0] = 1;
+                        colorIndicationRGB[1] = 0;
+                        colorIndicationRGB[2] = 0;
+                        stamina -= enemy.normalDamage;
+                        showColorIndicator = true;
+                    }
+                }
+            }
+
+            Collision colInfoY = MoveUntilCollision(0, dy);
+            if (colInfoY != null)
+            {
+                if (colInfoY.normal.y > 0)
                 {
                     speedY = 0;
                 }
-                else if (colInfo.normal.y < 0)
+                else if (colInfoY.normal.y < 0)
                 {
                     speedY = 0;
                     canJump = true;
                 }
-                if (colInfo.other is CollisionTile)
+                if (colInfoY.other is CollisionTile)
                 {
-                    CollisionTile tile = colInfo.other as CollisionTile;
+                    CollisionTile tile = colInfoY.other as CollisionTile;
                     if (tile.type == "Death")
                     {
                         Restart();

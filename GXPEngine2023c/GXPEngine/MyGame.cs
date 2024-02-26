@@ -1,6 +1,7 @@
 using System;                                   
 using GXPEngine;                                
-using System.Drawing;                           
+using System.Drawing;
+using System.Collections.Generic;
 
 class MyGame : Game {
 
@@ -33,12 +34,17 @@ class MyGame : Game {
 
 	private void DestroyChildren()
     {
-		for (int i = 0; i < game.GetChildCount(); i++)
+		List<GameObject> children = GetChildren();
+		foreach (GameObject child in children)
 		{
-			GameObject child = game.GetChildren()[i];
-			child.LateRemove();
 			child.LateDestroy();
 		}
+		//for (int i = 0; i < game.GetChildCount(); i++)
+		//{
+		//	GameObject child = game.GetChildren()[i];
+		//	child.LateRemove();
+		//	child.LateDestroy();
+		//}
 	}
 	static void Main()
 	{
