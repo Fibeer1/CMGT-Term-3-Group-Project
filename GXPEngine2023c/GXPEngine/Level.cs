@@ -89,6 +89,11 @@ namespace GXPEngine
                         AddChild(enemy);
                         enemy.Start();
                         break;
+                    case "Finish":
+                        Finish finish = new Finish();
+                        finish.SetXY(obj.X, obj.Y);
+                        AddChild(finish);
+                        break;
                     default:
                         break;
                 }
