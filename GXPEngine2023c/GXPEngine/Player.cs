@@ -48,6 +48,8 @@ namespace GXPEngine
         public bool showColorIndicator;
         public bool canTakeDamage = true;
 
+        private float biteSizeModifier = 1;
+
         bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height - height / 2;
 
         public Player() : base("Unicorn.png")
@@ -223,7 +225,7 @@ namespace GXPEngine
         {
             if (Input.GetMouseButtonDown(0) && biteCDTimer <= 0)
             {
-                BiteParticle biteParticle = new BiteParticle();
+                BiteParticle biteParticle = new BiteParticle(biteSizeModifier);
                 AddChild(biteParticle);
                 biteCDTimer = biteCD;
             }
