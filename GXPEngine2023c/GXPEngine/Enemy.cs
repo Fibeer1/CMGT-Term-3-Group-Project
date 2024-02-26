@@ -69,7 +69,8 @@ namespace GXPEngine
 
                 Collision colInfo = MoveUntilCollision(0, dy);
                 if (colInfo != null)
-                {                   
+                {
+                    
                     if (colInfo.normal.y < 0)
                     {
                         speedY = 0;
@@ -81,6 +82,21 @@ namespace GXPEngine
                     }
                     if (colInfo.other is Player)
                     {
+                        if (player.canTakeDamage)
+                        {
+                            player.colorIndicationRGB[0] = 1;
+                            player.colorIndicationRGB[1] = 0;
+                            player.colorIndicationRGB[2] = 0;
+                            if (type == "Normal")
+                            {
+                                player.stamina -= data.normalDamage;
+                            }
+                            else
+                            {
+                                player.stamina -= data.burningDamage;
+                            }
+                            player.showColorIndicator = true;
+                        }
                         speedY = 0;
                     }
                 }
@@ -100,10 +116,27 @@ namespace GXPEngine
                     dx += speedX * crispMoveDirection;
                     crispMoveTimer -= speedX;
                 }
-
                 Collision colInfo = MoveUntilCollision(dx, 0);
                 if (colInfo != null)
                 {
+                    if (colInfo.other is Player)
+                    {
+                        if (player.canTakeDamage)
+                        {
+                            player.colorIndicationRGB[0] = 1;
+                            player.colorIndicationRGB[1] = 0;
+                            player.colorIndicationRGB[2] = 0;
+                            if (type == "Normal")
+                            {
+                                player.stamina -= data.normalDamage;
+                            }
+                            else
+                            {
+                                player.stamina -= data.burningDamage;
+                            }                           
+                            player.showColorIndicator = true;
+                        }
+                    }
                     if (colInfo.normal.x != 0)
                     {
                         crispMoveTimer = data.burningMaxMovement - crispMoveTimer;
