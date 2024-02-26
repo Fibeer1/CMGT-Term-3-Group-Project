@@ -249,7 +249,7 @@ namespace GXPEngine
             }
             if (target != null && hornCDTimer <= 0)
             {
-                hornArrow.SetXY(x + (facingRight ? 80 * scaleX : -80), y - 30 * scaleY / 2);
+                hornArrow.SetXY(x + (facingRight ? 80 * scaleX : -50), y - 30 * scaleY / 2);
                 float xPos = target.x - hornArrow.x;
                 float yPos = target.y - hornArrow.y;
                 float rotationModifier = 90;

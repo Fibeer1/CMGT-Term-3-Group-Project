@@ -20,7 +20,7 @@ namespace GXPEngine
 
         const float biteCDTime = 0.5f;
         const float hornCDTime = 3;
-        const float hornFiringRange = 300;
+        const float hornFiringRange = 400;
         const float hornProjectileSpeed = 15;
         const float hornStaminaNum = 25;
 
