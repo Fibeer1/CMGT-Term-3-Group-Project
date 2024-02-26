@@ -135,7 +135,7 @@ namespace GXPEngine
                         showColorIndicator = true;
                     }
                 }
-                if (colInfoX is CollisionTile)
+                if (colInfoX.other is CollisionTile)
                 {
                     CollisionTile tile = colInfoX.other as CollisionTile;
                     if (tile.type == "Death")
