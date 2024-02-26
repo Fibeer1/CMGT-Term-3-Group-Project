@@ -45,8 +45,27 @@ namespace GXPEngine
                 type = "Crisp";
                 SetColor(0.75f, 0.25f, 0.25f);
                 collider.isTrigger = true;
+<<<<<<< Updated upstream
             }
             else if (typeRNG == 1)
+=======
+            }
+            else if (typeRNG == 1)
+            {
+                type = "Shooter";
+                SetColor(0.25f, 0.25f, 0.75f);
+            }
+            else
+            {
+                type = "Normal";
+            }
+            int patternRNG = Utils.Random(0, 2);
+            if (type == "Shooter")
+            {
+                pattern = "none";
+            }
+            else if (patternRNG == 0)
+>>>>>>> Stashed changes
             {
                 type = "Normal";
             }
