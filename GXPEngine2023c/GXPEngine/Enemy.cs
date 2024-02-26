@@ -20,6 +20,8 @@ namespace GXPEngine
         float crispMoveTimer = 0;
         int crispMoveDirection = 1;
 
+        float shooterCdTimer = 0;
+
         bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height - height / 2;
         public Enemy() : base("Enemy.png")
         {
@@ -51,6 +53,7 @@ namespace GXPEngine
                 type = "Shooter";
                 pattern = "";
                 SetColor(0.25f, 0.25f, 0.75f);
+                collider.isTrigger = true;
             }
             else
             {
@@ -64,6 +67,11 @@ namespace GXPEngine
         private void Update()
         {
             HandleMovement();
+
+            if (type == "Shooter")
+            {
+                ShooterAttack();
+            }
         }
         private void HandleMovement()
         {
@@ -155,6 +163,32 @@ namespace GXPEngine
                 }
             }
         }
+
+        void ShooterAttack()
+        {
+            if (shooterCdTimer > 0)
+            {
+                shooterCdTimer -= Time.deltaTime;
+            }
+            else if (shooterCdTimer <= 0)
+            {
+                if (level.player != null)
+                {
+                    if (level.player.x <= x)
+                    {
+                        EnemyProjectile enemyProjectile = new EnemyProjectile("left");
+                        AddChild(enemyProjectile);
+                    }
+                    else if (level.player.x > x)
+                    {
+                        EnemyProjectile enemyProjectile = new EnemyProjectile("right");
+                        AddChild(enemyProjectile);
+                    }
+                }
+                shooterCdTimer = data.shooterShotCd;
+            }
+        }
+
         void OnCollision(GameObject other)
         {
             if (other is BiteParticle)
@@ -170,6 +204,10 @@ namespace GXPEngine
                 else if (type == "Crisp")
                 {
                     player.stamina += data.burningStaminaRegen;
+                }
+                else if (type == "Shooter")
+                {
+                    player.stamina += data.shooterStaminaRegen;
                 }
                 player.score += 1;
                 Die();

@@ -22,7 +22,11 @@ namespace GXPEngine
         const float burningMarshmallowStaminaRegen = 25;
         const float burningMarshMallowMaxMovement = 200;
 
-        const float shooterMarshmallowDamage = 80;
+        //time in milliseconds
+        const float shooterMarshmallowDamage = 100;
+        const float shooterMarshmallowStaminaRegen = 100;
+        const float shooterMarshmallowShotCooldown = 3000f;
+        const float shooterMarshmallowProjectileSpeed = 6;
 
         const float gravityStrength = 0.5f;
         const float jumpPower = 10;
@@ -126,6 +130,30 @@ namespace GXPEngine
             get
             {
                 return shooterMarshmallowDamage;
+            }
+        }
+
+        public float shooterStaminaRegen
+        {
+            get
+            {
+                return shooterMarshmallowStaminaRegen;
+            }
+        }
+
+        public float shooterShotCd
+        {
+            get
+            {
+                return shooterMarshmallowShotCooldown;
+            }
+        }
+
+        public float projectileSpeed
+        {
+            get
+            {
+                return shooterMarshmallowProjectileSpeed;
             }
         }
 

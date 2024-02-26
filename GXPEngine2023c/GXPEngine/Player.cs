@@ -130,7 +130,7 @@ namespace GXPEngine
                         {
                             stamina -= enemy.normalDamage;
                         }
-                        else
+                        else if (enemyColl.type == "Crisp")
                         {
                             stamina -= enemy.burningDamage;
                         }
