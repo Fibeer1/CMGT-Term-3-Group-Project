@@ -29,26 +29,12 @@ namespace GXPEngine
         {
             data = ((MyGame)game).enemyData;
             
-            int patternRNG = Utils.Random(0, 2);
-            if (patternRNG == 0)
-            {
-                pattern = "Horizontal";
-            }
-            else
-            {
-                pattern = "Vertical";
-            }
-
             int typeRNG = Utils.Random(0, 3);
             if (typeRNG == 0)
             {
                 type = "Crisp";
                 SetColor(0.75f, 0.25f, 0.25f);
                 collider.isTrigger = true;
-<<<<<<< Updated upstream
-            }
-            else if (typeRNG == 1)
-=======
             }
             else if (typeRNG == 1)
             {
@@ -59,19 +45,18 @@ namespace GXPEngine
             {
                 type = "Normal";
             }
+
             int patternRNG = Utils.Random(0, 2);
-            if (type == "Shooter")
+            if (patternRNG == 0)
             {
-                pattern = "none";
-            }
-            else if (patternRNG == 0)
->>>>>>> Stashed changes
-            {
-                type = "Normal";
+                pattern = "Horizontal";
             }
             else
             {
-                type = "Shooter";
+                pattern = "Vertical";
+            }
+            if (type == "Shooter")
+            {
                 pattern = "";
             }
             level = parent as Level;
