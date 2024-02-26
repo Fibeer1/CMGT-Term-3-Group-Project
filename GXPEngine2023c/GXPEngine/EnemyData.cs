@@ -9,11 +9,14 @@ namespace GXPEngine
     public class EnemyData
     {
         const float normalMarshmallowSpeed = 0;
-        const float normalMarshmallowJumpHeight = 15;
+        const float normalMarshmallowJumpHeightMin = 5;
+        const float normalMarshmallowJumpHeightMax = 15;
         const float normalMarshmallowDamage = 20;
         const float normalMarshmallowStaminaRegen = 50;
 
-        const float burningMarshmallowSpeed = 5;
+        const float burningMarshmallowSpeed = 4;
+        const float burningMarshmallowSpeedMin = 2;
+        const float burningMarshmallowSpeedMax = 6;
         const float burningMarshmallowJumpHeight = 0;
         const float burningMarshmallowDamage = 40;
         const float burningMarshmallowStaminaRegen = 25;
@@ -32,11 +35,18 @@ namespace GXPEngine
             }
         }
 
-        public float normalJumpHeight
+        public float normalJumpHeightMin
         {
             get
             {
-                return normalMarshmallowJumpHeight;
+                return normalMarshmallowJumpHeightMin;
+            }
+        }
+        public float normalJumpHeightMax
+        {
+            get
+            {
+                return normalMarshmallowJumpHeightMax;
             }
         }
 
@@ -61,6 +71,21 @@ namespace GXPEngine
             get
             {
                 return burningMarshmallowSpeed;
+            }
+        }
+
+        public float burningSpeedMin
+        {
+            get
+            {
+                return burningMarshmallowSpeedMin;
+            }
+        }
+        public float burningSpeedMax
+        {
+            get
+            {
+                return burningMarshmallowSpeedMax;
             }
         }
 

@@ -15,6 +15,7 @@ namespace GXPEngine
         EnemyData data;
         public Level level;
         float speedY = 0;
+        float speedX = 3;
 
         float crispMoveTimer = 0;
         int crispMoveDirection = 1;
@@ -59,16 +60,16 @@ namespace GXPEngine
 
                 Collision colInfo = MoveUntilCollision(0, dy);
                 if (colInfo != null)
-                {                  
+                {                
+                    if (colInfo.normal.y < 0)
+                    {
+                        speedY = 0;
+                    }
+                    speedY -= Utils.Random(data.normalJumpHeightMin, data.normalJumpHeightMax);
                     if (colInfo.normal.y > 0)
                     {
                         speedY = 0;
                     }
-                    else if (colInfo.normal.y < 0)
-                    {
-                        speedY = 0;
-                    }
-                    speedY -= data.jumpHeight;
                     if (colInfo.other is Player)
                     {
                         if (player.canTakeDamage)
@@ -98,8 +99,8 @@ namespace GXPEngine
                 }
                 else if (crispMoveTimer > 0)
                 {
-                    dx += data.burningSpeed * crispMoveDirection;
-                    crispMoveTimer -= data.burningSpeed;
+                    dx += speedX * crispMoveDirection;
+                    crispMoveTimer -= speedX;
                 }
 
                 Collision colInfo = MoveUntilCollision(dx, 0);
@@ -120,6 +121,7 @@ namespace GXPEngine
                     {
                         crispMoveTimer = data.burningMaxMovement - crispMoveTimer;
                         crispMoveDirection *= -1;
+                        speedX = Utils.Random(data.burningSpeedMin, data.burningSpeedMax);
                         scaleX = -scaleX;
                     }
                 }
