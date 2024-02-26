@@ -135,6 +135,14 @@ namespace GXPEngine
                         showColorIndicator = true;
                     }
                 }
+                if (colInfoX is CollisionTile)
+                {
+                    CollisionTile tile = colInfoX.other as CollisionTile;
+                    if (tile.type == "Death")
+                    {
+                        Restart();
+                    }
+                }
                 if (colInfoX.other is Finish)
                 {
                     ((MyGame)game).StartLevel(Utils.Random(0, 1));
@@ -153,6 +161,7 @@ namespace GXPEngine
                     speedY = 0;
                     canJump = true;
                 }
+                
                 if (colInfoY.other is CollisionTile)
                 {
                     CollisionTile tile = colInfoY.other as CollisionTile;
@@ -179,6 +188,10 @@ namespace GXPEngine
                         }
                         showColorIndicator = true;
                     }
+                }
+                if (colInfoY.other is Finish)
+                {
+                    ((MyGame)game).StartLevel(Utils.Random(0, 1));
                 }
             }
             else
