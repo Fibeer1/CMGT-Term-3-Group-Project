@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="21">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="22">
  <tileset firstgid="1" source="Tileset.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="30">
   <data encoding="csv">
@@ -43,5 +43,6 @@
   <object id="18" name="Enemy" x="127.465" y="318.31" width="29.5775" height="33.8028"/>
   <object id="19" name="Enemy" x="575.352" y="159.155" width="29.5775" height="33.8028"/>
   <object id="20" name="Enemy" x="830.282" y="95.7747" width="29.5775" height="33.8028"/>
+  <object id="21" name="Finish" x="1215.49" y="94.3662" width="30.9859" height="32.3944"/>
  </objectgroup>
 </map>
