@@ -180,6 +180,10 @@ namespace GXPEngine
                         showColorIndicator = true;
                     }
                 }
+                if (colInfoX.other is Finish)
+                {
+                    ((MyGame)game).StartLevel(Utils.Random(0, 1));
+                }
             }
             else
             {
