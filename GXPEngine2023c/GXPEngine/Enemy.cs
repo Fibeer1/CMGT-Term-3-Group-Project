@@ -28,23 +28,6 @@ namespace GXPEngine
         public void Start()
         {
             data = ((MyGame)game).enemyData;
-            
-            int typeRNG = Utils.Random(0, 3);
-            if (typeRNG == 0)
-            {
-                type = "Crisp";
-                SetColor(0.75f, 0.25f, 0.25f);
-                collider.isTrigger = true;
-            }
-            else if (typeRNG == 1)
-            {
-                type = "Shooter";
-                SetColor(0.25f, 0.25f, 0.75f);
-            }
-            else
-            {
-                type = "Normal";
-            }
 
             int patternRNG = Utils.Random(0, 2);
             if (patternRNG == 0)
@@ -55,9 +38,23 @@ namespace GXPEngine
             {
                 pattern = "Vertical";
             }
-            if (type == "Shooter")
+
+            int typeRNG = Utils.Random(0, 3);
+            if (typeRNG == 0)
             {
+                type = "Crisp";
+                SetColor(0.75f, 0.25f, 0.25f);
+                collider.isTrigger = true;
+            }
+            else if (typeRNG == 1)
+            {
+                type = "Shooter";
                 pattern = "";
+                SetColor(0.25f, 0.25f, 0.75f);
+            }
+            else
+            {
+                type = "Normal";
             }
             level = parent as Level;
             player = level.player;
