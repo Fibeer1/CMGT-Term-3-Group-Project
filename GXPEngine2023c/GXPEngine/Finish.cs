@@ -13,7 +13,7 @@ namespace GXPEngine
 
         public Finish() : base("checkers.png", false, true)
         {
-            collider.isTrigger = true;
+
         }
     }
 }
