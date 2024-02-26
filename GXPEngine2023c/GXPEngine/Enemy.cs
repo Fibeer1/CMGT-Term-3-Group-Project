@@ -10,7 +10,7 @@ namespace GXPEngine
     {
         //Movement pattern parameters
         string pattern;
-        string type; //Can be Normal or Crisp
+        public string type; //Can be Normal or Crisp
         Player player;
         EnemyData data;
         public Level level;
