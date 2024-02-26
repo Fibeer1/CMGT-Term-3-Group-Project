@@ -148,14 +148,12 @@ namespace GXPEngine
                     {
                         Restart();
                     }
-                }
-                
+                }                
             }
             else
             {
                 canJump = false;
             }
-
         }
 
         private void StaminaManagement()

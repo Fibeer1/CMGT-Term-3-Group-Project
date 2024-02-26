@@ -28,8 +28,8 @@ namespace GXPEngine
         public void Start()
         {
             data = ((MyGame)game).enemyData;
-            int patternRNG = Utils.Random(0, 3);
-            if (patternRNG == 0)
+            int typeRNG = Utils.Random(0, 3);
+            if (typeRNG == 0)
             {
                 type = "Crisp";
                 SetColor(0.75f, 0.25f, 0.25f);
@@ -38,6 +38,15 @@ namespace GXPEngine
             else
             {
                 type = "Normal";
+            }
+            int patternRNG = Utils.Random(0, 2);
+            if (patternRNG == 0)
+            {
+                pattern = "Horizontal";
+            }
+            else
+            {
+                pattern = "Vertical";
             }
             level = parent as Level;
             player = level.player;
@@ -50,7 +59,7 @@ namespace GXPEngine
         }
         private void HandleMovement()
         {
-            if (type == "Normal")
+            if (pattern == "Vertical")
             {
                 float dy = 0;
                 //gravity
@@ -60,7 +69,8 @@ namespace GXPEngine
 
                 Collision colInfo = MoveUntilCollision(0, dy);
                 if (colInfo != null)
-                {                
+                {
+                    
                     if (colInfo.normal.y < 0)
                     {
                         speedY = 0;
@@ -77,17 +87,21 @@ namespace GXPEngine
                             player.colorIndicationRGB[0] = 1;
                             player.colorIndicationRGB[1] = 0;
                             player.colorIndicationRGB[2] = 0;
-                            player.stamina -= data.normalDamage;
+                            if (type == "Normal")
+                            {
+                                player.stamina -= data.normalDamage;
+                            }
+                            else
+                            {
+                                player.stamina -= data.burningDamage;
+                            }
                             player.showColorIndicator = true;
-                        }                        
+                        }
                         speedY = 0;
                     }
                 }
             }
-            if (type == "Crisp") //This is where the crisp movement should be
-                                 //I'd suggest using a timer that makes the enemy go to the opposite side when it reaches 0
-                                 //MoveUntilCollision could also be used to make it switch directions earlier
-                                    //This can also reset the move timer
+            if (pattern == "Horizontal")
             {
                 float dx = 0;
 
@@ -113,7 +127,14 @@ namespace GXPEngine
                             player.colorIndicationRGB[0] = 1;
                             player.colorIndicationRGB[1] = 0;
                             player.colorIndicationRGB[2] = 0;
-                            player.stamina -= data.burningDamage;
+                            if (type == "Normal")
+                            {
+                                player.stamina -= data.normalDamage;
+                            }
+                            else
+                            {
+                                player.stamina -= data.burningDamage;
+                            }                           
                             player.showColorIndicator = true;
                         }
                     }
