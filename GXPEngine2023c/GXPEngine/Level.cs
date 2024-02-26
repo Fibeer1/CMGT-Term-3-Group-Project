@@ -20,6 +20,7 @@ namespace GXPEngine
             camera = new Camera(0, 0, game.width, game.height);
             AddChild(camera);
             player.camera = camera;
+            camera.SetScaleXY(1.5f, 1.5f);
 
             //HUD gets added last
             hud = new HUD();
@@ -49,7 +50,7 @@ namespace GXPEngine
                     int tileNumber = tileNumbers[col, row];
                     if (tileNumber > 0)
                     {
-                        CollisionTile tile = new CollisionTile("TileSet1.png", 3, 1);
+                        CollisionTile tile = new CollisionTile("TileSet1.png", 6, 1);
                         if (tileNumber == 3)
                         {
                             tile.type = "Death";

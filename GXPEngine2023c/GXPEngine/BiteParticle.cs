@@ -16,7 +16,7 @@ namespace GXPEngine
         {
             SetOrigin(width / 2, height / 2);
             player = game.FindObjectOfType<Player>();
-            SetXY(50, -5);
+            SetXY(110, -5);
             collider.isTrigger = true;
             SetScaleXY(pscale);
         }
