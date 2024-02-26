@@ -118,12 +118,20 @@ namespace GXPEngine
             {
                 if (colInfoX.other is Enemy)
                 {
+                    Enemy enemyColl = colInfoX.other as Enemy;
                     if (canTakeDamage)
                     {
                         colorIndicationRGB[0] = 1;
                         colorIndicationRGB[1] = 0;
                         colorIndicationRGB[2] = 0;
-                        stamina -= enemy.normalDamage;
+                        if (enemyColl.type == "Normal")
+                        {
+                            stamina -= enemy.normalDamage;
+                        }
+                        else
+                        {
+                            stamina -= enemy.burningDamage;
+                        }
                         showColorIndicator = true;
                     }
                 }
@@ -148,7 +156,26 @@ namespace GXPEngine
                     {
                         Restart();
                     }
-                }                
+                }
+                if (colInfoY.other is Enemy)
+                {
+                    Enemy enemyColl = colInfoY.other as Enemy;
+                    if (canTakeDamage)
+                    {
+                        colorIndicationRGB[0] = 1;
+                        colorIndicationRGB[1] = 0;
+                        colorIndicationRGB[2] = 0;
+                        if (enemyColl.type == "Normal")
+                        {
+                            stamina -= enemy.normalDamage;
+                        }
+                        else
+                        {
+                            stamina -= enemy.burningDamage;
+                        }
+                        showColorIndicator = true;
+                    }
+                }
             }
             else
             {
