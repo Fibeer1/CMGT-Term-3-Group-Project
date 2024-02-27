@@ -21,7 +21,7 @@ class MyGame : Game {
 		targetFps = 60;
 		Menu menu = new Menu("Main Menu");
 		AddChild(menu);
-		currentLevelIndex = 1;
+		currentLevelIndex = 2;
 	}
 
 	public void StartLevel(int levelIndex)
