@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -170,7 +170,7 @@ namespace GXPEngine
                 if (colInfoX.other is Finish)
                 {
                     runningSound.Stop();
-                    ((MyGame)game).StartLevel(Utils.Random(0, 1));
+                    ((MyGame)game).StartLevel(Utils.Random(0, 2));
                 }
             }
 
