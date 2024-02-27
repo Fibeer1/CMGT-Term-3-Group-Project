@@ -11,8 +11,12 @@ namespace GXPEngine
         //Movement pattern parameters
         string pattern;
         public string type; //Can be Normal or Crisp
+
         Player player;
         EnemyData data;
+
+        Sound death;
+
         public Level level;
         float speedY = 0;
         float speedX = 3;
@@ -30,6 +34,8 @@ namespace GXPEngine
         public void Start()
         {
             data = ((MyGame)game).enemyData;
+
+            death = new Sound(data.deathSound, false, false);
 
             int patternRNG = Utils.Random(0, 2);
             if (patternRNG == 0)
@@ -113,6 +119,7 @@ namespace GXPEngine
                                 player.stamina -= data.burningDamage;
                             }
                             player.showColorIndicator = true;
+                            player.playHurtSound = true;
                         }
                         speedY = 0;
                     }
@@ -152,6 +159,7 @@ namespace GXPEngine
                                 player.stamina -= data.burningDamage;
                             }                           
                             player.showColorIndicator = true;
+                            player.playHurtSound = true;
                         }
                     }
                     if (colInfo.normal.x != 0)
@@ -222,6 +230,7 @@ namespace GXPEngine
         }
         public void Die()
         {
+            death.Play();
             player.enemies.Remove(this);
             LateRemove();
             LateDestroy();

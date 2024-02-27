@@ -12,6 +12,14 @@ namespace GXPEngine
         PlayerData data;
         EnemyData enemy;
 
+        Sound running;
+        Sound bite;
+        Sound shoot;
+        Sound hurt;
+        Sound death;
+
+        SoundChannel runningSound;
+
         //General variables
         public int score;
         public float stamina; // need to come up with stamina values, how much you lose and gain in each case
@@ -46,6 +54,7 @@ namespace GXPEngine
         public float[] colorIndicationRGB = new float[3];
         float colorIndicatorTimer = 0.1f;
         public bool showColorIndicator;
+        public bool playHurtSound = false;
         public bool canTakeDamage = true;
 
         private float biteSizeModifier = 2f;
@@ -56,6 +65,12 @@ namespace GXPEngine
         {
             data = ((MyGame)game).playerData;
             enemy = ((MyGame)game).enemyData;
+
+            running = new Sound(data.runSound, true, false);
+            bite = new Sound(data.biteSound, false, false);
+            shoot = new Sound(data.shootSound, false, false);
+            hurt = new Sound(data.damageSound, false, false);
+            death = new Sound(data.dieSound, false, false);
 
             stamina = data.stamina;
 
@@ -69,6 +84,8 @@ namespace GXPEngine
             hornArrow = new Sprite("HornArrow.png", false, false);
             hornArrow.SetOrigin(hornArrow.width / 2, hornArrow.height / 2);
             SetScaleXY(data.scale, data.scale);
+
+            runningSound = running.Play();
         }
         private void Update()
         {
@@ -96,12 +113,16 @@ namespace GXPEngine
                 dx -= data.speed;
                 scaleX = -data.scale;
                 facingRight = false;
+
+                runningSound.Mute = false;
             }
             else if (Input.GetKey('D'))
             {
                 dx += data.speed;
                 scaleX = data.scale;
                 facingRight = true;
+
+                runningSound.Mute = false;
             }
 
             //jumping
@@ -134,6 +155,7 @@ namespace GXPEngine
                         {
                             stamina -= enemy.burningDamage;
                         }
+                        playHurtSound = true;
                         showColorIndicator = true;
                     }
                 }
@@ -147,6 +169,7 @@ namespace GXPEngine
                 }
                 if (colInfoX.other is Finish)
                 {
+                    runningSound.Stop();
                     ((MyGame)game).StartLevel(Utils.Random(0, 1));
                 }
             }
@@ -188,17 +211,39 @@ namespace GXPEngine
                         {
                             stamina -= enemy.burningDamage;
                         }
+                        playHurtSound = true;
                         showColorIndicator = true;
                     }
                 }
                 if (colInfoY.other is Finish)
                 {
+                    runningSound.Stop();
                     ((MyGame)game).StartLevel(Utils.Random(0, 2));
                 }
             }
             else
             {
                 canJump = false;
+            }
+
+            HandleSounds(dx, canJump);
+        }
+
+        private void HandleSounds(float dx, bool grounded)
+        {
+            if (playHurtSound)
+            {
+                hurt.Play();
+                playHurtSound = false;
+            }
+
+            if (dx == 0)
+            {
+                runningSound.Mute = true;
+            }
+            if (!grounded)
+            {
+                runningSound.Mute = true;
             }
         }
 
@@ -228,6 +273,8 @@ namespace GXPEngine
                 BiteParticle biteParticle = new BiteParticle(biteSizeModifier);
                 AddChild(biteParticle);
                 biteCDTimer = biteCD;
+
+                bite.Play();
             }
             if (biteCDTimer > 0)
             {
@@ -261,6 +308,7 @@ namespace GXPEngine
                 HornProjectile hornProjectile = new HornProjectile();
                 level.AddChild(hornProjectile);
                 hornCDTimer = hornCD;
+                shoot.Play();
             }
             if (hornCDTimer > 0)
             {
@@ -304,6 +352,8 @@ namespace GXPEngine
         }
         void Restart()
         {
+            runningSound.Stop();
+            death.Play();
             MyGame mainGame = game.FindObjectOfType<MyGame>();
             mainGame.StartLevel(mainGame.currentLevelIndex);
         }

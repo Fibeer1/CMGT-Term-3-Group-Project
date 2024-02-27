@@ -24,6 +24,13 @@ namespace GXPEngine
         const float hornProjectileSpeed = 15;
         const float hornStaminaNum = 25;
 
+        const string runningSound = "Gallop.WAV";
+        const string bitingSound = "Bite.WAV";
+        const string shootingSound = "Horn_Shoot.WAV";
+        const string hurtSound = "Horse_Hurt.WAV";
+        const string deathSound = "Horse_Death.MP3";
+        const string hornHitSound = "Horn_Hit.WAV";
+
         public float stamina
         {
             get
@@ -108,6 +115,54 @@ namespace GXPEngine
             get
             {
                 return hornStaminaNum;
+            }
+        }
+
+        public string runSound
+        {
+            get
+            {
+                return runningSound;
+            }
+        }
+
+        public string biteSound
+        {
+            get
+            {
+                return bitingSound;
+            }
+        }
+
+        public string shootSound
+        {
+            get
+            {
+                return shootingSound;
+            }
+        }
+
+        public string damageSound
+        {
+            get
+            {
+                return hurtSound;
+            }
+        }
+
+        public string dieSound
+        {
+            get
+            {
+                return deathSound;
+            }
+        }
+
+        public string projectileHitSound
+        {
+            get
+            {
+                return hornHitSound;
             }
         }
 

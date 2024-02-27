@@ -31,6 +31,8 @@ namespace GXPEngine
         const float gravityStrength = 0.5f;
         const float jumpPower = 10;
 
+        const string dyingSound = "Marshmallow_Death.WAV";
+
         public float normalSpeed
         {
             get
@@ -171,6 +173,15 @@ namespace GXPEngine
                 return jumpPower;
             }
         }
+
+        public string deathSound
+        {
+            get
+            {
+                return dyingSound;
+            }
+        }
+
         public EnemyData()
         {
 

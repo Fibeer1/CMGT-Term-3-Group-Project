@@ -10,16 +10,24 @@ namespace GXPEngine
     {
         PlayerData data;
 
+        Sound hit;
+
         public float lifeTime = 3;
         Player player;
         bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height - height / 2;
         public HornProjectile() : base("HornProjectile.png")
         {
             data = ((MyGame)game).playerData;
+
+            hit = new Sound(data.projectileHitSound, false, false);
+
             collider.isTrigger = true;
+
             player = game.FindObjectOfType<Player>();
+
             SetOrigin(width / 2, height / 2);
             SetXY(player.hornArrow.x, player.hornArrow.y);
+
             player.stamina -= data.hornStaminaDrain;
             rotation = player.hornArrow.rotation;
             x += player.facingRight ? 10 : -10;           
@@ -40,6 +48,7 @@ namespace GXPEngine
             if (other is Enemy)
             {
                 shouldDestroy = true;
+                hit.Play();
             }
             if (other is CollisionTile)
             {

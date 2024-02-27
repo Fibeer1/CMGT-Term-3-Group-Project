@@ -12,6 +12,8 @@ namespace GXPEngine
     {
         EnemyData data;
 
+        Sound hurtPlayer;
+
         string direction;
 
         public EnemyProjectile(string pdirection) : base ("HornProjectile.png", false, true)
@@ -59,6 +61,7 @@ namespace GXPEngine
                         player.colorIndicationRGB[2] = 0;
                         player.stamina -= data.shooterDamage;
                         player.showColorIndicator = true;
+                        player.playHurtSound = true;
                     }
                 }
 
