@@ -104,6 +104,7 @@ namespace GXPEngine
                     case "Trigger":
                         EnemyTrigger trigger = new EnemyTrigger();
                         trigger.SetXY(obj.X, obj.Y);
+                        trigger.SetScaleXY(obj.Width, obj.Height);
                         AddChild(trigger);
                         break;
                     default:

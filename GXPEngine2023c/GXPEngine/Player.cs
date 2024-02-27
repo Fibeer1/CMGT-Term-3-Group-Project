@@ -226,6 +226,12 @@ namespace GXPEngine
                     runningSound.Stop();
                     ((MyGame)game).StartLevel(Utils.Random(0, 5));
                 }
+                if (colInfoY.other is EnemyTrigger)
+                {
+                    EnemyTrigger trigger = colInfoY.other as EnemyTrigger;
+                    level.NewEnemies();
+                    trigger.LateDestroy();
+                }
             }
             else
             {
