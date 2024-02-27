@@ -172,6 +172,10 @@ namespace GXPEngine
                     runningSound.Stop();
                     ((MyGame)game).StartLevel(Utils.Random(0, 2));
                 }
+                if (colInfoX.other is EnemyTrigger)
+                {
+
+                }
             }
 
             Collision colInfoY = MoveUntilCollision(0, dy);

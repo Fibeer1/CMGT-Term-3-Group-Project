@@ -47,6 +47,7 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyData.cs" />
     <Compile Include="EnemyProjectile.cs" />
+    <Compile Include="EnemyTrigger.cs" />
     <Compile Include="Finish.cs" />
     <Compile Include="GXPEngine\AddOns\Gizmos.cs" />
     <Compile Include="GXPEngine\AddOns\SpriteBatch.cs" />
