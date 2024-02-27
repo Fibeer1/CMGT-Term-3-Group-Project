@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using TiledMapParser;
 
@@ -11,6 +12,9 @@ namespace GXPEngine
         public Player player;
         Camera camera;
         HUD hud;
+
+        int lvlNumber;
+
         public Level(int index) : base()
         {
             Map levelData = MapParser.ReadMap("Level " + index + ".tmx");
@@ -21,6 +25,8 @@ namespace GXPEngine
             AddChild(camera);
             player.camera = camera;
             camera.SetScaleXY(1.5f, 1.5f);
+
+            lvlNumber = index;
 
             //HUD gets added last
             hud = new HUD();
@@ -95,10 +101,52 @@ namespace GXPEngine
                         finish.SetXY(obj.X, obj.Y);
                         AddChild(finish);
                         break;
+                    case "Trigger":
+                        EnemyTrigger trigger = new EnemyTrigger();
+                        trigger.SetXY(obj.X, obj.Y);
+                        AddChild(trigger);
+                        break;
                     default:
                         break;
                 }
             }           
+        }
+
+        public void NewEnemies()
+        {
+            Map levelData = MapParser.ReadMap("Level " + lvlNumber + ".tmx");
+
+            List<GameObject> children = GetChildren();
+            for (int i = 0; i < children.Count; i++)
+            {
+                if (children[i] is Enemy)
+                {
+                    children[i].LateDestroy();
+                }
+            }
+            
+            if (levelData.ObjectGroups == null || levelData.ObjectGroups.Length == 0)
+            {
+                return;
+            }
+            ObjectGroup objectGroup = levelData.ObjectGroups[0];
+            if (objectGroup.Objects == null || objectGroup.Objects.Length == 0)
+            {
+                return;
+            }
+
+            foreach (TiledObject obj in objectGroup.Objects)
+            {
+                switch (obj.Name)
+                {
+                    case "EnemyTrigger":
+                        Enemy enemy = new Enemy();
+                        enemy.SetXY(obj.X, obj.Y);
+                        AddChild(enemy);
+                        enemy.Start();
+                        break;
+                }
+            }
         }
     }
 }

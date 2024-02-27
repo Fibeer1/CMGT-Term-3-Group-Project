@@ -174,7 +174,9 @@ namespace GXPEngine
                 }
                 if (colInfoX.other is EnemyTrigger)
                 {
-
+                    EnemyTrigger trigger = colInfoX.other as EnemyTrigger;
+                    level.NewEnemies();
+                    trigger.LateDestroy();
                 }
             }
 

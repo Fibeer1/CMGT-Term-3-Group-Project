@@ -12,8 +12,6 @@ namespace GXPEngine
     {
         EnemyData data;
 
-        Sound hurtPlayer;
-
         string direction;
 
         public EnemyProjectile(string pdirection) : base ("HornProjectile.png", false, true)
