@@ -170,7 +170,7 @@ namespace GXPEngine
                 if (colInfoX.other is Finish)
                 {
                     runningSound.Stop();
-                    ((MyGame)game).StartLevel(Utils.Random(0, 2));
+                    ((MyGame)game).StartLevel(Utils.Random(0, 3));
                 }
             }
 
@@ -218,7 +218,7 @@ namespace GXPEngine
                 if (colInfoY.other is Finish)
                 {
                     runningSound.Stop();
-                    ((MyGame)game).StartLevel(Utils.Random(0, 2));
+                    ((MyGame)game).StartLevel(Utils.Random(0, 3));
                 }
             }
             else
