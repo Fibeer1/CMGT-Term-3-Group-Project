@@ -193,7 +193,7 @@ namespace GXPEngine
                 }
                 if (colInfoY.other is Finish)
                 {
-                    ((MyGame)game).StartLevel(Utils.Random(0, 1));
+                    ((MyGame)game).StartLevel(Utils.Random(0, 2));
                 }
             }
             else

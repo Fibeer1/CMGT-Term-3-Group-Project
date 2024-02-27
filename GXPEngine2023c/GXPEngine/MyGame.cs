@@ -21,7 +21,7 @@ class MyGame : Game {
 		targetFps = 60;
 		Menu menu = new Menu("Main Menu");
 		AddChild(menu);
-		currentLevelIndex = 0;
+		currentLevelIndex = 1;
 	}
 
 	public void StartLevel(int levelIndex)
@@ -29,6 +29,7 @@ class MyGame : Game {
 		DestroyChildren();
 		Level level = new Level(levelIndex);
 		currentLevel = level;
+		currentLevelIndex = levelIndex;
 		AddChild(level);
 	}
 

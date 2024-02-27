@@ -178,12 +178,12 @@ namespace GXPEngine
                     if (level.player.x <= x)
                     {
                         EnemyProjectile enemyProjectile = new EnemyProjectile("left");
-                        parent.AddChild(enemyProjectile);
+                        AddChild(enemyProjectile);
                     }
                     else if (level.player.x > x)
                     {
                         EnemyProjectile enemyProjectile = new EnemyProjectile("right");
-                        parent.AddChild(enemyProjectile);
+                        AddChild(enemyProjectile);
                     }
                 }
                 shooterCdTimer = data.shooterShotCd;
