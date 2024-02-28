@@ -377,7 +377,9 @@ namespace GXPEngine
         {
             runningSound.Stop();
             death.Play();
+
             MyGame mainGame = game.FindObjectOfType<MyGame>();
+            mainGame.playerData = new PlayerData();
             mainGame.StartLevel(mainGame.currentLevelIndex);
         }
     }
