@@ -40,12 +40,6 @@ class MyGame : Game {
 		{
 			child.LateDestroy();
 		}
-		//for (int i = 0; i < game.GetChildCount(); i++)
-		//{
-		//	GameObject child = game.GetChildren()[i];
-		//	child.LateRemove();
-		//	child.LateDestroy();
-		//}
 	}
 	static void Main()
 	{
