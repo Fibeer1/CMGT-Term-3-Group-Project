@@ -35,7 +35,8 @@ namespace GXPEngine
                     {
                         Menu menu = parent as Menu;
                         menu.DestroyAll();
-                        mainGame.FindObjectOfType<MyGame>().StartLevel(mainGame.currentLevelIndex);
+                        mainGame.playerData = new PlayerData();
+                        mainGame.FindObjectOfType<MyGame>().StartLevel(Utils.Random(0, 5));
                     }
                     else if (text == "Quit Game")
                     {

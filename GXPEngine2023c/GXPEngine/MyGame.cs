@@ -20,11 +20,15 @@ class MyGame : Game {
 		hudData = new HUDData();
 
 		targetFps = 60;
-		Menu menu = new Menu("Main Menu");
-		AddChild(menu);
+		StartMenu("Main Menu");
 		currentLevelIndex = Utils.Random(0, 5);
 	}
-
+	public void StartMenu(string menuType)
+    {
+		DestroyChildren();
+		Menu menu = new Menu(menuType);
+		AddChild(menu);
+	}
 	public void StartLevel(int levelIndex)
     {
 		DestroyChildren();

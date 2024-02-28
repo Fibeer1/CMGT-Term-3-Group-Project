@@ -58,6 +58,26 @@ namespace GXPEngine
                 AddChild(restartButton);
                 AddChild(quitButton);
             }
+            else if (type == "Win Screen")
+            {
+                EasyDraw winText = new EasyDraw(250, 75, false);
+                EasyDraw score = new EasyDraw(300, 50, false);
+                Button restartButton;
+                Button quitButton;
+                winText.TextSize(25);
+                winText.TextAlign(CenterMode.Center, CenterMode.Center);
+                winText.SetXY(game.width / 2 - winText.width / 2, 50);
+                winText.Text("You win!");
+                score.TextAlign(CenterMode.Center, CenterMode.Center);
+                score.SetXY(game.width / 2 - score.width / 2, 175);
+                score.Text("Score: " + ((MyGame)game).playerData.playerScore);
+                restartButton = new Button("Restart", game.width / 2 - 150 / 2, 425);
+                quitButton = new Button("Quit Game", game.width / 2 - 150 / 2, 500);
+                AddChild(winText);
+                AddChild(score);
+                AddChild(restartButton);
+                AddChild(quitButton);
+            }
         }
         public void DestroyAll()
         {

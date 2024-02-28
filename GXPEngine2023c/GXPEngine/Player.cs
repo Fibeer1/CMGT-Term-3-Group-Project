@@ -166,13 +166,21 @@ namespace GXPEngine
                 if (colInfoX.other is Finish)
                 {
                     runningSound.Stop();
-                    ((MyGame)game).completedLevelIndices.Add(((MyGame)game).currentLevelIndex);
-                    int levelRNG = Utils.Random(0, 5);
-                    while (((MyGame)game).completedLevelIndices.Contains(levelRNG))
+                    MyGame mainGame = ((MyGame)game);
+                    mainGame.completedLevelIndices.Add(mainGame.currentLevelIndex);
+                    if (mainGame.completedLevelIndices.Count >= 3)
                     {
-                        levelRNG = Utils.Random(0, 5);
+                        mainGame.StartMenu("Win Screen");
                     }
-                    ((MyGame)game).StartLevel(levelRNG);
+                    else
+                    {
+                        int levelRNG = Utils.Random(0, 5);
+                        while (mainGame.completedLevelIndices.Contains(levelRNG))
+                        {
+                            levelRNG = Utils.Random(0, 5);
+                        }
+                        mainGame.StartLevel(levelRNG);
+                    }
                 }
                 if (colInfoX.other is EnemyTrigger)
                 {
@@ -226,13 +234,21 @@ namespace GXPEngine
                 if (colInfoY.other is Finish)
                 {
                     runningSound.Stop();
-                    ((MyGame)game).completedLevelIndices.Add(((MyGame)game).currentLevelIndex);
-                    int levelRNG = Utils.Random(0, 5);
-                    while (((MyGame)game).completedLevelIndices.Contains(levelRNG))
+                    MyGame mainGame = ((MyGame)game);
+                    mainGame.completedLevelIndices.Add(mainGame.currentLevelIndex);
+                    if (mainGame.completedLevelIndices.Count >= 3)
                     {
-                        levelRNG = Utils.Random(0, 5);
+                        mainGame.StartMenu("Win Screen");
                     }
-                    ((MyGame)game).StartLevel(levelRNG);
+                    else
+                    {
+                        int levelRNG = Utils.Random(0, 5);
+                        while (mainGame.completedLevelIndices.Contains(levelRNG))
+                        {
+                            levelRNG = Utils.Random(0, 5);
+                        }
+                    mainGame.StartLevel(levelRNG);
+                    }                    
                 }
                 if (colInfoY.other is EnemyTrigger)
                 {
@@ -379,11 +395,14 @@ namespace GXPEngine
             data.currentStamina = data.stamina;
             MyGame mainGame = game.FindObjectOfType<MyGame>();
             if (data.currentLives <= 0)
-            {
-                mainGame.playerData = new PlayerData();
+            {                
                 mainGame.completedLevelIndices.Clear();
+                mainGame.StartMenu("Game Over");
+            }
+            else
+            {
+                mainGame.StartLevel(mainGame.currentLevelIndex);
             }            
-            mainGame.StartLevel(mainGame.currentLevelIndex);
         }
     }
 }
