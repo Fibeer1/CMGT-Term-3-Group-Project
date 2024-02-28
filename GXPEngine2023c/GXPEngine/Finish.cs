@@ -11,9 +11,10 @@ namespace GXPEngine
     {
 
 
-        public Finish() : base("checkers.png", false, true)
+        public Finish() : base("LevelPortal.png", false, true)
         {
-
+            SetOrigin(width / 2, height / 2);
+            SetScaleXY(2, 2);
         }
     }
 }
