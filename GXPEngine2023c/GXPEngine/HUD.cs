@@ -42,6 +42,12 @@ namespace GXPEngine
             AddChild(staminaOverlay);
             score.SetXY(game.width / 2 - score.width / 2, 10);
             AddChild(score);
+            biteCD.SetXY(90, 95);
+            biteCD.SetFrame(biteCD.frameCount - 1);
+            AddChild(biteCD);
+            hornCD.SetXY(165, 95);
+            hornCD.SetFrame(hornCD.frameCount - 1);
+            AddChild(hornCD);
         }
         private void Update()
         {
@@ -54,6 +60,10 @@ namespace GXPEngine
                 Brushes.White, 
                 score.x + score.width / 2 - 9,
                 score.y + score.height + 5);
+            //Lives
+            graphics.DrawString("Lives: " + playerData.currentLives, uiFont,
+                Brushes.White,
+                230, 90);
             HandleBiteCD();
             HandleHornCD();
         }
@@ -70,32 +80,22 @@ namespace GXPEngine
         {
             if (player.biteCDTimer > 0)
             {
-                float angle = 0;
-                if (angle < 360)
-                {
-                    angle = player.biteCDTimer / player.biteCD * 360;
-                }
-                float textX = 10;
-                float textY = 85;
-                string text = "Bite CD: ";
-                graphics.DrawString(text, uiFont, Brushes.White, textX, textY);
-                graphics.FillPie(new SolidBrush(Color.White), textX + text.Length * uiFont.Size - 55, textY + 5, 15, 15, 0, angle);
+                biteCD.Animate(playerData.biteCD / 2);
+            }
+            else
+            {
+                biteCD.SetFrame(biteCD.frameCount - 1);
             }
         }
         private void HandleHornCD()
         {
             if (player.hornCDTimer > 0)
             {
-                float angle = 0;
-                if (angle < 360)
-                {
-                    angle = player.hornCDTimer / player.hornCD * 360;
-                }
-                float textX = 10;
-                float textY = 110;
-                string text = "Horn CD: ";
-                graphics.DrawString(text, uiFont, Brushes.White, textX, textY);
-                graphics.FillPie(new SolidBrush(Color.White), textX + text.Length * uiFont.Size - 45, textY + 5, 15, 15, 0, angle);
+                hornCD.Animate(playerData.hornCD / 75);
+            }
+            else
+            {
+                hornCD.SetFrame(hornCD.frameCount - 1);
             }
         }
     }

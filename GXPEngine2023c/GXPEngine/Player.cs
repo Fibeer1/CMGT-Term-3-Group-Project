@@ -375,8 +375,14 @@ namespace GXPEngine
             runningSound.Stop();
             death.Play();
 
+            data.currentLives--;
+            data.currentStamina = data.stamina;
             MyGame mainGame = game.FindObjectOfType<MyGame>();
-            mainGame.playerData = new PlayerData();
+            if (data.currentLives <= 0)
+            {
+                mainGame.playerData = new PlayerData();
+                mainGame.completedLevelIndices.Clear();
+            }            
             mainGame.StartLevel(mainGame.currentLevelIndex);
         }
     }

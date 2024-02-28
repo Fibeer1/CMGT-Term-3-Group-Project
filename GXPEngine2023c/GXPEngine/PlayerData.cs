@@ -10,6 +10,9 @@ namespace GXPEngine
     {
         private float score = 0f;
 
+        const int lifeCount = 3;
+        private int currentLifeCount = 3;
+
         const float maxStamina = 1000;
 
         //higher value means slower stamina reduction
@@ -43,6 +46,26 @@ namespace GXPEngine
             set
             {
                 score = value;
+            }
+        }
+
+        public int lives
+        {
+            get
+            {
+                return lifeCount;
+            }
+        }
+
+        public int currentLives
+        {
+            get
+            {
+                return currentLifeCount;
+            }
+            set
+            {
+                currentLifeCount = value;
             }
         }
 
