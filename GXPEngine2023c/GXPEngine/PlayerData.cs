@@ -8,6 +8,8 @@ namespace GXPEngine
 {
     public class PlayerData
     {
+        private float score = 0f;
+
         const float maxStamina = 1000;
 
         //higher value means slower stamina reduction
@@ -30,6 +32,18 @@ namespace GXPEngine
         const string hurtSound = "Horse_Hurt.WAV";
         const string deathSound = "Horse_Death.MP3";
         const string hornHitSound = "Horn_Hit.WAV";
+
+        public float playerScore
+        {
+            get
+            {
+                return score;
+            }
+            set
+            {
+                score = value;
+            }
+        }
 
         public float stamina
         {
