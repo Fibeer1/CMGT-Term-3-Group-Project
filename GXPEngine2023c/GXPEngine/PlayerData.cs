@@ -14,6 +14,7 @@ namespace GXPEngine
 
         //higher value means slower stamina reduction
         const float staminaReduceRate = 25;
+        private float staminaRightNow = 0f;
 
         const float movementSpeed = 7.5f;
         const float heightJump = 17.5f;
@@ -58,6 +59,18 @@ namespace GXPEngine
             get
             {
                 return staminaReduceRate;
+            }
+        }
+
+        public float currentStamina
+        {
+            get
+            {
+                return staminaRightNow;
+            }
+            set
+            {
+                staminaRightNow = value;
             }
         }
 
@@ -182,7 +195,12 @@ namespace GXPEngine
 
         public PlayerData()
         {
+            Reset();
+        }
 
+        void Reset()
+        {
+            staminaRightNow = maxStamina;
         }
     }
 }

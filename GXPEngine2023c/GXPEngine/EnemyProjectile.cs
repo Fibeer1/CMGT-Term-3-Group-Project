@@ -11,12 +11,14 @@ namespace GXPEngine
     class EnemyProjectile : Sprite
     {
         EnemyData data;
+        PlayerData playerData;
 
         string direction;
 
         public EnemyProjectile(string pdirection) : base ("HornProjectile.png", false, true)
         {
             data = ((MyGame)game).enemyData;
+            playerData = ((MyGame)game).playerData;
 
             direction = pdirection;
             collider.isTrigger = true;
@@ -57,7 +59,7 @@ namespace GXPEngine
                         player.colorIndicationRGB[0] = 1;
                         player.colorIndicationRGB[1] = 0;
                         player.colorIndicationRGB[2] = 0;
-                        player.stamina -= data.shooterDamage;
+                        playerData.currentStamina -= data.shooterDamage;
                         player.showColorIndicator = true;
                         player.playHurtSound = true;
                     }

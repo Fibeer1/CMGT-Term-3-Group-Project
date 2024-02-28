@@ -22,7 +22,6 @@ namespace GXPEngine
 
         //General variables
         public int score;
-        public float stamina; // need to come up with stamina values, how much you lose and gain in each case
         bool isDead = false;
 
         //Movement variables       
@@ -71,8 +70,6 @@ namespace GXPEngine
             shoot = new Sound(data.shootSound, false, false);
             hurt = new Sound(data.damageSound, false, false);
             death = new Sound(data.dieSound, false, false);
-
-            stamina = data.stamina;
 
             biteCD = data.biteCD;
             hornCD = data.hornCD;
@@ -148,11 +145,11 @@ namespace GXPEngine
                         colorIndicationRGB[2] = 0;
                         if (enemyColl.type == "Normal")
                         {
-                            stamina -= enemy.normalDamage;
+                            data.currentStamina -= enemy.normalDamage;
                         }
                         else if (enemyColl.type == "Crisp")
                         {
-                            stamina -= enemy.burningDamage;
+                            data.currentStamina -= enemy.burningDamage;
                         }
                         playHurtSound = true;
                         showColorIndicator = true;
@@ -216,11 +213,11 @@ namespace GXPEngine
                         colorIndicationRGB[2] = 0;
                         if (enemyColl.type == "Normal")
                         {
-                            stamina -= enemy.normalDamage;
+                            data.currentStamina -= enemy.normalDamage;
                         }
                         else
                         {
-                            stamina -= enemy.burningDamage;
+                            data.currentStamina -= enemy.burningDamage;
                         }
                         playHurtSound = true;
                         showColorIndicator = true;
@@ -274,16 +271,16 @@ namespace GXPEngine
         {
             float maxStamina = data.stamina;
 
-            if (stamina > maxStamina)
+            if (data.currentStamina > maxStamina)
             {
-                stamina = maxStamina;
+                data.currentStamina = maxStamina;
             }
 
-            if (stamina > 0)
+            if (data.currentStamina > 0)
             {
-                stamina -= Time.deltaTime / data.staminaRate;
+                data.currentStamina -= Time.deltaTime / data.staminaRate;
             }
-            else if (stamina < 0)
+            else if (data.currentStamina < 0)
             {
                 Restart();
             }
