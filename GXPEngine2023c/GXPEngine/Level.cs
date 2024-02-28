@@ -18,7 +18,6 @@ namespace GXPEngine
         public Level(int index) : base()
         {
             Map levelData = MapParser.ReadMap("Level " + index + ".tmx");
-            Console.WriteLine(levelData.Layers.Length);
             SpawnTiles(levelData);
             SpawnObjects(levelData);
             camera = new Camera(0, 0, game.width, game.height);
@@ -56,17 +55,17 @@ namespace GXPEngine
                     int tileNumber = tileNumbers[col, row];
                     if (tileNumber > 0)
                     {
-                        string tilesetFile = "TileSet1.png";
-                        if (((MyGame)game).completedLevelIndices.Count == 1)
+                        string tilesetFile = "OverworldTileSet.png";
+                        //if (((MyGame)game).completedLevelIndices.Count == 1)
+                        //{
+                        //    tilesetFile = "TileSet2.png";
+                        //}
+                        if (((MyGame)game).completedLevelIndices.Count == 2)
                         {
-                            tilesetFile = "TileSet2.png";
+                            tilesetFile = "UnderworldTileSet.png";
                         }
-                        else if (((MyGame)game).completedLevelIndices.Count == 2)
-                        {
-                            tilesetFile = "TileSet3.png";
-                        }
-                        CollisionTile tile = new CollisionTile(tilesetFile, 6, 1);
-                        if (tileNumber == 3)
+                        CollisionTile tile = new CollisionTile(tilesetFile, 9, 3);
+                        if (tileNumber == 17)
                         {
                             tile.type = "Death";
                         }
