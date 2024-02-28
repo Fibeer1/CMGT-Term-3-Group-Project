@@ -14,6 +14,7 @@ namespace GXPEngine
 
         Player player;
         EnemyData data;
+        PlayerData playerData;
 
         Sound death;
 
@@ -34,6 +35,7 @@ namespace GXPEngine
         public void Start()
         {
             data = ((MyGame)game).enemyData;
+            playerData = ((MyGame)game).playerData;
 
             death = new Sound(data.deathSound, false, false);
 
@@ -218,12 +220,12 @@ namespace GXPEngine
                 {
                     player.stamina += data.shooterStaminaRegen;
                 }
-                player.score += 1;
+                playerData.playerScore += 1;
                 Die();
             }
             else if (other is HornProjectile)
             {
-                player.score += 2;
+                playerData.playerScore += 2;
                 player.target = null;
                 Die();
             }

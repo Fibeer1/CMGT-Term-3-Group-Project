@@ -35,7 +35,7 @@ namespace GXPEngine
             graphics.FillRectangle(new SolidBrush(Color.White), 10 + TextWidth("Stamina: "), 10, data.staminaLength * (player.stamina / playerData.stamina), 20);
             graphics.DrawRectangle(new Pen(Color.White), 10 + TextWidth("Stamina: "), 10, data.staminaLength, 20);
             //Score
-            graphics.DrawString("Score: " + player.score, uiFont, Brushes.White, 10, 35);           
+            graphics.DrawString("Score: " + playerData.playerScore, uiFont, Brushes.White, 10, 35);           
             //Bite CD
             HandleBiteCD();
             //Horn CD
