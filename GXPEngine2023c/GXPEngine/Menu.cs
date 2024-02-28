@@ -8,15 +8,10 @@ namespace GXPEngine
 {
     class Menu : GameObject
     {
-        public int gameOverScore;
         string type;
         public Menu(string pType) : base()
         {
             type = pType;
-            if (type == "Game Over")
-            {
-                gameOverScore = game.FindObjectOfType<Player>().score;
-            }
             Start();
         }
         void Start()
@@ -46,7 +41,6 @@ namespace GXPEngine
             else if (type == "Game Over")
             {
                 EasyDraw gameOverText = new EasyDraw(250, 75, false);
-                EasyDraw wave = new EasyDraw(300, 50, false);
                 EasyDraw score = new EasyDraw(300, 50, false);
                 Button restartButton;
                 Button quitButton;
@@ -54,15 +48,12 @@ namespace GXPEngine
                 gameOverText.TextAlign(CenterMode.Center, CenterMode.Center);
                 gameOverText.SetXY(game.width / 2 - gameOverText.width / 2, 50);
                 gameOverText.Text("Game over!");
-                wave.TextAlign(CenterMode.Center, CenterMode.Center);
-                wave.SetXY(game.width / 2 - wave.width / 2, 150);
                 score.TextAlign(CenterMode.Center, CenterMode.Center);
                 score.SetXY(game.width / 2 - score.width / 2, 175);
-                score.Text("Score: " + gameOverScore);
+                score.Text("Score: " + ((MyGame)game).playerData.playerScore);
                 restartButton = new Button("Restart", game.width / 2 - 150 / 2, 425);
                 quitButton = new Button("Quit Game", game.width / 2 - 150 / 2, 500);
                 AddChild(gameOverText);
-                AddChild(wave);
                 AddChild(score);
                 AddChild(restartButton);
                 AddChild(quitButton);
