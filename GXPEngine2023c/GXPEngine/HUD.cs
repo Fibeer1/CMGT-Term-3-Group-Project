@@ -61,9 +61,9 @@ namespace GXPEngine
         {
             if (playerData.stamina > 0)
             {
-                staminaBar.scaleX -= Time.deltaTime / playerData.staminaRate / 1000;
+                staminaBar.scaleX = player.stamina / 1000;
                 staminaBarEffect.SetXY(staminaBar.x + staminaBar.width - staminaBarEffect.width / 2, staminaBar.y);
-                staminaBarEffect.Animate(0.1f);
+                staminaBarEffect.Animate(0.15f);
             }
         }
         private void HandleBiteCD()
