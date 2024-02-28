@@ -11,8 +11,15 @@ namespace GXPEngine
     {
         Player player;
         public Level level;
-        Font uiFont = new Font(FontFamily.GenericSansSerif, 15);
-
+        string scoreText;
+        Sprite score = new Sprite("UI_score.png");
+        Sprite stamina = new Sprite("UI_stamina_back.png");
+        Sprite staminaBar = new Sprite("UI_stamina_rainbowline.png");        
+        Sprite staminaOverlay = new Sprite("UI_stamina_overlay.png");
+        AnimationSprite staminaBarEffect = new AnimationSprite("cloud_frames.png", 4, 1);
+        AnimationSprite biteCD = new AnimationSprite("UI_bitecd.png", 4, 2);
+        AnimationSprite hornCD = new AnimationSprite("UI_horncd.png", 4, 2);
+        Font uiFont = new Font("Concert One", 15);
         HUDData data;
         PlayerData playerData;
 
@@ -24,22 +31,40 @@ namespace GXPEngine
 
         public void Start()
         {
-            //level = game.FindObjectOfType<Level>();
             player = level.player;
+            stamina.SetXY(5, 5);
+            AddChild(stamina);           
+            staminaBar.SetOrigin(0, staminaBar.y / 2);
+            staminaBar.SetXY(12, 50);
+            AddChild(staminaBar);
+            AddChild(staminaBarEffect);
+            staminaOverlay.SetXY(7, 45);
+            AddChild(staminaOverlay);
+            score.SetXY(game.width / 2 - score.width / 2, 10);
+            AddChild(score);
         }
         private void Update()
         {
             graphics.Clear(Color.Empty);
-            //Stamina
-            graphics.DrawString("Stamina: ", uiFont, Brushes.White, 10, 10);
-            graphics.FillRectangle(new SolidBrush(Color.White), 10 + TextWidth("Stamina: "), 10, data.staminaLength * (player.stamina / playerData.stamina), 20);
-            graphics.DrawRectangle(new Pen(Color.White), 10 + TextWidth("Stamina: "), 10, data.staminaLength, 20);
+            HandleStamina();
             //Score
-            graphics.DrawString("Score: " + playerData.playerScore, uiFont, Brushes.White, 10, 35);           
-            //Bite CD
+            scoreText = playerData.playerScore.ToString();
+            graphics.DrawString(scoreText,
+                uiFont,
+                Brushes.White, 
+                score.x + score.width / 2 - 9,
+                score.y + score.height + 5);
             HandleBiteCD();
-            //Horn CD
             HandleHornCD();
+        }
+        private void HandleStamina()
+        {
+            if (playerData.stamina > 0)
+            {
+                staminaBar.scaleX -= Time.deltaTime / playerData.staminaRate;
+                staminaBarEffect.SetXY(staminaBar.x + staminaBar.width - staminaBarEffect.width / 2, staminaBar.y - 4);
+                staminaBarEffect.Animate(0.15f);
+            }
         }
         private void HandleBiteCD()
         {

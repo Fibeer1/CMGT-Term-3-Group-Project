@@ -23,14 +23,14 @@ namespace GXPEngine
         {
             if (type == "Main Menu")
             {
-                EasyDraw title = new EasyDraw(400, 75, false);
+                EasyDraw title = new EasyDraw(400, 150, false);
                 EasyDraw controls = new EasyDraw(360, 480, false);
                 Button startButton = new Button("Start Game", game.width / 2 - 150 / 2, 250);
                 Button quitButton = new Button("Quit Game", game.width / 2 - 150 / 2, 350);
                 title.TextAlign(CenterMode.Center, CenterMode.Center);
                 title.SetXY(game.width / 2 - title.width / 2, 50);
-                title.TextSize(30);
-                title.Text("Unicorn.exe");
+                title.TextSize(15);
+                title.Text("Sugar, Spice \n & \n Everything not \n NICE");
                 controls.SetXY(5, 50);
                 controls.Text("Controls: \n" +
                 "A - move left \n" +
