@@ -2,11 +2,12 @@ using System;
 using GXPEngine;                                
 using System.Drawing;
 using System.Collections.Generic;
+using System.Linq;
 
 class MyGame : Game {
 
-	public Level currentLevel;
 	public int currentLevelIndex;
+	public List<int> completedLevelIndices = new List<int>();
 	
 	public PlayerData playerData;
 	public EnemyData enemyData;
@@ -21,14 +22,13 @@ class MyGame : Game {
 		targetFps = 60;
 		Menu menu = new Menu("Main Menu");
 		AddChild(menu);
-		currentLevelIndex = 1;
+		currentLevelIndex = Utils.Random(0, 5);
 	}
 
 	public void StartLevel(int levelIndex)
     {
 		DestroyChildren();
 		Level level = new Level(levelIndex);
-		currentLevel = level;
 		currentLevelIndex = levelIndex;
 		AddChild(level);
 	}

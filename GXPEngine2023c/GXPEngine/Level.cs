@@ -56,7 +56,16 @@ namespace GXPEngine
                     int tileNumber = tileNumbers[col, row];
                     if (tileNumber > 0)
                     {
-                        CollisionTile tile = new CollisionTile("TileSet1.png", 6, 1);
+                        string tilesetFile = "TileSet1.png";
+                        if (((MyGame)game).completedLevelIndices.Count == 1)
+                        {
+                            tilesetFile = "TileSet2.png";
+                        }
+                        else if (((MyGame)game).completedLevelIndices.Count == 2)
+                        {
+                            tilesetFile = "TileSet3.png";
+                        }
+                        CollisionTile tile = new CollisionTile(tilesetFile, 6, 1);
                         if (tileNumber == 3)
                         {
                             tile.type = "Death";

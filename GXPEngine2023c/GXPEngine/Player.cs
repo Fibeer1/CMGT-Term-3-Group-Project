@@ -84,7 +84,6 @@ namespace GXPEngine
             hornArrow = new Sprite("HornArrow.png", false, false);
             hornArrow.SetOrigin(hornArrow.width / 2, hornArrow.height / 2);
             SetScaleXY(data.scale, data.scale);
-
             runningSound = running.Play();
         }
         private void Update()
@@ -170,7 +169,13 @@ namespace GXPEngine
                 if (colInfoX.other is Finish)
                 {
                     runningSound.Stop();
-                    ((MyGame)game).StartLevel(Utils.Random(0, 5));
+                    ((MyGame)game).completedLevelIndices.Add(((MyGame)game).currentLevelIndex);
+                    int levelRNG = Utils.Random(0, 5);
+                    while (((MyGame)game).completedLevelIndices.Contains(levelRNG))
+                    {
+                        levelRNG = Utils.Random(0, 5);
+                    }
+                    ((MyGame)game).StartLevel(levelRNG);
                 }
                 if (colInfoX.other is EnemyTrigger)
                 {
@@ -224,7 +229,13 @@ namespace GXPEngine
                 if (colInfoY.other is Finish)
                 {
                     runningSound.Stop();
-                    ((MyGame)game).StartLevel(Utils.Random(0, 5));
+                    ((MyGame)game).completedLevelIndices.Add(((MyGame)game).currentLevelIndex);
+                    int levelRNG = Utils.Random(0, 5);
+                    while (((MyGame)game).completedLevelIndices.Contains(levelRNG))
+                    {
+                        levelRNG = Utils.Random(0, 5);
+                    }
+                    ((MyGame)game).StartLevel(levelRNG);
                 }
                 if (colInfoY.other is EnemyTrigger)
                 {
