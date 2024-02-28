@@ -28,7 +28,7 @@ namespace GXPEngine
             SetOrigin(width / 2, height / 2);
             SetXY(player.hornArrow.x, player.hornArrow.y);
 
-            player.stamina -= data.hornStaminaDrain;
+            data.currentStamina -= data.hornStaminaDrain;
             rotation = player.hornArrow.rotation;
             x += player.facingRight ? 10 : -10;           
         }

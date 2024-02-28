@@ -61,7 +61,7 @@ namespace GXPEngine
         {
             if (playerData.stamina > 0)
             {
-                staminaBar.scaleX = player.stamina / 1000;
+                staminaBar.scaleX = playerData.currentStamina / 1000;
                 staminaBarEffect.SetXY(staminaBar.x + staminaBar.width - staminaBarEffect.width / 2, staminaBar.y);
                 staminaBarEffect.Animate(0.15f);
             }

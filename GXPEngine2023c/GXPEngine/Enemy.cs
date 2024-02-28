@@ -114,11 +114,11 @@ namespace GXPEngine
                             player.colorIndicationRGB[2] = 0;
                             if (type == "Normal")
                             {
-                                player.stamina -= data.normalDamage;
+                                playerData.currentStamina -= data.normalDamage;
                             }
                             else
                             {
-                                player.stamina -= data.burningDamage;
+                                playerData.currentStamina -= data.burningDamage;
                             }
                             player.showColorIndicator = true;
                             player.playHurtSound = true;
@@ -154,11 +154,11 @@ namespace GXPEngine
                             player.colorIndicationRGB[2] = 0;
                             if (type == "Normal")
                             {
-                                player.stamina -= data.normalDamage;
+                                playerData.currentStamina -= data.normalDamage;
                             }
                             else
                             {
-                                player.stamina -= data.burningDamage;
+                                playerData.currentStamina -= data.burningDamage;
                             }                           
                             player.showColorIndicator = true;
                             player.playHurtSound = true;
@@ -210,15 +210,15 @@ namespace GXPEngine
                 }
                 if (type == "Normal")
                 {
-                    player.stamina += data.normalStaminaRegen;
+                    playerData.currentStamina += data.normalStaminaRegen;
                 }
                 else if (type == "Crisp")
                 {
-                    player.stamina += data.burningStaminaRegen;
+                    playerData.currentStamina += data.burningStaminaRegen;
                 }
                 else if (type == "Shooter")
                 {
-                    player.stamina += data.shooterStaminaRegen;
+                    playerData.currentStamina += data.shooterStaminaRegen;
                 }
                 playerData.playerScore += 1;
                 Die();
