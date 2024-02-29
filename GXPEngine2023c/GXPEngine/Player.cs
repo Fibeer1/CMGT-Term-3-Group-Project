@@ -127,9 +127,10 @@ namespace GXPEngine
             }
 
             //jumping
-            if (Input.GetKeyDown('W') && canJump)
+            if (Input.GetKey('W') && canJump)
             {
                 speedY -= data.jumpHeight;
+                canJump = false;
             }
 
             //gravity
@@ -331,7 +332,7 @@ namespace GXPEngine
 
         private void HandleBiteAttack()
         {
-            if (Input.GetMouseButtonDown(0) && biteCDTimer <= 0)
+            if (Input.GetKey('J') && biteCDTimer <= 0)
             {
                 BiteParticle biteParticle = new BiteParticle(biteSizeModifier);
                 AddChild(biteParticle);
@@ -366,7 +367,7 @@ namespace GXPEngine
                 float angle = Mathf.Atan2(yPos, xPos) * 360 / ((float)Math.PI * 2) + rotationModifier;
                 hornArrow.rotation = angle;
             }
-            if (Input.GetMouseButtonDown(1) && hornCDTimer <= 0 && target != null)
+            if (Input.GetKey('K') && hornCDTimer <= 0 && target != null)
             {
                 HornProjectile hornProjectile = new HornProjectile();
                 level.AddChild(hornProjectile);

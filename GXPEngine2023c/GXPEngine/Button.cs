@@ -9,14 +9,15 @@ namespace GXPEngine
     class Button : EasyDraw
     {
         string text;
+        string type;
         MyGame mainGame;
-        public Button(string pText, float pX, float pY) : base(150, 50)
+        public Button(string pText, string pType, float pX, float pY) : base(400, 100)
         {
             SetXY(pX, pY);
             text = pText;
-            Clear(System.Drawing.Color.FromArgb(50, 50, 50));
-            TextAlign(CenterMode.Center, CenterMode.Center);
-            TextFont("Concert One", 15);
+            type = pType;
+            TextAlign(CenterMode.Center, CenterMode.Min);
+            TextFont("Concert One", 20);
             Text(text);
             mainGame = game.FindObjectOfType<MyGame>();
         }
@@ -26,22 +27,25 @@ namespace GXPEngine
             {
                 if (HitTestPoint(Input.mouseX, Input.mouseY))
                 {
-                    if (text == "Start Game")
+                    if (type == "Start Game")
                     {
                         Menu menu = parent as Menu;
                         menu.DestroyAll();
                         mainGame.StartLevel(mainGame.currentLevelIndex);
                     }
-                    else if (text == "Restart")
+                    else if (type == "Restart")
                     {
                         Menu menu = parent as Menu;
                         menu.DestroyAll();
                         mainGame.playerData = new PlayerData();
                         mainGame.FindObjectOfType<MyGame>().StartLevel(Utils.Random(0, 5));
                     }
-                    else if (text == "Quit Game")
+                    else if (type == "Main Menu")
                     {
-                        Environment.Exit(0);
+                        Menu menu = parent as Menu;
+                        menu.DestroyAll();
+                        mainGame.playerData = new PlayerData();
+                        mainGame.StartMenu("Main Menu");
                     }
                     //Screens: Main menu, game over
                 }

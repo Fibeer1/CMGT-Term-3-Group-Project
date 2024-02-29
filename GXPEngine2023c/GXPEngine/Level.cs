@@ -40,12 +40,6 @@ namespace GXPEngine
             hud.SetXY(camera.x - game.width / 2, camera.y - game.height / 2);
             hud.Start();            
         }
-        private void Start()
-        {            
-            //spawn the player, after that spawn enemies at specific places depending on the level
-           
-            //Need to find a way to add the level as a parent before the start method is called                        
-        }
         private void SpawnTiles(Map leveldata)
         {
             if (leveldata.Layers == null || leveldata.Layers.Length == 0)
