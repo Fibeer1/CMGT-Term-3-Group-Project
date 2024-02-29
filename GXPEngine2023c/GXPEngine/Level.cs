@@ -22,19 +22,18 @@ namespace GXPEngine
         public Level(int index) : base()
         {
             string levelBackground = "";
-            musicChannel = hellishMusic.Play();
-            musicChannel.Stop();
             if (((MyGame)game).completedLevelIndices.Count == 0)
-            {                
+            {
+                musicChannel = cheerfulMusic.Play();
                 levelBackground = "OverworldBackground.png";
             }
             else if (((MyGame)game).completedLevelIndices.Count == 1)
             {
+                musicChannel = cheerfulMusic.Play();
                 levelBackground = "InbetweenBackground.png";
             }
             else if (((MyGame)game).completedLevelIndices.Count == 2)
             {
-                musicChannel.Stop();
                 musicChannel = hellishMusic.Play();
                 levelBackground = "UnderworldBackground.png";
             }

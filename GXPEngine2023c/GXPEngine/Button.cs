@@ -23,7 +23,7 @@ namespace GXPEngine
         }
         void Update()
         {
-            if (Input.GetKey('N')) //Nose
+            if (Input.GetKey('W')) //Nose
             {
                 if (type == "Start Game")
                 {
