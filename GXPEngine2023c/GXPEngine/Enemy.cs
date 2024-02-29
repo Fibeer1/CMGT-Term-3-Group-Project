@@ -79,7 +79,7 @@ namespace GXPEngine
                 SetFrame(1);
             }
             SetOrigin(width / 2, height / 2);
-            SetScaleXY(0.5f, 0.5f);
+            SetScaleXY(0.4f, 0.4f);
         }
         private void Update()
         {

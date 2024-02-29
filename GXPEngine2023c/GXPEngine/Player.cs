@@ -36,7 +36,6 @@ namespace GXPEngine
         public Enemy target;
         public float hornCDTimer = 0;
         public float hornCD; //Default value is 3f
-        Sprite horn;
         public Sprite hornArrow;
 
         float spawnX;
@@ -71,10 +70,7 @@ namespace GXPEngine
             biteCD = data.biteCD;
             hornCD = data.hornCD;
 
-            SetOrigin(width / 2, height / 2);            
-            horn = new Sprite("Horn.png", false, false);
-            horn.SetXY(75, -75);
-            AddChild(horn);
+            SetOrigin(width / 2, height / 2);
             hornArrow = new Sprite("HornArrow.png", false, false);
             hornArrow.SetOrigin(hornArrow.width / 2, hornArrow.height / 2);
             SetScaleXY(data.scale, data.scale);
@@ -339,7 +335,6 @@ namespace GXPEngine
         }
         private void HandleHornAttack()
         {
-            horn.alpha = hornCDTimer > 0 ? 0 : 1;
             hornArrow.alpha = target == null || hornCDTimer > 0 ? 0 : 1;
             foreach (Enemy enemy in enemies)
             {
@@ -379,18 +374,10 @@ namespace GXPEngine
             {
                 canTakeDamage = false;
                 SetColor(colorIndicationRGB[0], colorIndicationRGB[1], colorIndicationRGB[2]);
-                if (horn.alpha > 0)
-                {
-                    horn.SetColor(colorIndicationRGB[0], colorIndicationRGB[1], colorIndicationRGB[2]);
-                }
                 colorIndicatorTimer -= 0.01f;
                 if (colorIndicatorTimer <= 0)
                 {
                     SetColor(1, 1, 1);
-                    if (horn.alpha > 0)
-                    {
-                        horn.SetColor(1, 1, 1);
-                    }
                     colorIndicatorTimer = 0.1f;
                     showColorIndicator = false;
                     canTakeDamage = true;
