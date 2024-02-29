@@ -69,10 +69,14 @@ namespace GXPEngine
                         {
                             tilesetFile = "UnderworldTileSet.png";
                         }
-                        CollisionTile tile = new CollisionTile(tilesetFile, 9, 3);
-                        if (tileNumber == 17)
+                        CollisionTile tile = new CollisionTile(tilesetFile, 9, 4);
+                        if (tileNumber >= 34 && tileNumber <= 36)
                         {
                             tile.type = "Death";
+                        }
+                        if (tileNumber >= 7 && tileNumber <= 9 || tileNumber >= 16 && tileNumber <= 18 || tileNumber >= 25 && tileNumber <= 27)
+                        {
+                            tile.collider.isTrigger = true;
                         }
                         tile.SetFrame(tileNumber - 1);
                         tile.x = col * tile.width;
