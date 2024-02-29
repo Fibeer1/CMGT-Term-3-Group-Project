@@ -23,31 +23,30 @@ namespace GXPEngine
         }
         void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKey('N')) //Nose
             {
-                if (HitTestPoint(Input.mouseX, Input.mouseY))
+                if (type == "Start Game")
                 {
-                    if (type == "Start Game")
-                    {
-                        Menu menu = parent as Menu;
-                        menu.DestroyAll();
-                        mainGame.StartLevel(mainGame.currentLevelIndex);
-                    }
-                    else if (type == "Restart")
-                    {
-                        Menu menu = parent as Menu;
-                        menu.DestroyAll();
-                        mainGame.playerData = new PlayerData();
-                        mainGame.FindObjectOfType<MyGame>().StartLevel(Utils.Random(0, 5));
-                    }
-                    else if (type == "Main Menu")
-                    {
-                        Menu menu = parent as Menu;
-                        menu.DestroyAll();
-                        mainGame.playerData = new PlayerData();
-                        mainGame.StartMenu("Main Menu");
-                    }
-                    //Screens: Main menu, game over
+                    Menu menu = parent as Menu;
+                    menu.DestroyAll();
+                    mainGame.StartLevel(mainGame.currentLevelIndex);
+                }
+                else if (type == "Restart")
+                {
+                    Menu menu = parent as Menu;
+                    menu.DestroyAll();
+                    mainGame.playerData = new PlayerData();
+                    mainGame.FindObjectOfType<MyGame>().StartLevel(Utils.Random(0, 5));
+                }
+            }
+            else if (Input.GetKey('M')) //Horn
+            {
+                if (type == "Main Menu")
+                {
+                    Menu menu = parent as Menu;
+                    menu.DestroyAll();
+                    mainGame.playerData = new PlayerData();
+                    mainGame.StartMenu("Main Menu");
                 }
             }
         }
