@@ -18,7 +18,12 @@ namespace GXPEngine
         public Level(int index) : base()
         {
             Sprite background;
-            if (((MyGame)game).completedLevelIndices.Count == 2)
+            if (((MyGame)game).completedLevelIndices.Count == 0)
+            {
+                background = new Sprite("OverworldBackground.png", false, false);
+                AddChild(background);
+            }
+            else if (((MyGame)game).completedLevelIndices.Count == 2)
             {
                 background = new Sprite("UnderworldBackground.png", false, false);
                 AddChild(background);
