@@ -18,9 +18,11 @@ namespace GXPEngine
         {
             if (type == "Main Menu")
             {
+                Sprite background = new Sprite("MainMenuBackground.png", false, false);
                 Sprite title = new Sprite("title.png", false, false);
                 Button startButton = new Button("Press the nose to start", "Start Game", game.width / 2 - 400 / 2, 350);
                 title.SetXY(game.width / 2 - title.width / 2, 50);
+                AddChild(background);
                 AddChild(title);
                 AddChild(startButton);
             }

@@ -20,10 +20,6 @@ namespace GXPEngine
 
         SoundChannel runningSound;
 
-        //General variables
-        public int score;
-        bool isDead = false;
-
         //Movement variables       
         float speedY = 0;
         bool canJump = false;
@@ -62,10 +58,6 @@ namespace GXPEngine
 
         public Player() : base("Unicorn.png", 6, 5)
         {
-            //Idle - 0 - 16
-            //Running - 
-            //Jumping - 
-            //Falling - 
             
             data = ((MyGame)game).playerData;
             enemy = ((MyGame)game).enemyData;

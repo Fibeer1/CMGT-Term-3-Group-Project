@@ -12,14 +12,20 @@ namespace GXPEngine
         public Player player;
         Camera camera;
         public HUD hud;
+        Sound cheerfulMusic = new Sound("cheerfulMusic.mp3", true);
+        Sound hellishMusic = new Sound("hellishMusic.mp3", true);
+
+        SoundChannel musicChannel;
 
         int lvlNumber;
 
         public Level(int index) : base()
         {
             string levelBackground = "";
+            musicChannel = hellishMusic.Play();
+            musicChannel.Stop();
             if (((MyGame)game).completedLevelIndices.Count == 0)
-            {
+            {                
                 levelBackground = "OverworldBackground.png";
             }
             else if (((MyGame)game).completedLevelIndices.Count == 1)
@@ -28,6 +34,8 @@ namespace GXPEngine
             }
             else if (((MyGame)game).completedLevelIndices.Count == 2)
             {
+                musicChannel.Stop();
+                musicChannel = hellishMusic.Play();
                 levelBackground = "UnderworldBackground.png";
             }
             Sprite background1 = new Sprite(levelBackground, false, false);
