@@ -43,6 +43,11 @@ class MyGame : Game {
 		foreach (GameObject child in children)
 		{
 			child.LateDestroy();
+			if (child is Level)
+            {
+				Level level = child as Level;
+				level.musicChannel.Stop();
+            }
 		}
 	}
 	static void Main()

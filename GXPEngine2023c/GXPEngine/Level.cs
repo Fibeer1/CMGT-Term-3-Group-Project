@@ -15,7 +15,7 @@ namespace GXPEngine
         Sound cheerfulMusic = new Sound("cheerfulMusic.mp3", true);
         Sound hellishMusic = new Sound("hellishMusic.mp3", true);
 
-        SoundChannel musicChannel;
+        public SoundChannel musicChannel;
 
         int lvlNumber;
 
