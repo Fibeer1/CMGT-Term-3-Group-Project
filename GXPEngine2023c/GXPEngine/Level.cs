@@ -11,24 +11,32 @@ namespace GXPEngine
     {
         public Player player;
         Camera camera;
-        HUD hud;
+        public HUD hud;
 
         int lvlNumber;
 
         public Level(int index) : base()
         {
-            Sprite background;
+            string levelBackground = "";
             if (((MyGame)game).completedLevelIndices.Count == 0)
             {
-                background = new Sprite("OverworldBackground.png", false, false);
-                AddChild(background);
+                levelBackground = "OverworldBackground.png";
+            }
+            else if (((MyGame)game).completedLevelIndices.Count == 1)
+            {
+                levelBackground = "InbetweenBackground.png";
             }
             else if (((MyGame)game).completedLevelIndices.Count == 2)
             {
-                background = new Sprite("UnderworldBackground.png", false, false);
-                AddChild(background);
+                levelBackground = "UnderworldBackground.png";
             }
-            Map levelData = MapParser.ReadMap("Level " + index + ".tmx");
+            Sprite background1 = new Sprite(levelBackground, false, false);
+            AddChild(background1);            
+            Sprite background2 = new Sprite(levelBackground, false, false);
+            background2.SetXY(background1.width, background1.y);
+            AddChild(background2);
+
+            Map levelData = MapParser.ReadMap("Level " + index + ".tmx");            
             SpawnTiles(levelData);
             SpawnObjects(levelData);
             camera = new Camera(0, 0, game.width, game.height);
@@ -61,10 +69,10 @@ namespace GXPEngine
                     if (tileNumber > 0)
                     {
                         string tilesetFile = "OverworldTileSet.png";
-                        //if (((MyGame)game).completedLevelIndices.Count == 1)
-                        //{
-                        //    tilesetFile = "TileSet2.png";
-                        //}
+                        if (((MyGame)game).completedLevelIndices.Count == 1)
+                        {
+                            tilesetFile = "InbetweenTileset.png";
+                        }
                         if (((MyGame)game).completedLevelIndices.Count == 2)
                         {
                             tilesetFile = "UnderworldTileSet.png";
@@ -100,7 +108,7 @@ namespace GXPEngine
             foreach (TiledObject obj in objectGroup.Objects)
             {
                 switch (obj.Name)
-                {
+                {                    
                     case "Player":
                         player = new Player();
                         player.SetXY(obj.X, obj.Y);

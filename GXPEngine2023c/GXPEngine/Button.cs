@@ -31,6 +31,14 @@ namespace GXPEngine
                     menu.DestroyAll();
                     mainGame.StartLevel(mainGame.currentLevelIndex);
                 }
+                else if (type == "Restart Game")
+                {                    
+                    Menu menu = parent as Menu;
+                    menu.DestroyAll();
+                    mainGame.completedLevelIndices.Clear();
+                    mainGame.playerData = new PlayerData();
+                    mainGame.FindObjectOfType<MyGame>().StartLevel(Utils.Random(0, 5));
+                }
                 else if (type == "Restart")
                 {
                     Menu menu = parent as Menu;

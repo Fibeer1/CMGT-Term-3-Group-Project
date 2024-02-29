@@ -21,7 +21,7 @@ class MyGame : Game {
 
 		targetFps = 60;
 		StartMenu("Main Menu");
-		currentLevelIndex = 0; //Utils.Random(0, 5);
+		currentLevelIndex = 4; //Utils.Random(0, 5);
 	}
 	public void StartMenu(string menuType)
     {

@@ -419,18 +419,17 @@ namespace GXPEngine
             runningSound.Stop();
             death.Play();
 
+            MyGame mainGame = game.FindObjectOfType<MyGame>();           
             data.currentLives--;
             data.currentStamina = data.stamina;
-            MyGame mainGame = game.FindObjectOfType<MyGame>();
-            if (data.currentLives <= 0)
-            {                
-                mainGame.completedLevelIndices.Clear();
-                mainGame.StartMenu("Game Over");
-            }
-            else
+            if (data.currentLives > 0)
             {
                 mainGame.StartLevel(mainGame.currentLevelIndex);
-            }            
+            }  
+            else
+            {
+                mainGame.StartMenu("Game Over");
+            }
         }
     }
 }

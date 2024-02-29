@@ -26,43 +26,40 @@ namespace GXPEngine
             }
             else if (type == "Game Over")
             {
-                EasyDraw gameOverText = new EasyDraw(250, 75, false);
+                MyGame mainGame = (MyGame)game;
+                string restartButtonText = "Press the nose to restart";
+                if (mainGame.completedLevelIndices.Count < 2)
+                {
+                    Sprite background = new Sprite("GameoverCandy.png", false, false);
+                    AddChild(background);
+                }
+                else
+                {
+                    Sprite background = new Sprite("GameoverHell.png", false, false);
+                    AddChild(background);
+                    restartButtonText = "";
+                }
                 EasyDraw score = new EasyDraw(300, 50, false);
-                Button restartButton = new Button("Press the nose to restart", "Restart", game.width / 2 - 400 / 2, 425);
-                Button menuButton = new Button(" Press the horn to\nreturn to the menu", "Main Menu", game.width / 2 - 400 / 2, 500);
-                gameOverText.TextFont("Concert One", 15);
-                gameOverText.TextSize(25);
-                gameOverText.TextAlign(CenterMode.Center, CenterMode.Center);
-                gameOverText.SetXY(game.width / 2 - gameOverText.width / 2, 50);
-                gameOverText.Text("Game over!");
+                Button restartButton = new Button(restartButtonText, "Restart Game", game.width / 2 - 400 / 2, 600);
                 score.TextFont("Concert One", 15);
                 score.TextAlign(CenterMode.Center, CenterMode.Center);
                 score.SetXY(game.width / 2 - score.width / 2, 175);
-                score.Text("Score: " + ((MyGame)game).playerData.playerScore);
-                AddChild(gameOverText);
+                score.Text("Score: " + mainGame.playerData.playerScore);
                 AddChild(score);
                 AddChild(restartButton);
-                AddChild(menuButton);
             }
             else if (type == "Win Screen")
             {
-                EasyDraw winText = new EasyDraw(250, 75, false);
+                Sprite background = new Sprite("WinScreen.png", false, false);                
                 EasyDraw score = new EasyDraw(300, 50, false);
-                Button restartButton = new Button("Press the nose to restart", "Restart", game.width / 2 - 400 / 2, 425);
-                Button menuButton = new Button(" Press the horn to\nreturn to the menu", "Main Menu", game.width / 2 - 400 / 2, 500);
-                winText.TextFont("Concert One", 15);
-                winText.TextSize(25);
-                winText.TextAlign(CenterMode.Center, CenterMode.Center);
-                winText.SetXY(game.width / 2 - winText.width / 2, 50);
-                winText.Text("You win!");
+                Button restartButton = new Button("", "Restart Game", game.width / 2 - 400 / 2, 425);
                 score.TextFont("Concert One", 15);
                 score.TextAlign(CenterMode.Center, CenterMode.Center);
                 score.SetXY(game.width / 2 - score.width / 2, 175);
                 score.Text("Score: " + ((MyGame)game).playerData.playerScore);
-                AddChild(winText);
+                AddChild(background);
                 AddChild(score);
                 AddChild(restartButton);
-                AddChild(menuButton);
             }
         }
         public void DestroyAll()
