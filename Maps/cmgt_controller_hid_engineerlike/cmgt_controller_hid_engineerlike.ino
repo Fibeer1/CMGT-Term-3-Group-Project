@@ -1,17 +1,24 @@
-/*
-  program Game Controller as HID
-
-  Upload this file to your Arduino,
-  you can check with Notepad / Word or any other text based program
-  the output of the joystick button (space)
-*/
-
+#include <Adafruit_NeoPixel.h>
 #include "Keyboard.h"
+
+#define LED_COUNT 8
+#define LED_PIN 17
+
+#define NR_OF_ARRAY_ELEMENTS( array ) ( sizeof( array ) / sizeof( typeof( *array ) ) )
+
+Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+
+int value;
+int ledpin = 10;                           // light connected to digital PWM pin 9
+int ledpintwo = 11;
+int period = 2000;
+
+
 
 // -------
 // DEFINES
 // -------
-#define NR_OF_ARRAY_ELEMENTS( array ) ( sizeof( array ) / sizeof( typeof( *array ) ) )
+
 
 
 // ---------
@@ -67,6 +74,13 @@ char button2character[MAX_PINS] = {
 
 
 void setup() {
+  Serial.begin(9600);
+
+  strip.begin();
+  strip.show();
+  strip.setBrightness(20);
+
+
     delay( 3000 );     // to make reprogramming etc. easier
     
     set_all_pinmodes();
@@ -76,6 +90,17 @@ void setup() {
 
 
 void loop() {
+    value = 128+127*cos(2*PI/period*millis());
+    analogWrite(ledpin, value);   
+    analogWrite(ledpintwo, value);        
+    Serial.print(millis());
+    Serial.print(" - ");
+    Serial.print(value);
+    Serial.println();
+
+    rainbow(10);
+
+
     read_all_inputs();
     write_keyboard_outputs();
     delay( 50 );
@@ -114,4 +139,14 @@ void write_keyboard_outputs()
             }
         }
     }
+}
+
+void rainbow(int wait) {
+    for(int i=0; i<strip.numPixels(); i++) { 
+      int pixelHue = (i * 65536L / strip.numPixels());
+      strip.setPixelColor(i, strip.gamma32(strip.ColorHSV(pixelHue)));
+    }
+    strip.show();
+    //delay(wait);
+  
 }
