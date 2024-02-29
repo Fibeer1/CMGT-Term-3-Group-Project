@@ -26,6 +26,7 @@ namespace GXPEngine
             rotation = 90;
 
             SetOrigin(width/2, height/2);
+            SetScaleXY(3f, 3f);
         }
 
         private void Update()

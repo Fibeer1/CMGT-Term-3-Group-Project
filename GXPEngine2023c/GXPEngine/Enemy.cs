@@ -6,7 +6,7 @@ using GXPEngine.Core;
 
 namespace GXPEngine
 {
-    class Enemy : Sprite
+    class Enemy : AnimationSprite
     {
         //Movement pattern parameters
         string pattern;
@@ -28,7 +28,7 @@ namespace GXPEngine
         float shooterCdTimer = 0;
 
         bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height - height / 2;
-        public Enemy() : base("Enemy.png")
+        public Enemy() : base("Enemies.png", 2, 1)
         {
             
         }
@@ -70,8 +70,16 @@ namespace GXPEngine
             level = parent as Level;
             player = level.player;
             player.enemies.Add(this);
+            if (((MyGame)game).completedLevelIndices.Count == 2)
+            {
+                SetFrame(0);
+            }
+            else
+            {
+                SetFrame(1);
+            }
             SetOrigin(width / 2, height / 2);
-            SetScaleXY(1.75f, 1.75f);
+            SetScaleXY(0.5f, 0.5f);
         }
         private void Update()
         {

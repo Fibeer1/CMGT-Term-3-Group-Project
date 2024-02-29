@@ -26,7 +26,7 @@ namespace GXPEngine
         const float shooterMarshmallowDamage = 100;
         const float shooterMarshmallowStaminaRegen = 100;
         const float shooterMarshmallowShotCooldown = 3000f;
-        const float shooterMarshmallowProjectileSpeed = 6;
+        const float shooterMarshmallowProjectileSpeed = 20;
 
         const float gravityStrength = 0.5f;
         const float jumpPower = 10;
