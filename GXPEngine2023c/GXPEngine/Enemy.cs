@@ -70,7 +70,7 @@ namespace GXPEngine
             level = parent as Level;
             player = level.player;
             player.enemies.Add(this);
-            if (((MyGame)game).completedLevelIndices.Count == 2)
+            if (((MyGame)game).completedLevelIndices.Count >= 2)
             {
                 SetFrame(0);
             }
