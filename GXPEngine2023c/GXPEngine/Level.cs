@@ -17,6 +17,8 @@ namespace GXPEngine
 
         public Level(int index) : base()
         {
+            Sprite background = new Sprite("Background.png", false, false);
+            AddChild(background);
             Map levelData = MapParser.ReadMap("Level " + index + ".tmx");
             SpawnTiles(levelData);
             SpawnObjects(levelData);
