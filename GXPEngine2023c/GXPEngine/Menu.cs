@@ -18,14 +18,11 @@ namespace GXPEngine
         {
             if (type == "Main Menu")
             {
-                EasyDraw title = new EasyDraw(400, 150, false);
+                Sprite title = new Sprite("title.png", false, false);
                 EasyDraw controls = new EasyDraw(360, 480, false);
-                Button startButton = new Button("Start Game", game.width / 2 - 150 / 2, 250);
-                Button quitButton = new Button("Quit Game", game.width / 2 - 150 / 2, 350);
-                title.TextAlign(CenterMode.Center, CenterMode.Center);
+                Button startButton = new Button("Start Game", game.width / 2 - 150 / 2, 350);
+                Button quitButton = new Button("Quit Game", game.width / 2 - 150 / 2, 450);
                 title.SetXY(game.width / 2 - title.width / 2, 50);
-                title.TextSize(15);
-                title.Text("Sugar, Spice \n & \n Everything not \n NICE");
                 controls.SetXY(5, 50);
                 controls.Text("Controls: \n" +
                 "A - move left \n" +
