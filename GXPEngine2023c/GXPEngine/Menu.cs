@@ -23,6 +23,7 @@ namespace GXPEngine
                 Button startButton = new Button("Start Game", game.width / 2 - 150 / 2, 350);
                 Button quitButton = new Button("Quit Game", game.width / 2 - 150 / 2, 450);
                 title.SetXY(game.width / 2 - title.width / 2, 50);
+                controls.TextFont("Concert One", 15);
                 controls.SetXY(5, 50);
                 controls.Text("Controls: \n" +
                 "A - move left \n" +
@@ -41,10 +42,12 @@ namespace GXPEngine
                 EasyDraw score = new EasyDraw(300, 50, false);
                 Button restartButton;
                 Button quitButton;
+                gameOverText.TextFont("Concert One", 15);
                 gameOverText.TextSize(25);
                 gameOverText.TextAlign(CenterMode.Center, CenterMode.Center);
                 gameOverText.SetXY(game.width / 2 - gameOverText.width / 2, 50);
                 gameOverText.Text("Game over!");
+                score.TextFont("Concert One", 15);
                 score.TextAlign(CenterMode.Center, CenterMode.Center);
                 score.SetXY(game.width / 2 - score.width / 2, 175);
                 score.Text("Score: " + ((MyGame)game).playerData.playerScore);
@@ -61,10 +64,12 @@ namespace GXPEngine
                 EasyDraw score = new EasyDraw(300, 50, false);
                 Button restartButton;
                 Button quitButton;
+                winText.TextFont("Concert One", 15);
                 winText.TextSize(25);
                 winText.TextAlign(CenterMode.Center, CenterMode.Center);
                 winText.SetXY(game.width / 2 - winText.width / 2, 50);
                 winText.Text("You win!");
+                score.TextFont("Concert One", 15);
                 score.TextAlign(CenterMode.Center, CenterMode.Center);
                 score.SetXY(game.width / 2 - score.width / 2, 175);
                 score.Text("Score: " + ((MyGame)game).playerData.playerScore);

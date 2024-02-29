@@ -17,8 +17,12 @@ namespace GXPEngine
 
         public Level(int index) : base()
         {
-            Sprite background = new Sprite("Background.png", false, false);
-            AddChild(background);
+            Sprite background;
+            if (((MyGame)game).completedLevelIndices.Count == 2)
+            {
+                background = new Sprite("UnderworldBackground.png", false, false);
+                AddChild(background);
+            }
             Map levelData = MapParser.ReadMap("Level " + index + ".tmx");
             SpawnTiles(levelData);
             SpawnObjects(levelData);

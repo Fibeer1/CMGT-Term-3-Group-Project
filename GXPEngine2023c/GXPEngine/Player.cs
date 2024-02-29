@@ -7,7 +7,7 @@ using TiledMapParser;
 
 namespace GXPEngine
 {
-    class Player : Sprite
+    class Player : AnimationSprite
     {
         PlayerData data;
         EnemyData enemy;
@@ -60,8 +60,13 @@ namespace GXPEngine
 
         bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height - height / 2;
 
-        public Player() : base("Unicorn.png")
+        public Player() : base("Unicorn.png", 6, 5)
         {
+            //Idle - 0 - 16
+            //Running - 
+            //Jumping - 
+            //Falling - 
+            
             data = ((MyGame)game).playerData;
             enemy = ((MyGame)game).enemyData;
 
@@ -166,7 +171,7 @@ namespace GXPEngine
                 if (colInfoX.other is Finish)
                 {
                     runningSound.Stop();
-                    MyGame mainGame = ((MyGame)game);
+                    MyGame mainGame = (MyGame)game;
                     mainGame.completedLevelIndices.Add(mainGame.currentLevelIndex);
                     if (mainGame.completedLevelIndices.Count >= 3)
                     {
@@ -234,7 +239,7 @@ namespace GXPEngine
                 if (colInfoY.other is Finish)
                 {
                     runningSound.Stop();
-                    MyGame mainGame = ((MyGame)game);
+                    MyGame mainGame = (MyGame)game;
                     mainGame.completedLevelIndices.Add(mainGame.currentLevelIndex);
                     if (mainGame.completedLevelIndices.Count >= 3)
                     {
@@ -261,8 +266,31 @@ namespace GXPEngine
             {
                 canJump = false;
             }
-
+            HandleAnimations(dx, canJump);
             HandleSounds(dx, canJump);
+        }
+        private void HandleAnimations(float dx, bool grounded)
+        {
+            float animSpeed = 0.5f;
+            Console.WriteLine(speedY);
+            if (grounded && dx != 0 && speedY == 0)
+            {
+                SetCycle(0, 15);
+            }
+            if (speedY < 0)
+            {
+                SetCycle(16, 2);
+                animSpeed = 0.05f;
+            }
+            if (speedY > 0)
+            {
+                SetCycle(18, 1);
+            }
+            if (grounded && dx == 0 && speedY == 0)
+            {
+                SetCycle(19, 9);
+            }
+            Animate(animSpeed);
         }
 
         private void HandleSounds(float dx, bool grounded)

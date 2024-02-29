@@ -16,6 +16,7 @@ namespace GXPEngine
             text = pText;
             Clear(System.Drawing.Color.FromArgb(50, 50, 50));
             TextAlign(CenterMode.Center, CenterMode.Center);
+            TextFont("Concert One", 15);
             Text(text);
             mainGame = game.FindObjectOfType<MyGame>();
         }
