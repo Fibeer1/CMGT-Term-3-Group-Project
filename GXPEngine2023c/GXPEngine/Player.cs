@@ -272,7 +272,6 @@ namespace GXPEngine
         private void HandleAnimations(float dx, bool grounded)
         {
             float animSpeed = 0.5f;
-            Console.WriteLine(speedY);
             if (grounded && dx != 0 && speedY == 0)
             {
                 SetCycle(0, 15);
