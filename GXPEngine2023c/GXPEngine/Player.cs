@@ -24,7 +24,7 @@ namespace GXPEngine
         float speedY = 0;
         bool canJump = false;
 
-        public bool facingRight = true;
+        public bool facingRight = false;
 
         //Bite attack variables
         public float biteCDTimer = 0;
@@ -55,7 +55,7 @@ namespace GXPEngine
 
         bool outsideBorders => x < width / 2 || x > game.width - width / 2 || y < height / 2 || y > game.height - height / 2;
 
-        public Player() : base("Unicorn.png", 6, 5)
+        public Player() : base("Unicorn.png", 6, 10)
         {
             
             data = ((MyGame)game).playerData;
@@ -73,7 +73,7 @@ namespace GXPEngine
             SetOrigin(width / 2, height / 2);
             hornArrow = new Sprite("HornArrow.png", false, false);
             hornArrow.SetOrigin(hornArrow.width / 2, hornArrow.height / 2);
-            SetScaleXY(data.scale, data.scale);
+            SetScaleXY(-data.scale, data.scale);
             runningSound = running.Play();
         }
         private void Update()
@@ -100,7 +100,7 @@ namespace GXPEngine
             if (Input.GetKey('A'))
             {
                 dx -= data.speed;
-                scaleX = -data.scale;
+                scaleX = data.scale;
                 facingRight = false;
 
                 runningSound.Mute = false;
@@ -108,7 +108,7 @@ namespace GXPEngine
             else if (Input.GetKey('D'))
             {
                 dx += data.speed;
-                scaleX = data.scale;
+                scaleX = -data.scale;
                 facingRight = true;
 
                 runningSound.Mute = false;
@@ -260,23 +260,55 @@ namespace GXPEngine
         }
         private void HandleAnimations(float dx, bool grounded)
         {
+            MyGame mainGame = (MyGame)game;
+            bool isGameHellish = mainGame.completedLevelIndices.Count >= 2;
             float animSpeed = 0.5f;
             if (grounded && dx != 0 && speedY == 0)
             {
-                SetCycle(0, 15);
+                if (isGameHellish)
+                {
+                    SetCycle(30, 15);
+                }
+                else
+                {
+                    SetCycle(0, 15);
+                }
+                
             }
             if (speedY < 0)
             {
-                SetCycle(16, 2);
+                if (isGameHellish)
+                {
+                    SetCycle(46, 2);
+                }
+                else
+                {
+                    SetCycle(16, 2);
+                }                
                 animSpeed = 0.05f;
             }
             if (speedY > 0)
             {
-                SetCycle(18, 1);
+                if (isGameHellish)
+                {
+                    SetCycle(48, 1);
+                }
+                else
+                {
+                    SetCycle(18, 1);
+                }
+                
             }
             if (grounded && dx == 0 && speedY == 0)
             {
-                SetCycle(19, 9);
+                if (isGameHellish)
+                {
+                    SetCycle(49, 9);
+                }
+                else
+                {
+                    SetCycle(19, 9);
+                }               
             }
             Animate(animSpeed);
         }
@@ -347,7 +379,7 @@ namespace GXPEngine
             }
             if (target != null && hornCDTimer <= 0)
             {
-                hornArrow.SetXY(x + (facingRight ? 80 * scaleX : -50), y - 30 * scaleY / 2);
+                hornArrow.SetXY(x + (facingRight ? -50 * scaleX : -30), y - 30 * scaleY / 2);
                 float xPos = target.x - hornArrow.x;
                 float yPos = target.y - hornArrow.y;
                 float rotationModifier = 90;

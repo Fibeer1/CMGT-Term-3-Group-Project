@@ -9,6 +9,9 @@ namespace GXPEngine
     class Menu : GameObject
     {
         string type;
+
+        Sound gameOverHell = new Sound("GameOverHellSound.mp3");
+        SoundChannel menuChannel;
         public Menu(string pType) : base()
         {
             type = pType;
@@ -37,6 +40,7 @@ namespace GXPEngine
                 }
                 else
                 {
+                    menuChannel = gameOverHell.Play();
                     Sprite background = new Sprite("GameoverHell.png", false, false);
                     AddChild(background);
                     restartButtonText = "";
